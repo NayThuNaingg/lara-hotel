@@ -8,12 +8,12 @@
     
     <link rel="shortcut icon" href="{{ URL::asset('assets/backend/compiled/svg/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ URL::asset('assets/backend/compiled/css/app.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('assets/backend/compiled/css/app-dark.css') }}">
+    <!-- <link rel="stylesheet" href="{{ URL::asset('assets/backend/compiled/css/app-dark.css') }}"> -->
     <link rel="stylesheet" href="{{ URL::asset('assets/backend/compiled/css/auth.css') }}">
 </head>
 
 <body>
-    <script src="{{ URL::asset('assets/backend/static/js/initTheme.js') }}"></script>
+    <!-- <script src="{{ URL::asset('assets/backend/static/js/initTheme.js') }}"></script> -->
     <div> 
         <div class="d-flex align-items-center justify-content-center">
             <div class="col-lg-5 col-12">
@@ -29,20 +29,27 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form" data-parsley-validate data-parsley-trigger="input" />
+                                        <form action="{{route('postLogin')}}" method="POST" class="form" data-parsley-validate data-parsley-trigger="input" />
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-12 col-12">
                                                     <div class="form-group mandatory">
-                                                        <label for="first-name-column" class="form-label">Name</label>
-                                                        <input type="text" id="first-name-column" class="form-control" placeholder="First Name" name="fname-column" data-parsley-required="true" />
+                                                        <label for="login" class="form-label">Username or Email</label>
+                                                        <input type="text" id="login" class="form-control" placeholder="Username or Email" name="login" value="{{ old('login') }}" data-parsley-required="true" required autofocus/>
                                                     </div>
+                                                    @error('login')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
-        
+
                                                 <div class="col-md-12 col-12">
                                                     <div class="form-group mandatory">
-                                                        <label for="email-id-column" class="form-label">Email</label>
-                                                        <input type="email" id="email-id-column" class="form-control" name="email-id-column" placeholder="Email" data-parsley-required="true" />
+                                                        <label for="password" class="form-label">Password</label>
+                                                        <input type="password" id="password" class="form-control" name="password" placeholder="Enter Password" data-parsley-required="true" required/>
                                                     </div>
+                                                    @error('password')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group">
@@ -70,8 +77,8 @@
         </div>
         
     </div>
-    <script src="{{ URL::asset('assets/backend/static/js/components/dark.js') }}"></script>
-    <script src="{{ URL::asset('assets/backend/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <!-- <script src="{{ URL::asset('assets/backend/static/js/components/dark.js') }}"></script> -->
+    <!-- <script src="{{ URL::asset('assets/backend/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script> -->
     <script src="{{ URL::asset('assets/backend/compiled/js/app.js') }}"></script>
     <script src="{{ URL::asset('assets/backend/extensions/jquery/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('assets/backend/extensions/parsleyjs/parsley.min.js') }}"></script>
@@ -79,5 +86,4 @@
     <script>
 </script>
 </body>
-
 </html>

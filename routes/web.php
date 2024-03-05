@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthLoginController;
+use App\Http\Controllers\Home\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('admin-backend/login',[AuthLoginController::class,'loginForm'])->name('loginForm');
+Route::prefix('admin-backend')->group(function () {
+    Route::get('login', [LoginController::class,'loginForm'])->name('loginForm');
+    Route::post('postLogin', [LoginController::class,'postLogin'])->name('postLogin');
+    Route::get('logout', [LoginController::class, 'getLogout'])->name('getLogout');
+});
+
+Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () {
+    Route::get('index', [IndexController::class, 'index'])->name('index');
+});
