@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lara Hotel</title>
+    <title>Lara Hotel :: Admin Login</title>
     
     <link rel="shortcut icon" href="{{ URL::asset('assets/backend/compiled/svg/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ URL::asset('assets/backend/compiled/css/app.css') }}">
-    <!-- <link rel="stylesheet" href="{{ URL::asset('assets/backend/compiled/css/app-dark.css') }}"> -->
     <link rel="stylesheet" href="{{ URL::asset('assets/backend/compiled/css/auth.css') }}">
 </head>
 
@@ -25,7 +24,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header text-center">
-                                    <h4 class="card-title">Login</h4>
+                                    <h4 class="card-title">{{ getSiteSetting() !== null ? getSiteSetting()->name : '' }}</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
@@ -75,14 +74,9 @@
                 </div>
             </div>
         </div>
-        
     </div>
-    <!-- <script src="{{ URL::asset('assets/backend/static/js/components/dark.js') }}"></script> -->
-    <!-- <script src="{{ URL::asset('assets/backend/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script> -->
     <script src="{{ URL::asset('assets/backend/compiled/js/app.js') }}"></script>
     <script src="{{ URL::asset('assets/backend/extensions/jquery/jquery.min.js') }}"></script>
-    <!-- <script src="{{ URL::asset('assets/backend/extensions/parsleyjs/parsley.min.js') }}"></script> -->
-    <!-- <script src="{{ URL::asset('assets/backend/static/js/pages/parsley.js') }}"></script> -->
     <script>
         (function () {
         'use strict'
