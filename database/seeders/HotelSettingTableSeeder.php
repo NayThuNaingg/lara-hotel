@@ -16,8 +16,8 @@ class HotelSettingTableSeeder extends Seeder
         DB::table('hotel_settings')->truncate();
         DB::table('hotel_settings')->insert([
             'id'             => '1',
-            'name'           => 'SoftGuide Hotel',
-            'email'          => 'softguide@gmail.com',
+            'name'           => 'Lara Hotel',
+            'email'          => 'larahotel.mm@gmail.com',
             'address'        => 'B(32) Hledan, Yangon.',
             'checkin'        => '12:00 PM',
             'checkout'       => '12:00 PM',

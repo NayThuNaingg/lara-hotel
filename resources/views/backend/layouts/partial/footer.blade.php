@@ -14,10 +14,12 @@
     <script src="{{URL::asset('assets/backend/static/js/components/dark.js')}}"></script>
     <script src="{{URL::asset('assets/backend/extensions/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     <script src="{{URL::asset('assets/backend/compiled/js/app.js')}}"></script>
-
+    <script src="{{ URL::asset('assets/backend/extensions/jquery/jquery.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/backend/extensions/parsleyjs/parsley.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/backend/static/js/pages/parsley.js') }}"></script>
     <!-- Need: Apexcharts -->
     <script src="{{URL::asset('assets/backend/extensions/apexcharts/apexcharts.min.js')}}"></script>
     <script src="{{URL::asset('assets/backend/static/js/pages/dashboard.js')}}"></script>
-
+    @yield('script')
 </body>
 </html>

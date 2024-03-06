@@ -4,7 +4,7 @@
             
             <li
                 class="sidebar-item active ">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{route('index')}}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
                 </a>
@@ -17,45 +17,67 @@
             <li
                 class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
-                    <i class="bi bi-hexagon-fill"></i>
-                    <span>Form Elements</span>
+                <i class="bi bi-image-fill"></i>
+                    <span>View</span>
                 </a>
                 
                 <ul class="submenu ">
                     
                     <li class="submenu-item  ">
-                        <a href="form-element-input.html" class="submenu-link">Input</a>
+                        <a href="{{route('viewForm')}}" class="submenu-link">View</a>
                         
                     </li>
                     
                     <li class="submenu-item  ">
-                        <a href="form-element-input-group.html" class="submenu-link">Input Group</a>
+                        <a href="form-element-input-group.html" class="submenu-link">Listing</a>
                         
                     </li>
-                    
-                    <li class="submenu-item  ">
-                        <a href="form-element-select.html" class="submenu-link">Select</a>
-                        
-                    </li>
-                    
-                    <li class="submenu-item  ">
-                        <a href="form-element-radio.html" class="submenu-link">Radio</a>
-                        
-                    </li>
-                    
-                    <li class="submenu-item  ">
-                        <a href="form-element-checkbox.html" class="submenu-link">Checkbox</a>
-                        
-                    </li>
-                    
-                    <li class="submenu-item  ">
-                        <a href="form-element-textarea.html" class="submenu-link">Textarea</a>
-                        
-                    </li>
-                    
                 </ul>
                 
+            </li>
 
+            <li
+                class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-hexagon-fill"></i>
+                    <span>Amenity</span>
+                </a>
+                
+                <ul class="submenu ">
+                    
+                    <li class="submenu-item  ">
+                        <a href="{{route('amenityForm')}}" class="submenu-link">Amenity</a>
+                        
+                    </li>
+                    
+                    <li class="submenu-item  ">
+                        <a href="form-element-input-group.html" class="submenu-link">Listing</a>
+                        
+                    </li>
+                </ul>
+                
+            </li>
+
+            <li
+                class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-hexagon-fill"></i>
+                    <span>Special Feature</span>
+                </a>
+                
+                <ul class="submenu ">
+                    
+                    <li class="submenu-item  ">
+                        <a href="{{route('specialFeatureForm')}}" class="submenu-link">SpecialFeature</a>
+                        
+                    </li>
+                    
+                    <li class="submenu-item  ">
+                        <a href="form-element-input-group.html" class="submenu-link">Listing</a>
+                        
+                    </li>
+                </ul>
+                
             </li>
             
             <li

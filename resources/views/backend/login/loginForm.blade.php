@@ -29,13 +29,13 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form action="{{route('postLogin')}}" method="POST" class="form" data-parsley-validate data-parsley-trigger="input" />
+                                        <form action="{{route('postLogin')}}" method="POST" class="form needs-validation" novalidate />
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-12 col-12">
                                                     <div class="form-group mandatory">
                                                         <label for="login" class="form-label">Username or Email</label>
-                                                        <input type="text" id="login" class="form-control" placeholder="Username or Email" name="login" value="{{ old('login') }}" data-parsley-required="true" required autofocus/>
+                                                        <input type="text" id="login" class="form-control" placeholder="Username or Email" name="login" value="{{ old('login') }}" data-parsley-required="true" required />
                                                     </div>
                                                     @error('login')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -54,7 +54,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <div class="form-check mandatory">
-                                                            <input type="checkbox" id="checkbox5" class="form-check-input" checked data-parsley-required="true" data-parsley-errors-container="#checkbox-errors" />
+                                                            <input type="checkbox" id="checkbox5" class="form-check-input" checked data-parsley-required="true" data-parsley-errors-container="#checkbox-errors" required/>
                                                             <label for="checkbox5" class="form-check-label form-label">I accept these terms and conditions.</label>
                                                         </div>
                                                         <div id="checkbox-errors"></div>
@@ -81,9 +81,27 @@
     <!-- <script src="{{ URL::asset('assets/backend/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script> -->
     <script src="{{ URL::asset('assets/backend/compiled/js/app.js') }}"></script>
     <script src="{{ URL::asset('assets/backend/extensions/jquery/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/backend/extensions/parsleyjs/parsley.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/backend/static/js/pages/parsley.js') }}"></script>
+    <!-- <script src="{{ URL::asset('assets/backend/extensions/parsleyjs/parsley.min.js') }}"></script> -->
+    <!-- <script src="{{ URL::asset('assets/backend/static/js/pages/parsley.js') }}"></script> -->
     <script>
-</script>
+        (function () {
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+            })
+        })()
+    </script>
 </body>
 </html>
