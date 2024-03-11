@@ -7,6 +7,7 @@ use App\Http\Controllers\Bed\BedController;
 use App\Http\Controllers\Home\IndexController;
 use App\Http\Controllers\SpecialFeature\SpecialFeatureController;
 use App\Http\Controllers\View\ViewController;
+use App\Models\Bed;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,12 +37,14 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
     Route::prefix('view')->group(function () {
         Route::get('viewForm', [ViewController::class, 'viewForm'])->name('viewForm');
         Route::post('postView', [ViewController::class, 'postView'])->name('postView');
+        Route::post('viewListing', [ViewController::class, 'viewListing'])->name('viewListing');
     });
 
     // bed form
     Route::prefix('bed')->group(function () {
         Route::get('bedForm', [BedController::class, 'bedForm'])->name('bedForm');
         Route::post('postBed', [BedController::class, 'postBed'])->name('postBed');
+        Route::get('Bedlisting', [BedController::class, 'bedListing'])->name('bedListing');
     });
 
     // amenity form

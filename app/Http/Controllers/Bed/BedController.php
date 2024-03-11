@@ -18,4 +18,8 @@ class BedController extends Controller
     {
         return "this is post Bed";
     }
+    public function bedListing()
+    {
+        return "this is bed listing";
+    }
 }
