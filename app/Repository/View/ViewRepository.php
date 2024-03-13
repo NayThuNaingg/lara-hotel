@@ -5,6 +5,8 @@ namespace App\Repository\View;
 use App\Utility;
 use App\ReturnMessage;
 use App\Models\View;
+use Carbon\Carbon;
+use Yajra\DataTables\DataTables;
 
 class ViewRepository implements ViewRepositoryInterface
 {
@@ -25,12 +27,13 @@ class ViewRepository implements ViewRepositoryInterface
 
         }
     }
-    public function getViewListing()
+
+    public function viewListing()
     {
-        $view = View::SELECT("id", "name")
+        $views = View::SELECT("id", "name", "updated_at")
                 ->whereNull("deleted_at")
                 ->get();
-        return $view;
+        return $views;
     }
 
 }

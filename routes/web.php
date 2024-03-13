@@ -37,7 +37,7 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
     Route::prefix('view')->group(function () {
         Route::get('viewForm', [ViewController::class, 'viewForm'])->name('viewForm');
         Route::post('postView', [ViewController::class, 'postView'])->name('postView');
-        Route::post('viewListing', [ViewController::class, 'viewListing'])->name('viewListing');
+        Route::get('viewListing', [ViewController::class, 'viewListing'])->name('viewListing');
     });
 
     // bed form

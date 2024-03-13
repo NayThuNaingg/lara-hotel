@@ -10,10 +10,14 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/backend/compiled/css/app.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/backend/compiled/css/app-dark.css') }}">
     <link rel="stylesheet" href="{{URL::asset('assets/backend/compiled/css/iconly.css')}}">
+    <!-- data table  -->
+    <link rel="stylesheet" href="{{URL::asset('assets/backend/compiled/css/table-datatable-jquery.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('assets/backend/compiled/css/app-dark.css')}}">
+    
 </head>
 
 <body>
-    <script src="{{ URL::asset('assets/backend/static/js/initTheme.js') }}"></script>
+    <script src="{{ URL::asset('assets/backend/static/js/initTheme.js')}}"></script>
     <div id="app">
         <div id="sidebar">
             <div class="sidebar-wrapper active">

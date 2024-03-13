@@ -26,7 +26,7 @@ class ViewController extends Controller
             $result = $this->viewRepository->postView($request->all());
             $logs = "View sreen create::";
             Utility::saveDebugLog($logs);
-            if($result['LaraHotelCode'] == ReturnMessage::OK) {
+            if ($result['LaraHotelCode'] == ReturnMessage::OK) {
                 return redirect()->route('viewListing')->with('success', 'Create Data successful.');
             } else {
                 return redirect()->route('viewListing')->with('error', 'Something wrong.');
@@ -43,10 +43,10 @@ class ViewController extends Controller
     public function viewListing()
     {
         try {
-            $view_data = $this->viewRepository->getViewListing();
+            $views = $this->viewRepository->viewListing();
             $logs = "View screen Listing::";
             Utility::saveDebugLog($logs);
-            return view('backend.view.viewListing', compact(['view_data']));
+            return view('backend.view.viewListing', compact(['views']));
         } catch(\Exception $e) {
             $logs = "View screen Listing::";
             $logs = $e->getMessage();
@@ -54,4 +54,5 @@ class ViewController extends Controller
             abort(500);
         }
     }
+
 }

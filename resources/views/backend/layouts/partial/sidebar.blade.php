@@ -29,7 +29,7 @@
                     </li>
                     
                     <li class="submenu-item  ">
-                        <a href="form-element-input-group.html" class="submenu-link">Listing</a>
+                        <a href="{{route('viewListing')}}" class="submenu-link">Listing</a>
                         
                     </li>
                 </ul>
