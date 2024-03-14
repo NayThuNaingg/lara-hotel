@@ -45,6 +45,9 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
 
     // bed form
     Route::prefix('bed')->group(function () {
+        Route::get('edit/{id}', [BedController::class,'bedEdit']);
+        Route::get('delete/{id}', [BedController::class,'bedDelete'])->name('bedDelete');
+        Route::post('viewUpdate', [BedController::class,'bedUpdate'])->name('bedUpdate');
         Route::get('bedForm', [BedController::class, 'bedForm'])->name('bedForm');
         Route::post('postBed', [BedController::class, 'postBed'])->name('postBed');
         Route::get('Bedlisting', [BedController::class, 'bedListing'])->name('bedListing');

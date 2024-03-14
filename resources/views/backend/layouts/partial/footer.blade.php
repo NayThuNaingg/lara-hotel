@@ -28,6 +28,35 @@
     <script src="{{URL::asset('assets/backend/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
     <script src="{{URL::asset('assets/backend/static/js/pages/datatables.js')}}"></script>
 
+    <script src="{{URL::asset('assets/backend/extensions/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{URL::asset('assets/backend/static/js/pages/sweetalert2.js')}}"></script>
+
+    @if (session('success_msg'))
+      <script>
+        Toast.fire({
+        icon: 'success',
+        title: 'Insert Data successfully'
+        })
+      </script>
+      @endif
+
+      @if (session('success_login'))
+      <script>
+        Toast.fire({
+        icon: 'success',
+        title: 'Login successfully'
+        })
+      </script>
+      @endif
+
+      @if (session('error_msg'))
+      <script>
+        Toast.fire({
+        icon: 'error',
+        title: 'Transaction error. Please try again.'
+        })
+      </script>
+      @endif
     @yield('script')
 </body>
 </html>

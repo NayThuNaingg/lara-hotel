@@ -27,9 +27,9 @@ class ViewController extends Controller
             $logs = "View sreen create::";
             Utility::saveDebugLog($logs);
             if ($result['LaraHotelCode'] == ReturnMessage::OK) {
-                return redirect()->route('viewListing')->with('success', 'Create Data successful.');
+                return redirect()->back()->with('success_msg', 'Create Data successful.');
             } else {
-                return redirect()->route('viewListing')->with('error', 'Something wrong.');
+                return redirect()->back()->with('error_msg', 'Something wrong.');
 
             }
         } catch(\Exception $e) {
@@ -77,10 +77,10 @@ class ViewController extends Controller
             $result     = $this->viewRepository->viewUpdate($request->all());
             $logs = "View sreen Update::";
             Utility::saveDebugLog($logs);
-            if($result['softGuideStatusCode'] == ReturnMessage::OK) {
-                return redirect()->route('viewListing')->with('success', 'Update Data successful.');
+            if($result['LaraHotelCode'] == ReturnMessage::OK) {
+                return redirect()->route('viewListing')->with('success_msg', 'Update Data successful.');
             } else {
-                return redirect()->route('viewListing')->with('error', 'Update Data successful.');
+                return redirect()->route('viewListing')->with('error_msg', 'Update Data successful.');
 
             }
         } catch(\Exception $e) {
@@ -96,10 +96,10 @@ class ViewController extends Controller
             $result     = $this->viewRepository->viewDelete($id);
             $logs = "View sreen delete::";
             Utility::saveDebugLog($logs);
-            if($result['softGuideStatusCode'] == ReturnMessage::OK) {
-                return redirect()->route('viewListing')->with('success', 'Delete Data successful.');
+            if($result['LaraHotelCode'] == ReturnMessage::OK) {
+                return redirect()->route('viewListing')->with('success_msg', 'Delete Data successful.');
             } else {
-                return redirect()->route('viewListing')->with('error', 'Update Data successful.');
+                return redirect()->route('viewListing')->with('error_msg', 'Update Data successful.');
 
             }
         } catch(\Exception $e) {

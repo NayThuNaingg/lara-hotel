@@ -19,21 +19,21 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>VIEW Name</th>
+                                <th>BED Name</th>
                                 <th>Actions</th>
                                 <th>Updated at</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($views as $view)
+                                @foreach($beds as $bed)
                                     <tr>
-                                        <td>{{$view->id}}</td>
-                                        <td>{{$view->name}}</td>
+                                        <td>{{$bed->id}}</td>
+                                        <td>{{$bed->name}}</td>
                                         <td>
-                                            <a href="{{ URL::asset('admin-backend/view/edit')}}/{{ $view->id }}" class="btn icon btn-light"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <a href="{{ URL::asset('admin-backend/view/delete')}}/{{ $view->id }}" class="btn icon btn-light"><i class="fa-solid fa-trash"></i></a>
+                                            <a href="{{ URL::asset('admin-backend/bed/edit')}}/{{ $bed->id }}" class="btn icon btn-light"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a href="{{ URL::asset('admin-backend/bed/delete')}}/{{ $bed->id }}" class="btn icon btn-light"><i class="fa-solid fa-trash"></i></a>
                                         </td>
-                                        <td>{{$view->updated_at}}</td>
+                                        <td>{{$bed->updated_at}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

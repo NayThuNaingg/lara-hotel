@@ -17,7 +17,7 @@
             <li
                 class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
-                <i class="bi bi-image-fill"></i>
+                <i class="fa-solid fa-street-view"></i>
                     <span>View</span>
                 </a>
                 
@@ -39,7 +39,29 @@
             <li
                 class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
-                    <i class="bi bi-hexagon-fill"></i>
+                <i class="fa-solid fa-bed-pulse"></i>
+                    <span>Bed</span>
+                </a>
+                
+                <ul class="submenu ">
+                    
+                    <li class="submenu-item  ">
+                        <a href="{{route('bedForm')}}" class="submenu-link">Bed</a>
+                        
+                    </li>
+                    
+                    <li class="submenu-item  ">
+                        <a href="{{route('bedListing')}}" class="submenu-link">Listing</a>
+                        
+                    </li>
+                </ul>
+                
+            </li>
+
+            <li
+                class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                <i class="fa-brands fa-intercom"></i>
                     <span>Amenity</span>
                 </a>
                 
@@ -61,7 +83,7 @@
             <li
                 class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
-                    <i class="bi bi-hexagon-fill"></i>
+                <i class="fa-solid fa-ship"></i>
                     <span>Special Feature</span>
                 </a>
                 

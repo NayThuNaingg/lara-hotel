@@ -17,19 +17,19 @@
                 <div class="card-content">
                     <div class="card-body">
                     @if(isset($views))
-                        <form action="{{ route('viewUpdate') }}" method="POST" id="form-create" >
+                        <form action="{{ route('viewUpdate') }}" method="POST" class="row g-3 needs-validation" novalidate />
                     @else
                         <form method="POST" action="{{route('postView')}}" class="row g-3 needs-validation" novalidate />
                     @endif
                     @csrf
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label for="name" class="form-label">View Name</label>
                             <input type="text" class="form-control" name="name" id="name" value="{{ old('name',(isset($views))? $views->name : '') }}" placeholder="Ex.Sea View" required>
                             <div class="invalid-feedback">
                                 Please fill View Name.
                             </div>
                         </div>      
-                        <div class="col-md-12 mt-2">
+                        <div class="col-md-12">
                         @if(isset($views))
                             <input type="hidden" name="id" value="{{ $views->id }}">
                         @endif
