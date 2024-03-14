@@ -35,6 +35,9 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
 
     // view form
     Route::prefix('view')->group(function () {
+        Route::get('edit/{id}', [ViewController::class,'viewEdit']);
+        Route::get('delete/{id}', [ViewController::class,'viewDelete'])->name('viewDelete');
+        Route::post('viewUpdate', [ViewController::class,'viewUpdate'])->name('viewUpdate');
         Route::get('viewForm', [ViewController::class, 'viewForm'])->name('viewForm');
         Route::post('postView', [ViewController::class, 'postView'])->name('postView');
         Route::get('viewListing', [ViewController::class, 'viewListing'])->name('viewListing');

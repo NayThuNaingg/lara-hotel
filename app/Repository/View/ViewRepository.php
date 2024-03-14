@@ -24,7 +24,6 @@ class ViewRepository implements ViewRepositoryInterface
         } catch (\Exception $e) {
             $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
             return $returnedObj;
-
         }
     }
 
@@ -34,6 +33,48 @@ class ViewRepository implements ViewRepositoryInterface
                 ->whereNull("deleted_at")
                 ->get();
         return $views;
+    }
+
+    public function viewEdit($id)
+    {
+        $views = View::find($id);
+        return $views;
+    }
+
+    public function viewUpdate($data)
+    {
+        $returnedObj = array();
+        $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
+        try {
+            $id            = $data['id'];
+            $name          = $data['name'];
+            $paraObj       = View::find($id);
+            $paraObj->name = $name;
+            $tempObj       = Utility::addUpdate($paraObj);
+            $tempObj->save();
+            $returnedObj['LaraHotelCode'] = ReturnMessage::OK;
+            return $returnedObj;
+        } catch (\Exception $e) {
+            $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
+            return $returnedObj;
+        }
+
+    }
+    public function viewDelete($id)
+    {
+        $returnedObj = array();
+        $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
+        try {
+            $paraObj       = View::find($id);
+            $tempObj       = Utility::addDelete($paraObj);
+            $tempObj->save();
+            $returnedObj['LaraHotelCode'] = ReturnMessage::OK;
+            return $returnedObj;
+        } catch (\Exception $e) {
+            $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
+            return $returnedObj;
+        }
+
     }
 
 }

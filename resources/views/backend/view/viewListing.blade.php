@@ -30,7 +30,8 @@
                                         <td>{{$view->id}}</td>
                                         <td>{{$view->name}}</td>
                                         <td>
-                                            <span class="badge bg-success">Active</span>
+                                            <a href="{{ URL::asset('admin-backend/view/edit')}}/{{ $view->id }}" class="btn icon btn-light"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a href="{{ URL::asset('admin-backend/view/delete')}}/{{ $view->id }}" class="btn icon btn-light"><i class="fa-solid fa-trash"></i></a>
                                         </td>
                                         <td>{{$view->updated_at}}</td>
                                     </tr>
