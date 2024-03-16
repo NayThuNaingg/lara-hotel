@@ -61,7 +61,12 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
 
     // specialFeature Form
     Route::prefix('special-feature')->group(function () {
-        Route::get('specialFeatureForm', [SpecialFeatureController::class, 'specialFeatureForm'])->name('specialFeatureForm');
+        Route::get('edit/{id}', [SpecialFeatureController::class,'editSpecialFeature']);
+        Route::get('delete/{id}', [SpecialFeatureController::class,'specialFeatureDelete'])->name('deleteSpecialFeature');
+        Route::post('updateSpecialFeature', [SpecialFeatureController::class,'updateSpecialFeature'])->name('updateSpecialFeature');
+        Route::get('formSpecialFeature', [SpecialFeatureController::class, 'formSpecialFeature'])->name('formSpecialFeature');
         Route::post('postSpecialFeature', [SpecialFeatureController::class, 'postSpecialFeature'])->name('postSpecialFeature');
+        Route::get('listingSpecialFeature', [SpecialFeatureController::class, 'listingSpecialFeature'])->name('listingSpecialFeature');
+
     });
 });

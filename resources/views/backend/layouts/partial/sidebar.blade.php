@@ -90,12 +90,12 @@
                 <ul class="submenu ">
                     
                     <li class="submenu-item  ">
-                        <a href="{{route('specialFeatureForm')}}" class="submenu-link">SpecialFeature</a>
+                        <a href="{{route('formSpecialFeature')}}" class="submenu-link">SpecialFeature</a>
                         
                     </li>
                     
                     <li class="submenu-item  ">
-                        <a href="form-element-input-group.html" class="submenu-link">Listing</a>
+                        <a href="{{ route('listingSpecialFeature') }}" class="submenu-link">Listing</a>
                         
                     </li>
                 </ul>

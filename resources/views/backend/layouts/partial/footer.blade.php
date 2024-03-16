@@ -32,12 +32,12 @@
     <script src="{{URL::asset('assets/backend/static/js/pages/sweetalert2.js')}}"></script>
 
     @if (session('success_msg'))
-      <script>
-        Toast.fire({
-        icon: 'success',
-        title: 'Insert Data successfully'
-        })
-      </script>
+    <script>
+      Toast.fire({
+      icon: 'success',
+      title: 'Data Insert successfully'
+      })
+    </script>
       @endif
 
       @if (session('success_login'))

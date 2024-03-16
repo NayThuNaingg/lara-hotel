@@ -1,22 +1,20 @@
-<?php 
-namespace App\Repository\View;
+<?php
 
-use App\Repository\View\ViewRepositoryInterface;
+namespace App\Repository\SpecialFeature;
 
 use App\Utility;
 use App\ReturnMessage;
-use App\Models\View;
+use App\Models\SpecialFeature;
 use Carbon\Carbon;
-use Yajra\DataTables\DataTables;
 
-class ViewRepository implements ViewRepositoryInterface
+class SpecialFeatureRepository implements SpecialFeatureRepositoryInterface
 {
-    public function postView($data)
+    public function postSpecialFeature($data)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
         try {
-            $paraObj       = new View();
+            $paraObj       = new SpecialFeature();
             $paraObj->name = $data['name'];
             $tempObj       = Utility::addCreated($paraObj);
             $tempObj->save();
@@ -28,28 +26,28 @@ class ViewRepository implements ViewRepositoryInterface
         }
     }
 
-    public function viewListing()
+    public function listingSpecialFeature()
     {
-        $views = View::SELECT("id", "name", "updated_at")
+        $SpecialFeatures = SpecialFeature::SELECT("id", "name", "updated_at")
                 ->whereNull("deleted_at")
                 ->get();
-        return $views;
+        return $SpecialFeatures;
     }
 
-    public function viewEdit($id)
+    public function editSpecialFeature($id)
     {
-        $views = View::find($id);
-        return $views;
+        $SpecialFeatures = SpecialFeature::find($id);
+        return $SpecialFeatures;
     }
 
-    public function viewUpdate($data)
+    public function updateSpecialFeature($data)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
         try {
             $id            = $data['id'];
             $name          = $data['name'];
-            $paraObj       = View::find($id);
+            $paraObj       = SpecialFeature::find($id);
             $paraObj->name = $name;
             $tempObj       = Utility::addUpdate($paraObj);
             $tempObj->save();
@@ -61,12 +59,12 @@ class ViewRepository implements ViewRepositoryInterface
         }
 
     }
-    public function viewDelete($id)
+    public function deleteSpecialFeature($id)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
         try {
-            $paraObj       = View::find($id);
+            $paraObj       = SpecialFeature::find($id);
             $tempObj       = Utility::addDelete($paraObj);
             $tempObj->save();
             $returnedObj['LaraHotelCode'] = ReturnMessage::OK;

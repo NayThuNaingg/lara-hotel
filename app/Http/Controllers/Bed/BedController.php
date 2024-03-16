@@ -91,7 +91,7 @@ class BedController extends Controller
             abort(500);
         }
     }
-    public function viewDelete($id)
+    public function bedDelete($id)
     {
         try {
             $result     = $this->bedRepository->bedDelete($id);

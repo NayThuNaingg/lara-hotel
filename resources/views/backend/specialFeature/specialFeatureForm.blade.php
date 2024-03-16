@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title','Admin::View Page')
+@section('title','Admin::SpecialFeature Page')
 @section('content')
 
 <div class="page-heading">
@@ -16,16 +16,23 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                    <form method="POST" action="{{route('postSpecialFeature')}}" class="row g-3 needs-validation" novalidate />
+                    @if(isset($SpecialFeatures))
+                        <form action="{{ route('updateSpecialFeature') }}" method="POST" class="row g-3 needs-validation" novalidate />
+                    @else
+                        <form method="POST" action="{{route('postSpecialFeature')}}" class="row g-3 needs-validation" novalidate />
+                    @endif
                     @csrf
-                        <div class="col-md-6">
-                            <label for="name" class="form-label">Special Feature Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Ex.Luxury Transportation" required>
+                        <div class="col-md-12">
+                            <label for="name" class="form-label">SpecialFeature Name</label>
+                            <input type="text" class="form-control" name="name" id="name" value="{{ old('name',(isset($SpecialFeatures))? $SpecialFeatures->name : '') }}" placeholder="Ex.Serenity Suite" required>
                             <div class="invalid-feedback">
-                            Please fill Special Feature Name.
+                                Please fill SpecialFeature Name.
                             </div>
                         </div>      
-                        <div class="col-12">
+                        <div class="col-md-12">
+                        @if(isset($SpecialFeatures))
+                            <input type="hidden" name="id" value="{{ $SpecialFeatures->id }}">
+                        @endif
                             <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
                             <button type="reset" class="btn btn-light-secondary me-1 mb-1"> Reset</button>
                         </div>
