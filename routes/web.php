@@ -7,6 +7,7 @@ use App\Http\Controllers\Bed\BedController;
 use App\Http\Controllers\Home\IndexController;
 use App\Http\Controllers\SpecialFeature\SpecialFeatureController;
 use App\Http\Controllers\View\ViewController;
+use App\Models\Bed;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,14 +35,22 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
 
     // view form
     Route::prefix('view')->group(function () {
+        Route::get('edit/{id}', [ViewController::class,'viewEdit']);
+        Route::get('delete/{id}', [ViewController::class,'viewDelete'])->name('viewDelete');
+        Route::post('viewUpdate', [ViewController::class,'viewUpdate'])->name('viewUpdate');
         Route::get('viewForm', [ViewController::class, 'viewForm'])->name('viewForm');
         Route::post('postView', [ViewController::class, 'postView'])->name('postView');
+        Route::get('viewListing', [ViewController::class, 'viewListing'])->name('viewListing');
     });
 
     // bed form
     Route::prefix('bed')->group(function () {
+        Route::get('edit/{id}', [BedController::class,'bedEdit']);
+        Route::get('delete/{id}', [BedController::class,'bedDelete'])->name('bedDelete');
+        Route::post('viewUpdate', [BedController::class,'bedUpdate'])->name('bedUpdate');
         Route::get('bedForm', [BedController::class, 'bedForm'])->name('bedForm');
         Route::post('postBed', [BedController::class, 'postBed'])->name('postBed');
+        Route::get('Bedlisting', [BedController::class, 'bedListing'])->name('bedListing');
     });
 
     // amenity form

@@ -75,7 +75,7 @@ class LoginController extends Controller
         $validation = Auth::guard('Admin')->attempt($usernameCredentials) || Auth::guard('Admin')->attempt($emailCredentials);
 
         if ($validation) {
-            return redirect()->route('index')->with('success', 'Login successful.');
+            return redirect()->route('index')->with('success_login', 'Login successful.');
         } else {
             return redirect()->route('loginForm')
                 ->withErrors(['login' => 'Invalid username or password.'])

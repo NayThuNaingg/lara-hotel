@@ -16,16 +16,23 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                    <form method="POST" action="{{route('postView')}}" class="row g-3 needs-validation" novalidate />
+                    @if(isset($views))
+                        <form action="{{ route('viewUpdate') }}" method="POST" class="row g-3 needs-validation" novalidate />
+                    @else
+                        <form method="POST" action="{{route('postView')}}" class="row g-3 needs-validation" novalidate />
+                    @endif
                     @csrf
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label for="name" class="form-label">View Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Ex.Sea View" required>
+                            <input type="text" class="form-control" name="name" id="name" value="{{ old('name',(isset($views))? $views->name : '') }}" placeholder="Ex.Sea View" required>
                             <div class="invalid-feedback">
-                            Please fill View Name.
+                                Please fill View Name.
                             </div>
                         </div>      
-                        <div class="col-12">
+                        <div class="col-md-12">
+                        @if(isset($views))
+                            <input type="hidden" name="id" value="{{ $views->id }}">
+                        @endif
                             <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
                             <button type="reset" class="btn btn-light-secondary me-1 mb-1"> Reset</button>
                         </div>

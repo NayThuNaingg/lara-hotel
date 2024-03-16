@@ -36,6 +36,9 @@
                                                         <label for="login" class="form-label">Username or Email</label>
                                                         <input type="text" id="login" class="form-control" placeholder="Username or Email" name="login" value="{{ old('login') }}" data-parsley-required="true" required />
                                                     </div>
+                                                    <div class="invalid-feedback">
+                                                        Please fill Username or Email
+                                                    </div>
                                                     @error('login')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -45,6 +48,9 @@
                                                     <div class="form-group mandatory">
                                                         <label for="password" class="form-label">Password</label>
                                                         <input type="password" id="password" class="form-control" name="password" placeholder="Enter Password" data-parsley-required="true" required/>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please fill Password
                                                     </div>
                                                     @error('password')
                                                         <span class="text-danger">{{ $message }}</span>

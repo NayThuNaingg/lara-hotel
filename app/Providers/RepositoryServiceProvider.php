@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+<<<<<<< HEAD
 use Illuminate\Support\ServiceProvider;
 use App\Repository\View\ViewRepositoryInterface;
 use App\Repository\View\ViewRepository;
@@ -19,6 +20,15 @@ use App\Repository\roomGallery\roomGalleryRepository;
 use App\Repository\Setting\SettingRepositoryInterface;
 use App\Repository\Setting\SettingRepository;
 
+=======
+
+use App\Models\Bed;
+use App\Repository\View\ViewRepository;
+use App\Repository\Bed\BedRepository;
+use Illuminate\Support\ServiceProvider;
+use App\Repository\Bed\BedRepositoryInterface;
+use App\Repository\View\ViewRepositoryInterface;
+>>>>>>> 2c61e9d1453a61269cbb2ec27ea7004e2e183eeb
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -27,6 +37,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+<<<<<<< HEAD
         $this->app->bind(ViewRepositoryInterface::class,ViewRepository::class);
         // $this->app->bind(BedRepositoryInterface::class,BedRepository::class);
         // $this->app->bind(AmenityRepositoryInterface::class,AmenityRepository::class);
@@ -36,6 +47,10 @@ class RepositoryServiceProvider extends ServiceProvider
         // $this->app->bind(ReservationRepositoryInterface::class,ReservationRepository::class);
         // $this->app->bind(SettingRepositoryInterface::class,SettingRepository::class);
 
+=======
+        $this->app->bind(ViewRepositoryInterface::class, ViewRepository::class);
+        $this->app->bind(BedRepositoryInterface::class, BedRepository::class);
+>>>>>>> 2c61e9d1453a61269cbb2ec27ea7004e2e183eeb
     }
 
     /**

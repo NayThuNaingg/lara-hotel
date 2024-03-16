@@ -1,32 +1,20 @@
-<<<<<<< HEAD
-<?php 
-namespace App\Repository\View;
-
-use App\Repository\View\ViewRepositoryInterface;
-
-class ViewRepository implements ViewRepositoryInterface{
-    public function postView($data){
-        dd($data);
-    }
-=======
 <?php
 
-namespace App\Repository\View;
+namespace App\Repository\Bed;
 
 use App\Utility;
 use App\ReturnMessage;
-use App\Models\View;
+use App\Models\Bed;
 use Carbon\Carbon;
-use Yajra\DataTables\DataTables;
 
-class ViewRepository implements ViewRepositoryInterface
+class BedRepository implements BedRepositoryInterface
 {
-    public function postView($data)
+    public function postBed($data)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
         try {
-            $paraObj       = new View();
+            $paraObj       = new Bed();
             $paraObj->name = $data['name'];
             $tempObj       = Utility::addCreated($paraObj);
             $tempObj->save();
@@ -38,28 +26,28 @@ class ViewRepository implements ViewRepositoryInterface
         }
     }
 
-    public function viewListing()
+    public function bedListing()
     {
-        $views = View::SELECT("id", "name", "updated_at")
+        $beds = Bed::SELECT("id", "name", "updated_at")
                 ->whereNull("deleted_at")
                 ->get();
-        return $views;
+        return $beds;
     }
 
-    public function viewEdit($id)
+    public function bedEdit($id)
     {
-        $views = View::find($id);
-        return $views;
+        $beds = Bed::find($id);
+        return $beds;
     }
 
-    public function viewUpdate($data)
+    public function bedUpdate($data)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
         try {
             $id            = $data['id'];
             $name          = $data['name'];
-            $paraObj       = View::find($id);
+            $paraObj       = Bed::find($id);
             $paraObj->name = $name;
             $tempObj       = Utility::addUpdate($paraObj);
             $tempObj->save();
@@ -71,12 +59,12 @@ class ViewRepository implements ViewRepositoryInterface
         }
 
     }
-    public function viewDelete($id)
+    public function bedDelete($id)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
         try {
-            $paraObj       = View::find($id);
+            $paraObj       = Bed::find($id);
             $tempObj       = Utility::addDelete($paraObj);
             $tempObj->save();
             $returnedObj['LaraHotelCode'] = ReturnMessage::OK;
@@ -88,5 +76,4 @@ class ViewRepository implements ViewRepositoryInterface
 
     }
 
->>>>>>> 2c61e9d1453a61269cbb2ec27ea7004e2e183eeb
 }
