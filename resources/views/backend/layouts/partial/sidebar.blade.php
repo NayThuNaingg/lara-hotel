@@ -68,12 +68,11 @@
                 <ul class="submenu ">
                     
                     <li class="submenu-item  ">
-                        <a href="{{route('amenityForm')}}" class="submenu-link">Amenity</a>
-                        
+                        <a href="{{route('formAmenity')}}" class="submenu-link">Amenity</a>
                     </li>
                     
                     <li class="submenu-item  ">
-                        <a href="form-element-input-group.html" class="submenu-link">Listing</a>
+                        <a href="{{ route('listingAmenity') }}" class="submenu-link">Listing</a>
                         
                     </li>
                 </ul>

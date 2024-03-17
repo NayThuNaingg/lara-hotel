@@ -16,15 +16,39 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
+                    @if(isset($amenities))
+                    <form method="POST" action="{{route('updateAmenity')}}" class="row g-3 needs-validation" novalidate />
+                    @else
                     <form method="POST" action="{{route('postAmenity')}}" class="row g-3 needs-validation" novalidate />
+                    @endif
                     @csrf
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label for="name" class="form-label">Amenity Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Ex.Spa and Wellness" required>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ isset($amenities) ? $amenities->name : '' }}" placeholder="Ex.Spa and Wellness" required>
                             <div class="invalid-feedback">
-                            Please fill Amenity Name.
+                                Please fill Amenity Name.
                             </div>
-                        </div>      
+                        </div>
+                        <div class="col-md-12">
+                            <label for="name" class="form-label">Amenity Type</label>
+                            <fieldset class="form-group">
+                                <select class="form-select" id="amenity" name="type" required>
+                                    <option value="" {{ $amenityTypes == '' ? 'selected' : '' }}>- Choose Amenity Type -</option>
+                                    @foreach ($amenityTypes as $key => $value)
+                                        @if(isset($amenities))
+                                        <option name="type" value="{{ $key }}" {{ $key == $amenities->type ? 'selected' : '' }}>
+                                            {{ $value }}</option>
+                                        @else
+                                        <option name="type" value="{{ $key }}" {{ old('type', $amenities->type ?? '') == $key ? 'selected' : '' }} >
+                                            {{ $value }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </fieldset>
+                            <div class="invalid-feedback">
+                                Please choose Amenity Type.
+                            </div>
+                        </div>   
                         <div class="col-12">
                             <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
                             <button type="reset" class="btn btn-light-secondary me-1 mb-1"> Reset</button>

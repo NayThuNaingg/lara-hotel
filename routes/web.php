@@ -55,8 +55,13 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
 
     // amenity form
     Route::prefix('amenity')->group(function () {
-        Route::get('amenityForm', [AmenityController::class, 'amenityForm'])->name('amenityForm');
+        Route::get('edit/{id}', [AmenityController::class,'editAmenity']);
+        Route::get('delete/{id}', [AmenityController::class,'deleteAmenity'])->name('deleteAmenity');
+        Route::post('updateAmenity', [AmenityController::class,'updateAmenity'])->name('updateAmenity');
+        Route::get('formAmenity', [AmenityController::class, 'formAmenity'])->name('formAmenity');
         Route::post('postAmenity', [AmenityController::class, 'postAmenity'])->name('postAmenity');
+        Route::get('listingAmenity', [AmenityController::class, 'listingAmenity'])->name('listingAmenity');
+
     });
 
     // specialFeature Form
