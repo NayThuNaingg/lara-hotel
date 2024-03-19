@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 namespace App\Models;
 
@@ -26,5 +26,5 @@ class Room extends Model
         'created_at',
         'updated_at',
         'deleted_at'
-    ]; 
+    ];
 }

@@ -24,12 +24,12 @@
                 <ul class="submenu ">
                     
                     <li class="submenu-item  ">
-                        <a href="{{route('viewForm')}}" class="submenu-link">View</a>
+                        <a href="{{route('formView')}}" class="submenu-link">View</a>
                         
                     </li>
                     
                     <li class="submenu-item  ">
-                        <a href="{{route('viewListing')}}" class="submenu-link">Listing</a>
+                        <a href="{{route('listingView')}}" class="submenu-link">Listing</a>
                         
                     </li>
                 </ul>
@@ -46,12 +46,12 @@
                 <ul class="submenu ">
                     
                     <li class="submenu-item  ">
-                        <a href="{{route('bedForm')}}" class="submenu-link">Bed</a>
+                        <a href="{{route('formBed')}}" class="submenu-link">Bed</a>
                         
                     </li>
                     
                     <li class="submenu-item  ">
-                        <a href="{{route('bedListing')}}" class="submenu-link">Listing</a>
+                        <a href="{{route('listingBed')}}" class="submenu-link">Listing</a>
                         
                     </li>
                 </ul>
@@ -95,6 +95,28 @@
                     
                     <li class="submenu-item  ">
                         <a href="{{ route('listingSpecialFeature') }}" class="submenu-link">Listing</a>
+                        
+                    </li>
+                </ul>
+                
+            </li>
+
+            <li
+                class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                <i class="fa-solid fa-hotel"></i>
+                    <span>ROOM</span>
+                </a>
+                
+                <ul class="submenu ">
+                    
+                    <li class="submenu-item  ">
+                        <a href="{{route('formRoom')}}" class="submenu-link">Room</a>
+                        
+                    </li>
+                    
+                    <li class="submenu-item  ">
+                        <a href="{{ route('listingRoom') }}" class="submenu-link">Listing</a>
                         
                     </li>
                 </ul>

@@ -7,13 +7,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Carbon\Carbon;
 
 class Utility
 {
     public static function addCreated($paraObj)
     {
         if(Auth::guard('Admin')->check()) {
-            $date          = date('Y-m-d H:i:s');
+            $date          = Carbon::now('Asia/Yangon')->toDateTimeString();
             $paraObj->created_at = $date;
             $paraObj->updated_at = $date;
             if(Auth::guard('Admin')->check()) {
@@ -27,7 +28,7 @@ class Utility
 
     public static function addUpdate($paraObj)
     {
-        $date   = date('Y-m-d H:i:s');
+        $date   = Carbon::now('Asia/Yangon')->toDateTimeString();
         $paraObj->updated_at = $date;
         if(Auth::guard('Admin')->check()) {
             $paraObj->updated_by = Auth::guard('Admin')->user()->id;
@@ -37,7 +38,7 @@ class Utility
 
     public static function addDelete($paraObj)
     {
-        $date   = date('Y-m-d H:i:s');
+        $date   = Carbon::now('Asia/Yangon')->toDateTimeString();
         $paraObj->deleted_at = $date;
         if(Auth::guard('Admin')->check()) {
             $paraObj->deleted_by = Auth::guard('Admin')->user()->id;

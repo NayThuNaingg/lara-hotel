@@ -26,7 +26,7 @@ class BedRepository implements BedRepositoryInterface
         }
     }
 
-    public function bedListing()
+    public function listingBed()
     {
         $beds = Bed::SELECT("id", "name", "updated_at")
                 ->whereNull("deleted_at")
@@ -34,13 +34,13 @@ class BedRepository implements BedRepositoryInterface
         return $beds;
     }
 
-    public function bedEdit($id)
+    public function editBed($id)
     {
         $beds = Bed::find($id);
         return $beds;
     }
 
-    public function bedUpdate($data)
+    public function updateBed($data)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
@@ -59,7 +59,7 @@ class BedRepository implements BedRepositoryInterface
         }
 
     }
-    public function bedDelete($id)
+    public function deleteBed($id)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;

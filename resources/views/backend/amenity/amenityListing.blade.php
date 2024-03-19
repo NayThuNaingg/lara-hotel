@@ -30,7 +30,7 @@
                                     <tr>
                                         <td>{{$amenity->id}}</td>
                                         <td>{{$amenity->name}}</td>
-                                        <th>
+                                        <td>
                                             @if($amenity->type == 0)
                                             Basic Amenities
                                             @elseif ($amenity->type == 1)
@@ -40,7 +40,7 @@
                                             @else
                                             Luxury Amenities
                                             @endif
-                                        </th>
+                                        </td>
                                         <td>
                                             <a href="{{ URL::asset('admin-backend/amenity/edit')}}/{{ $amenity->id }}" class="btn icon btn-light"><i class="fa-solid fa-pen-to-square"></i></a>
                                             <a href="{{ URL::asset('admin-backend/amenity/delete')}}/{{ $amenity->id }}" class="btn icon btn-light"><i class="fa-solid fa-trash"></i></a>

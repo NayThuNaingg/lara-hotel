@@ -17,7 +17,7 @@ class BedController extends Controller
     {
         $this->bedRepository = $bedRepository;
     }
-    public function bedForm()
+    public function formBed()
     {
         return view('backend.bed.bedForm');
     }
@@ -41,10 +41,10 @@ class BedController extends Controller
         }
     }
 
-    public function bedListing()
+    public function listingBed()
     {
         try {
-            $beds = $this->bedRepository->bedListing();
+            $beds = $this->bedRepository->listingBed();
             $logs = "Bed screen Listing::";
             Utility::saveDebugLog($logs);
             return view('backend.bed.bedListing', compact(['beds']));
@@ -56,10 +56,10 @@ class BedController extends Controller
         }
     }
 
-    public function bedEdit($id)
+    public function editBed($id)
     {
         try {
-            $beds = $this->bedRepository->bedEdit($id);
+            $beds = $this->bedRepository->editBed($id);
             $logs = "Bed sreen Update::";
             Utility::saveDebugLog($logs);
             return view('backend.bed.bedForm', compact(['beds']));
@@ -72,16 +72,16 @@ class BedController extends Controller
 
 
     }
-    public function bedUpdate(Request $request)
+    public function updateBed(Request $request)
     {
         try {
-            $result     = $this->bedRepository->bedUpdate($request->all());
+            $result     = $this->bedRepository->updateBed($request->all());
             $logs = "Bed sreen Update::";
             Utility::saveDebugLog($logs);
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
-                return redirect()->route('bedListing')->with('success_msg', 'Update Data successful.');
+                return redirect()->route('listingBed')->with('success_msg', 'Update Data successful.');
             } else {
-                return redirect()->route('bedListing')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('listingBed')->with('error_msg', 'Update Data successful.');
 
             }
         } catch(\Exception $e) {
@@ -91,16 +91,16 @@ class BedController extends Controller
             abort(500);
         }
     }
-    public function bedDelete($id)
+    public function deleteBed($id)
     {
         try {
-            $result     = $this->bedRepository->bedDelete($id);
+            $result     = $this->bedRepository->deleteBed($id);
             $logs = "Bed screen delete::";
             Utility::saveDebugLog($logs);
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
-                return redirect()->route('bedListing')->with('success_msg', 'Delete Data successful.');
+                return redirect()->route('listingBed')->with('success_msg', 'Delete Data successful.');
             } else {
-                return redirect()->route('bedListing')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('listingBed')->with('error_msg', 'Update Data successful.');
 
             }
         } catch(\Exception $e) {

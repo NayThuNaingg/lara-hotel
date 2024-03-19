@@ -50,6 +50,9 @@
                             </div>
                         </div>   
                         <div class="col-12">
+                            @if(isset($amenities))
+                            <input type="hidden" name="id" value="{{$amenities->id}}">
+                            @endif
                             <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
                             <button type="reset" class="btn btn-light-secondary me-1 mb-1"> Reset</button>
                         </div>

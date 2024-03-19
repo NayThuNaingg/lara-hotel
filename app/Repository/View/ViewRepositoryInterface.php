@@ -5,8 +5,8 @@ namespace App\Repository\View;
 interface ViewRepositoryInterface
 {
     public function postView($data);
-    public function viewListing();
-    public function viewEdit($id);
-    public function viewUpdate($data);
-    public function viewDelete($id);
+    public function listingView();
+    public function editView($id);
+    public function updateView($data);
+    public function deleteView($id);
 }

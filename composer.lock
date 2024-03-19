@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "333eb3d16ce4484b010f7c39b1446630",
+    "content-hash": "8a1771ab8b26bc78641043740fb38735",
     "packages": [
         {
             "name": "brick/math",
@@ -2528,16 +2528,16 @@
         },
         {
             "name": "opcodesio/log-viewer",
-            "version": "v3.5.0",
+            "version": "v3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opcodesio/log-viewer.git",
-                "reference": "65d945fc36ab12a2a7588539bac3c367c6b41e16"
+                "reference": "eeb391baaadba693a6713a343ec22d6d8e8db449"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opcodesio/log-viewer/zipball/65d945fc36ab12a2a7588539bac3c367c6b41e16",
-                "reference": "65d945fc36ab12a2a7588539bac3c367c6b41e16",
+                "url": "https://api.github.com/repos/opcodesio/log-viewer/zipball/eeb391baaadba693a6713a343ec22d6d8e8db449",
+                "reference": "eeb391baaadba693a6713a343ec22d6d8e8db449",
                 "shasum": ""
             },
             "require": {
@@ -2600,7 +2600,7 @@
             ],
             "support": {
                 "issues": "https://github.com/opcodesio/log-viewer/issues",
-                "source": "https://github.com/opcodesio/log-viewer/tree/v3.5.0"
+                "source": "https://github.com/opcodesio/log-viewer/tree/v3.6.0"
             },
             "funding": [
                 {
@@ -2612,7 +2612,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-01T18:01:18+00:00"
+            "time": "2024-03-15T05:25:17+00:00"
         },
         {
             "name": "opcodesio/mail-parser",
@@ -3457,6 +3457,69 @@
                 }
             ],
             "time": "2023-11-08T05:53:05+00:00"
+        },
+        {
+            "name": "rap2hpoutre/laravel-log-viewer",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rap2hpoutre/laravel-log-viewer.git",
+                "reference": "c4148ec364d78be13eb2ab81ce860946bfd91c4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rap2hpoutre/laravel-log-viewer/zipball/c4148ec364d78be13eb2ab81ce860946bfd91c4c",
+                "reference": "c4148ec364d78be13eb2ab81ce860946bfd91c4c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.2.*|5.*|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.7.*|^7.0",
+                "phpunit/phpunit": "^7|^9.5.10"
+            },
+            "type": "laravel-package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rap2hpoutre\\LaravelLogViewer\\LaravelLogViewerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Rap2hpoutre\\LaravelLogViewer\\": "src/"
+                },
+                "classmap": [
+                    "src/controllers"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "rap2hpoutre",
+                    "email": "raphaelht@gmail.com"
+                }
+            ],
+            "description": "A Laravel log reader",
+            "keywords": [
+                "laravel",
+                "log",
+                "log-reader",
+                "log-viewer",
+                "logging",
+                "lumen"
+            ],
+            "support": {
+                "issues": "https://github.com/rap2hpoutre/laravel-log-viewer/issues",
+                "source": "https://github.com/rap2hpoutre/laravel-log-viewer/tree/v2.3.0"
+            },
+            "time": "2023-02-15T07:36:34+00:00"
         },
         {
             "name": "symfony/console",
@@ -8844,5 +8907,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

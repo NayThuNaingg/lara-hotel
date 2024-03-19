@@ -17,7 +17,7 @@
                 <div class="card-content">
                     <div class="card-body">
                     @if(isset($beds))
-                        <form action="{{ route('bedUpdate') }}" method="POST" class="row g-3 needs-validation" novalidate />
+                        <form action="{{ route('updateBed') }}" method="POST" class="row g-3 needs-validation" novalidate />
                     @else
                         <form method="POST" action="{{route('postBed')}}" class="row g-3 needs-validation" novalidate />
                     @endif

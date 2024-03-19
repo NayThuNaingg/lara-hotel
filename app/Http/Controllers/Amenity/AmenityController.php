@@ -11,12 +11,14 @@ use App\Repository\Amenity\AmenityRepositoryInterface;
 class AmenityController extends Controller
 {
     protected $amenityRepository;
-    public function __construct(AmenityRepositoryInterface $amenityRepository){
+    public function __construct(AmenityRepositoryInterface $amenityRepository)
+    {
         $this->amenityRepository = $amenityRepository;
     }
-    public function formAmenity(){
+    public function formAmenity()
+    {
         $amenityTypes = ['Basic Amenities','Tech-Savvy Amenities','Wellness Amenities','Luxury Amenities'];
-        return view('backend.amenity.amenityForm',compact(['amenityTypes']));
+        return view('backend.amenity.amenityForm', compact(['amenityTypes']));
     }
     public function postAmenity(Request $request)
     {

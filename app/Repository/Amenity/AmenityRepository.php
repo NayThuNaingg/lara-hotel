@@ -29,7 +29,7 @@ class AmenityRepository implements AmenityRepositoryInterface
 
     public function listingAmenity()
     {
-        $Amenitys = Amenity::SELECT("id", "name",'type', "updated_at")
+        $Amenitys = Amenity::SELECT("id", "name", 'type', "updated_at")
                 ->whereNull("deleted_at")
                 ->get();
         return $Amenitys;
@@ -51,6 +51,7 @@ class AmenityRepository implements AmenityRepositoryInterface
             $type          = $data['type'];
             $paraObj       = Amenity::find($id);
             $paraObj->name = $name;
+            $paraObj->type = $type;
             $tempObj       = Utility::addUpdate($paraObj);
             $tempObj->save();
             $returnedObj['LaraHotelCode'] = ReturnMessage::OK;

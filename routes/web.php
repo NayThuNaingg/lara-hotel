@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthLoginController;
 use App\Http\Controllers\Bed\BedController;
 use App\Http\Controllers\Home\IndexController;
+use App\Http\Controllers\Room\RoomController;
 use App\Http\Controllers\SpecialFeature\SpecialFeatureController;
 use App\Http\Controllers\View\ViewController;
 use App\Models\Bed;
@@ -33,27 +34,27 @@ Route::prefix('admin-backend')->group(function () {
 Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () {
     Route::get('index', [IndexController::class, 'index'])->name('index');
 
-    // view form
+    // view route
     Route::prefix('view')->group(function () {
-        Route::get('edit/{id}', [ViewController::class,'viewEdit']);
-        Route::get('delete/{id}', [ViewController::class,'viewDelete'])->name('viewDelete');
-        Route::post('viewUpdate', [ViewController::class,'viewUpdate'])->name('viewUpdate');
-        Route::get('viewForm', [ViewController::class, 'viewForm'])->name('viewForm');
+        Route::get('edit/{id}', [ViewController::class,'editView']);
+        Route::get('delete/{id}', [ViewController::class,'deleteView'])->name('deleteView');
+        Route::post('updateView', [ViewController::class,'updateView'])->name('updateView');
+        Route::get('formView', [ViewController::class, 'formView'])->name('formView');
         Route::post('postView', [ViewController::class, 'postView'])->name('postView');
-        Route::get('viewListing', [ViewController::class, 'viewListing'])->name('viewListing');
+        Route::get('listingView', [ViewController::class, 'listingView'])->name('listingView');
     });
 
-    // bed form
+    // bed route
     Route::prefix('bed')->group(function () {
-        Route::get('edit/{id}', [BedController::class,'bedEdit']);
-        Route::get('delete/{id}', [BedController::class,'bedDelete'])->name('bedDelete');
-        Route::post('viewUpdate', [BedController::class,'bedUpdate'])->name('bedUpdate');
-        Route::get('bedForm', [BedController::class, 'bedForm'])->name('bedForm');
+        Route::get('edit/{id}', [BedController::class,'editBed']);
+        Route::get('delete/{id}', [BedController::class,'deleteBed'])->name('deleteBed');
+        Route::post('updateBed', [BedController::class,'updateBed'])->name('updateBed');
+        Route::get('formBed', [BedController::class, 'formBed'])->name('formBed');
         Route::post('postBed', [BedController::class, 'postBed'])->name('postBed');
-        Route::get('Bedlisting', [BedController::class, 'bedListing'])->name('bedListing');
+        Route::get('listingBed', [BedController::class, 'listingBed'])->name('listingBed');
     });
 
-    // amenity form
+    // amenity route
     Route::prefix('amenity')->group(function () {
         Route::get('edit/{id}', [AmenityController::class,'editAmenity']);
         Route::get('delete/{id}', [AmenityController::class,'deleteAmenity'])->name('deleteAmenity');
@@ -64,7 +65,7 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
 
     });
 
-    // specialFeature Form
+    // specialFeature route
     Route::prefix('special-feature')->group(function () {
         Route::get('edit/{id}', [SpecialFeatureController::class,'editSpecialFeature']);
         Route::get('delete/{id}', [SpecialFeatureController::class,'specialFeatureDelete'])->name('deleteSpecialFeature');
@@ -72,6 +73,17 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
         Route::get('formSpecialFeature', [SpecialFeatureController::class, 'formSpecialFeature'])->name('formSpecialFeature');
         Route::post('postSpecialFeature', [SpecialFeatureController::class, 'postSpecialFeature'])->name('postSpecialFeature');
         Route::get('listingSpecialFeature', [SpecialFeatureController::class, 'listingSpecialFeature'])->name('listingSpecialFeature');
+
+    });
+
+    // ROOM Route
+    Route::prefix('room')->group(function () {
+        Route::get('edit/{id}', [RoomController::class,'editRoom']);
+        Route::get('delete/{id}', [RoomController::class,'deleteRoom'])->name('deleteRoom');
+        Route::post('updateRoom', [RoomController::class,'updateRoom'])->name('updateRoom');
+        Route::get('formRoom', [RoomController::class, 'formRoom'])->name('formRoom');
+        Route::post('postRoom', [RoomController::class, 'postRoom'])->name('postRoom');
+        Route::get('listingRoom', [RoomController::class, 'listingRoom'])->name('listingRoom');
 
     });
 });

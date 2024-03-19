@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Repository\View;
 
 use App\Repository\View\ViewRepositoryInterface;
@@ -28,7 +29,7 @@ class ViewRepository implements ViewRepositoryInterface
         }
     }
 
-    public function viewListing()
+    public function listingView()
     {
         $views = View::SELECT("id", "name", "updated_at")
                 ->whereNull("deleted_at")
@@ -36,13 +37,13 @@ class ViewRepository implements ViewRepositoryInterface
         return $views;
     }
 
-    public function viewEdit($id)
+    public function editView($id)
     {
         $views = View::find($id);
         return $views;
     }
 
-    public function viewUpdate($data)
+    public function updateView($data)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
@@ -61,7 +62,7 @@ class ViewRepository implements ViewRepositoryInterface
         }
 
     }
-    public function viewDelete($id)
+    public function deleteView($id)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;

@@ -16,7 +16,7 @@ class ViewController extends Controller
     {
         $this->viewRepository = $viewRepository;
     }
-    public function viewForm()
+    public function formView()
     {
         return view('backend.view.viewForm');
     }
@@ -40,10 +40,10 @@ class ViewController extends Controller
         }
     }
 
-    public function viewListing()
+    public function listingView()
     {
         try {
-            $views = $this->viewRepository->viewListing();
+            $views = $this->viewRepository->listingView();
             $logs = "View screen Listing::";
             Utility::saveDebugLog($logs);
             return view('backend.view.viewListing', compact(['views']));
@@ -55,10 +55,10 @@ class ViewController extends Controller
         }
     }
 
-    public function viewEdit($id)
+    public function editView($id)
     {
         try {
-            $views = $this->viewRepository->viewEdit($id);
+            $views = $this->viewRepository->editView($id);
             $logs = "View sreen Update::";
             Utility::saveDebugLog($logs);
             return view('backend.view.viewForm', compact(['views']));
@@ -71,16 +71,16 @@ class ViewController extends Controller
 
 
     }
-    public function viewUpdate(Request $request)
+    public function updateView(Request $request)
     {
         try {
-            $result     = $this->viewRepository->viewUpdate($request->all());
+            $result     = $this->viewRepository->updateView($request->all());
             $logs = "View sreen Update::";
             Utility::saveDebugLog($logs);
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
-                return redirect()->route('viewListing')->with('success_msg', 'Update Data successful.');
+                return redirect()->route('listingView')->with('success_msg', 'Update Data successful.');
             } else {
-                return redirect()->route('viewListing')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('listingView')->with('error_msg', 'Update Data successful.');
 
             }
         } catch(\Exception $e) {
@@ -90,16 +90,16 @@ class ViewController extends Controller
             abort(500);
         }
     }
-    public function viewDelete($id)
+    public function deleteView($id)
     {
         try {
-            $result     = $this->viewRepository->viewDelete($id);
+            $result     = $this->viewRepository->deleteView($id);
             $logs = "View sreen delete::";
             Utility::saveDebugLog($logs);
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
-                return redirect()->route('viewListing')->with('success_msg', 'Delete Data successful.');
+                return redirect()->route('listingView')->with('success_msg', 'Delete Data successful.');
             } else {
-                return redirect()->route('viewListing')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('listingView')->with('error_msg', 'Update Data successful.');
 
             }
         } catch(\Exception $e) {

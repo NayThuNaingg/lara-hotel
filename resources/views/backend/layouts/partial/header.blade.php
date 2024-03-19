@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lara Hotel</title>
+    <title>{{ getSiteSetting() !== null ? getSiteSetting()->name : '' }}</title>
 
     <link rel="shortcut icon" href="{{ URL::asset('assets/backend/compiled/svg/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ URL::asset('assets/backend/compiled/css/app.css') }}">
