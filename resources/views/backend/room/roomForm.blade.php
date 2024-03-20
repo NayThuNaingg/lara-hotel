@@ -1,4 +1,17 @@
 @extends('backend.layouts.master')
+@section('style')
+<style>
+    /* Red border for checkboxes with errors */
+    .error-checkbox {
+        border: 3px solid red !important;
+    }
+
+    /* Green border for checkboxes without errors */
+    .success-checkbox {
+        border: 3px solid green !important;
+    }
+</style>
+@endsection
 @section('title','Admin::View Page')
 @section('content')
 
@@ -126,7 +139,7 @@
                                     @foreach($amenities as $amenity)
                                     <div class="col-md-6 col-sm-12">
                                         <label class="form-check-label" for="amenity{{$amenity->id}}">
-                                            <input name="amenity[]" class="form-check-input" type="checkbox" value="{{ $amenity->id }}" id="amenity{{$amenity->id}}"  />{{$amenity->name}}
+                                            <input name="amenity[]" class="form-check-input" type="checkbox" value="{{ $amenity->id }}" id="amenity{{$amenity->id}}"  />  {{$amenity->name}}
                                         </label>
                                         </div>
                                     @endforeach
@@ -135,8 +148,8 @@
                                         Amenities Empty
                                     </label>
                                 @endif
-                                <div class="invalid-feedback">
-                                    Please Select at least One Amenity.
+                                <div class="invalid-feedback amenity-label-error hide"  id="room-amenity-error">
+                                <span class="amenity-error-msg" style="color:red;"></span>
                                 </div>
                             </div>
                         </div>
@@ -145,22 +158,22 @@
                             <div class="col-md-6 col-sm-3">
                                 <label for="specialFeature" class="form-label">Select SpecialFeature</label>
                             </div>
-                            <div class="row mx-5"  required />
+                            <div class="row mx-5" >
                                 @if($specialFeatures->isNotEmpty())
                                     @foreach($specialFeatures as $specialFeature)
                                     <div class="col-md-6 col-sm-12">
                                         <label class="form-check-label" for="specialFeature{{$specialFeature->id}}">
-                                            <input name="specialFeature[]" class="form-check-input" type="checkbox" value="{{ $specialFeature->id }}" id="specialFeature{{$specialFeature->id}}"  />{{$specialFeature->name}}
+                                            <input name="specialFeature[]" class="form-check-input color-default" type="checkbox" value="{{ $specialFeature->id }}" id="specialFeature{{$specialFeature->id}}"  />  {{$specialFeature->name}}
                                         </label>
                                     </div>
                                     @endforeach
                                 @else
-                                    <label class="form-check-label" for="amenity">
-                                        Amenities Empty
+                                    <label class="form-check-label feature-label-error hide"   id="feature-name-error"for="amenity">
+                                        SpecialFeature Empty
                                     </label>
                                 @endif
-                                <div class="invalid-feedback" id="specialFeatureFeedback" >
-                                    Please Select at least One Amenity.
+                                <div class="invalid-feedback feature-label-error hide"  id="feature-name-error" >
+                                <span class="feature-error-msg" style="color:red;"></span>
                                 </div>
                             </div>
                         </div>
@@ -198,6 +211,8 @@
 </div>
 @endsection
 @section('script')
+
+</style>
 <script>
     (function () {
     'use strict'
@@ -209,6 +224,33 @@
             event.preventDefault()
             event.stopPropagation()
             }
+        
+            // Function to check if at least one option is selected and update checkbox border
+            function checkSelection(itemsSelector, errorLabelSelector, errorMsg) {
+                var count = $(itemsSelector + ':checked').length;
+                var checkboxes = $(itemsSelector);
+
+                if (count === 0) {
+                    $(errorLabelSelector).show().text(errorMsg);
+                    checkboxes.addClass('error-checkbox').removeClass('success-checkbox');
+                } else {
+                    $(errorLabelSelector).hide();
+                    checkboxes.removeClass('error-checkbox').addClass('success-checkbox');
+                }
+            }
+
+            // Check initial selection
+            checkSelection('input[name="amenity[]"]', '.amenity-label-error', 'Please select at least one Room Amenity.');
+            checkSelection('input[name="specialFeature[]"]', '.feature-label-error', 'Please select at least one Special Feature.');
+
+            // jQuery onchange functions
+            $('input[name="amenity[]"]').on('change', function() {
+                checkSelection('input[name="amenity[]"]', '.amenity-label-error', 'Please select at least one Room Amenity.');
+            });
+
+            $('input[name="specialFeature[]"]').on('change', function() {
+                checkSelection('input[name="specialFeature[]"]', '.feature-label-error', 'Please select at least one Special Feature.');
+            });
 
             form.classList.add('was-validated')
         }, false)

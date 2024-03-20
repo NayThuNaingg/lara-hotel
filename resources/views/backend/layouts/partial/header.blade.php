@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{URL::asset('assets/backend/compiled/css/app-dark.css')}}">
 
     <link rel="stylesheet" href="{{URL::asset('assets/backend/extensions/sweetalert2/sweetalert2.min.css')}}">
-    
+   @yield('style')
 </head>
 
 <body>
