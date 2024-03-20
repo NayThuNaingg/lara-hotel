@@ -17,9 +17,9 @@
                 <div class="card-content">
                     <div class="card-body">
                     @if(isset($views))
-                        <form action="{{ route('updateView') }}" method="POST" class="row g-3 needs-validation" novalidate />
+                        <form action="{{ route('updateRoom') }}" method="POST" class="row g-3 needs-validation" novalidate />
                     @else
-                        <form method="POST" action="{{route('postView')}}" class="row g-3 needs-validation" novalidate />
+                        <form method="POST" action="{{route('postRoom')}}" class="row g-3 needs-validation" novalidate />
                     @endif
                     @csrf
 
@@ -34,7 +34,7 @@
                         <div class="row mt-5">
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Room Name</label>
-                                <input type="text" class="form-control" name="name" id="name" value="{{ old('name',(isset($views))? $views->name : '') }}" placeholder="Ex.Sea View" required>
+                                <input type="text" class="form-control" name="name" id="name" value="{{ old('name',(isset($rooms))? $rooms->name : '') }}" placeholder="Ex.1001" required>
                                 <div class="invalid-feedback">
                                     Please fill Room Name.
                                 </div>
@@ -42,22 +42,26 @@
                             
                             <div class="col-md-6">
                                 <label for="size" class="form-label">Room Size</label>
-                                <input type="text" class="form-control" name="size" id="size" value="{{ old('size',(isset($views))? $views->name : '') }}" placeholder="Ex.10(ft)" required>
+                                <input type="number" class="form-control" name="size" id="size" value="{{ old('size',(isset($rooms))? $rooms->size : '') }}" placeholder="Ex.15(ft)" required>
                                 <div class="invalid-feedback">
                                     Please fill Room Size.
                                 </div>
                             </div>    
                         </div>
 
-                        <div class="row mt-4">
+                        <div class="row">
                             <div class="col-md-6">
                                 <label for="view" class="form-label">Choose View</label>
                                 <fieldset class="form-group">
-                                    <select class="form-select" id="view" required />
+                                    <select class="form-select" id="view" name="view_id" required>
                                         <option value="">- Choose View -</option>
-                                        <option>IT</option>
-                                        <option>Blade Runner</option>
-                                        <option>Thor Ragnarok</option>
+                                        @if($views)
+                                            @foreach($views as $view)
+                                                <option value="view{{$view->id}}" {{ (old('view_id', isset($rooms) ? $rooms->view_id : '') == $view->id) ? 'selected' : '' }}>{{$view->name}}</option>
+                                            @endforeach
+                                        @else
+                                            <option value="">View Data Empty</option>
+                                        @endif
                                     </select>
                                 </fieldset>
                                 <div class="invalid-feedback">
@@ -68,11 +72,15 @@
                             <div class="col-md-6">
                                 <label for="bed" class="form-label">Choose Bed</label>
                                 <fieldset class="form-group">
-                                    <select class="form-select" id="bed" required /> 
+                                    <select class="form-select" id="bed" name="bed_id" required>
                                         <option value="">- Choose Bed -</option>
-                                        <option>IT</option>
-                                        <option>Blade Runner</option>
-                                        <option>Thor Ragnarok</option>
+                                        @if($beds)
+                                            @foreach($beds as $bed)
+                                                <option value="bed{{$bed->id}}" {{ (old('bed_id', isset($rooms) ? $rooms->bed_id : '') == $bed->id) ? 'selected' : '' }}>{{$bed->name}}</option>
+                                            @endforeach
+                                        @else
+                                            <option>Bed Data Empty</option>
+                                        @endif
                                     </select>
                                 </fieldset>
                                 <div class="invalid-feedback">
@@ -81,10 +89,10 @@
                             </div>    
                         </div>
 
-                        <div class="row mt-4">
+                        <div class="row">
                             <div class="col-md-6">
                             <label for="price_per_day" class="form-label">Price Per Day <span>($)</span></label>
-                                <input type="number" class="form-control" name="price_per_day" id="price_per_day" value="{{ old('price_per_day',(isset($views))? $views->price_per_day : '') }}" placeholder="Ex.30$" required>
+                                <input type="number" class="form-control" name="price_per_day" id="price_per_day" value="{{ old('price_per_day',(isset($rooms))? $rooms->price_per_day : '') }}" placeholder="Ex.30$" required>
                                 <div class="invalid-feedback">
                                     Please fill Price Per Day.
                                 </div>
@@ -92,83 +100,89 @@
 
                             <div class="col-md-6">
                                 <label for="extra_bed_price" class="form-label">Extra Bed Price <span>($)</span></label>
-                                <input type="number" class="form-control" name="extra_bed_price" id="extra_bed_price" value="{{ old('extra_bed_price',(isset($views))? $views->extra_bed_price : '') }}" placeholder="Ex.3$" required>
+                                <input type="number" class="form-control" name="extra_bed_price" id="extra_bed_price" value="{{ old('extra_bed_price',(isset($rooms))? $rooms->extra_bed_price : '') }}" placeholder="Ex.3$" required>
                                 <div class="invalid-feedback">
                                     Please fill Exter Bed Price.
                                 </div>
                             </div>    
                         </div>
 
-                        <div class="row mt-4">
+                        <div class="row">
                             <div class="col-md-6">
                                 <label for="occupancy" class="form-label">Occupancy <span>(Peoples)</span></label>
-                                <input type="number" class="form-control" name="occupancy" id="occupancy" value="{{ old('occupancy',(isset($views))? $views->occupancy : '') }}" placeholder="Ex.4 (peoples)" required>
+                                <input type="number" class="form-control" name="occupancy" id="occupancy" value="{{ old('occupancy',(isset($rooms))? $rooms->occupancy : '') }}" placeholder="Ex.4 (peoples)" required>
                                 <div class="invalid-feedback">
                                     Please fill Occupancy.
                                 </div>
                             </div>    
                         </div>
 
-                        <div class="mt-4 d-flex">
-                            <div class="">
-                                <div class="col-md-12">
-                                    <label for="amenity" class="form-label">Select Amenity</label>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-3">
+                                <label for="amenity" class="form-label">Select Amenity</label>
                             </div>
                             <div class="row mx-5">
-                                <div class="col-md-12">
-                                    <input class="form-check-input" type="checkbox" value="" id="amenity" required>
+                                @if($amenities->isNotEmpty())
+                                    @foreach($amenities as $amenity)
+                                    <div class="col-md-6 col-sm-12">
+                                        <label class="form-check-label" for="amenity{{$amenity->id}}">
+                                            <input name="amenity[]" class="form-check-input" type="checkbox" value="{{ $amenity->id }}" id="amenity{{$amenity->id}}"  />{{$amenity->name}}
+                                        </label>
+                                        </div>
+                                    @endforeach
+                                @else
                                     <label class="form-check-label" for="amenity">
-                                        Home theater system
+                                        Amenities Empty
                                     </label>
-                                    <div class="invalid-feedback">
-                                        Please Select at least One Amenity.
-                                    </div>
+                                @endif
+                                <div class="invalid-feedback">
+                                    Please Select at least One Amenity.
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mt-4 d-flex">
-                            <div class="">
-                                <div class="col-md-12">
-                                    <label for="special_feature" class="form-label">Select Special Feature</label>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-3">
+                                <label for="specialFeature" class="form-label">Select SpecialFeature</label>
                             </div>
-                            <div class="row mx-5">
-                                <div class="col-md-12">
-                                <input class="form-check-input" type="checkbox" value="" id="amenity" required>
-                                    <label class="form-check-label" for="amenity">
-                                    Nespresso machine data
-                                    </label>
-                                    <div class="invalid-feedback">
-                                        Please Select at least One Special Feature.
+                            <div class="row mx-5"  required />
+                                @if($specialFeatures->isNotEmpty())
+                                    @foreach($specialFeatures as $specialFeature)
+                                    <div class="col-md-6 col-sm-12">
+                                        <label class="form-check-label" for="specialFeature{{$specialFeature->id}}">
+                                            <input name="specialFeature[]" class="form-check-input" type="checkbox" value="{{ $specialFeature->id }}" id="specialFeature{{$specialFeature->id}}"  />{{$specialFeature->name}}
+                                        </label>
                                     </div>
+                                    @endforeach
+                                @else
+                                    <label class="form-check-label" for="amenity">
+                                        Amenities Empty
+                                    </label>
+                                @endif
+                                <div class="invalid-feedback" id="specialFeatureFeedback" >
+                                    Please Select at least One Amenity.
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <div class="form-group mb-3">
                                 <label for="description" class="form-label">Room Description</label>
-                                <textarea class="form-control" id="description" rows="3" required /></textarea>
-                            </div>
+                                <textarea class="form-control" id="description" rows="3" placeholder="Please Fill Room Description" required >{{ old('description',(isset($rooms))? $rooms->description : '') }}</textarea>
                             <div class="invalid-feedback">
                                 Please fill Room Description.
                             </div>
                         </div>    
 
                         <div class="col-md-6">
-                        <div class="form-group mb-3">
                             <label for="detail" class="form-label">Room Detail</label>
-                            <textarea class="form-control" id="detail" rows="3" required /></textarea>
-                        </div>
+                            <textarea class="form-control" id="detail" rows="3" required />{{ old('detail',(isset($rooms))? $rooms->detail : '') }}</textarea>
                             <div class="invalid-feedback">
                                 Please fill Room Detail.
                             </div>
                         </div>    
                         <div class="col-md-12">
-                        @if(isset($views))
-                            <input type="hidden" name="id" value="{{ $views->id }}">
+                        @if(isset($rooms))
+                            <input type="hidden" name="id" value="{{ $rooms->id }}">
                         @endif
                             <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
                             <button type="reset" class="btn btn-light-secondary me-1 mb-1"> Reset</button>

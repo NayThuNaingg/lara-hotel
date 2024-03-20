@@ -9,4 +9,5 @@ interface AmenityRepositoryInterface
     public function editAmenity($id);
     public function updateAmenity($data);
     public function deleteAmenity($id);
+    public function getAmenityByRoomID($roomId);
 }

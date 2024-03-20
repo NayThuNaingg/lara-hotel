@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Repository\SpecialFeature;
+namespace App\Repository\Room;
 
 use App\Utility;
-use Carbon\Carbon;
 use App\ReturnMessage;
-use App\Models\SpecialFeature;
-use App\Models\RoomSpecialFeature;
+use App\Models\Room;
+use Carbon\Carbon;
 
-class SpecialFeatureRepository implements SpecialFeatureRepositoryInterface
+class RoomRepository implements RoomRepositoryInterface
 {
-    public function postSpecialFeature($data)
+    public function postRoom($data)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
         try {
-            $paraObj       = new SpecialFeature();
+            $paraObj       = new Room();
             $paraObj->name = $data['name'];
             $tempObj       = Utility::addCreated($paraObj);
             $tempObj->save();
@@ -27,28 +26,28 @@ class SpecialFeatureRepository implements SpecialFeatureRepositoryInterface
         }
     }
 
-    public function listingSpecialFeature()
+    public function listingRoom()
     {
-        $SpecialFeatures = SpecialFeature::SELECT("id", "name", "updated_at")
+        $Rooms = Room::SELECT("id", "name", "updated_at")
                 ->whereNull("deleted_at")
                 ->get();
-        return $SpecialFeatures;
+        return $Rooms;
     }
 
-    public function editSpecialFeature($id)
+    public function editRoom($id)
     {
-        $SpecialFeatures = SpecialFeature::find($id);
-        return $SpecialFeatures;
+        $Rooms = Room::find($id);
+        return $Rooms;
     }
 
-    public function updateSpecialFeature($data)
+    public function updateRoom($data)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
         try {
             $id            = $data['id'];
             $name          = $data['name'];
-            $paraObj       = SpecialFeature::find($id);
+            $paraObj       = Room::find($id);
             $paraObj->name = $name;
             $tempObj       = Utility::addUpdate($paraObj);
             $tempObj->save();
@@ -60,12 +59,12 @@ class SpecialFeatureRepository implements SpecialFeatureRepositoryInterface
         }
 
     }
-    public function deleteSpecialFeature($id)
+    public function deleteRoom($id)
     {
         $returnedObj = array();
         $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
         try {
-            $paraObj       = SpecialFeature::find($id);
+            $paraObj       = Room::find($id);
             $tempObj       = Utility::addDelete($paraObj);
             $tempObj->save();
             $returnedObj['LaraHotelCode'] = ReturnMessage::OK;
@@ -74,20 +73,6 @@ class SpecialFeatureRepository implements SpecialFeatureRepositoryInterface
             $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
             return $returnedObj;
         }
-
-    }
-
-    public function getSpecialFeatureByroomId($roomId)
-    {
-        $specialFeatureData = [];
-        $data = RoomSpecialFeature::SELECT("special_feature_id")
-                ->WHERE("room_id", $roomId)
-                ->whereNull("deleted_at")
-                ->get();
-        foreach($data as $specialFeature) {
-            array_push($specialFeatureData, $specialFeature->special_feature_id);
-        }
-        return $specialFeatureData;
 
     }
 

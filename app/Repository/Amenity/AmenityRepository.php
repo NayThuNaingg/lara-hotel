@@ -3,9 +3,10 @@
 namespace App\Repository\Amenity;
 
 use App\Utility;
+use Carbon\Carbon;
 use App\ReturnMessage;
 use App\Models\Amenity;
-use Carbon\Carbon;
+use App\Models\RoomAmenity;
 
 class AmenityRepository implements AmenityRepositoryInterface
 {
@@ -76,6 +77,20 @@ class AmenityRepository implements AmenityRepositoryInterface
             $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
             return $returnedObj;
         }
+
+    }
+
+    public function getAmenityByRoomId($roomId)
+    {
+        $amenityData = [];
+        $data = RoomAmenity::SELECT("amenity_id")
+                ->WHERE("room_id", $roomId)
+                ->whereNull("deleted_at")
+                ->get();
+        foreach($data as $amenity) {
+            array_push($amenityData, $amenity->amenity_id);
+        }
+        return $amenityData;
 
     }
 
