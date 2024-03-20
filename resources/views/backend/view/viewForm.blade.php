@@ -1,9 +1,7 @@
 @extends('backend.layouts.master')
-@section('title','Admin::View Page')
 @section('content')
-
 <div class="page-heading">
-    <h3>Profile Statistics</h3>
+    <h3>VIEW SCREEN</h3>
 </div> 
 <div class="page-content vh-100"> 
     <!-- // Basic multiple Column Form section start -->
@@ -12,7 +10,7 @@
             <div class="col-12">
                 <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Multiple Column</h4>
+                    <h4 class="card-title">VIEW FORM</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">

@@ -8,8 +8,15 @@
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
                 </a>
-                
+            </li>
 
+            <li
+                class="sidebar-item  ">
+                <a href="form-layout.html" class='sidebar-link'>
+                <i class="fa-solid fa-gear"></i>
+                    <span>Hotel Setting</span>
+                </a>
+                
             </li>
 
             <li class="sidebar-title">Forms &amp; Tables</li>
@@ -121,16 +128,6 @@
                     </li>
                 </ul>
                 
-            </li>
-            
-            <li
-                class="sidebar-item  ">
-                <a href="form-layout.html" class='sidebar-link'>
-                    <i class="bi bi-file-earmark-medical-fill"></i>
-                    <span>Form Layout</span>
-                </a>
-                
-
             </li>
             
             <li

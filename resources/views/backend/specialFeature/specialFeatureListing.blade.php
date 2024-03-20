@@ -2,7 +2,7 @@
 @section('title','Admin::View Page')
 @section('content')
     <div class="page-heading">
-        <h3>Profile Statistics</h3>
+        <h3>SPECIALFEATURE SCREEN</h3>
     </div> 
     <div class="page-content vh-100"> 
         <!-- Basic Tables start -->
@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
-                    Minimal jQuery Datatable
+                    SPECIALFEATURE LISTING
                 </h5>
             </div>
             <div class="card-body">
