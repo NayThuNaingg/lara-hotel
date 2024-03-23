@@ -3,27 +3,76 @@
 namespace App\Repository\Room;
 
 use App\Utility;
-use App\ReturnMessage;
-use App\Models\Room;
+use App\Constant;
 use Carbon\Carbon;
+use App\Models\Room;
+use App\ReturnMessage;
+use App\Models\RoomAmenity;
+use App\Models\RoomSpecialFeature;
+use Illuminate\Support\Facades\DB;
 
 class RoomRepository implements RoomRepositoryInterface
 {
     public function postRoom($data)
     {
         $returnedObj = array();
-        $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
-        try {
-            $paraObj       = new Room();
-            $paraObj->name = $data['name'];
-            $tempObj       = Utility::addCreated($paraObj);
+            $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR; 
+            DB::beginTransaction();
+            try {
+                $uniqueName               = Utility::getUploadImage($data['thumbnail']);
+                $paraObj                  = new Room();
+                $paraObj->name            = $data['name'];
+                $paraObj->occupancy       = $data['occupancy'];
+                $paraObj->size            = $data['size'];
+                $paraObj->bed_id          = $data['bed'];
+                $paraObj->view_id         = $data['view'];
+                $paraObj->description     = $data['description'];
+                $paraObj->detail          = $data['detail'];
+                $paraObj->price_per_day   = $data['price'];
+                $paraObj->extra_bed_price = $data['extraBed'];
+                $paraObj->thumbnail       = $uniqueName;
+                $tempObj = Utility::addCreated($paraObj);
+                $tempObj->save();
+                $destination = public_path('assets/upload/' . $tempObj->id . '/thumb');
+                if(!file_exists($destination)){
+                    mkdir($destination, 0777, true);
+                }
+                Utility::cropResizeImage($data['thumbnail'],Constant::THUMB_WIDTH,Constant::THUMB_HEIGHT,$destination,$uniqueName);
+                self::getRoomSpecialFeature($data['specialfeature'],$tempObj->id);
+                self::getRoomAmenity($data['amenity'],$tempObj->id);
+                DB::commit();
+                $returnedObj['LaraHotelCode'] = ReturnMessage::OK;
+                $returnedObj['insertedRoomId'] = $tempObj->id;
+                return $returnedObj;
+            } catch (\Exception $e) {
+                $logs = "Room Create Error :: \n";
+                $logs .= $e->getMessage();
+                Utility::saveErrorLog($logs);
+                DB::rollBack();
+                $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
+                return $returnedObj;
+            }  
+    }
+
+    private static function getRoomSpecialFeature($features, $roomId){
+        foreach($features as $feature){
+            $paraObj = new RoomSpecialFeature();
+            $paraObj->room_id = $roomId;
+            $paraObj->special_feature_id = $feature;
+            $tempObj = Utility::addCreated($paraObj);
             $tempObj->save();
-            $returnedObj['LaraHotelCode'] = ReturnMessage::OK;
-            return $returnedObj;
-        } catch (\Exception $e) {
-            $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
-            return $returnedObj;
         }
+        return true;
+    }
+    private static function getRoomAmenity($amenities, $roomId){
+        foreach($amenities as $amenity){
+            $paraObj = new RoomAmenity();
+            $paraObj->room_id = $roomId;
+            $paraObj->amenity_id = $amenity;
+            $tempObj = Utility::addCreated($paraObj);
+            $tempObj->save();
+        }
+        return true;
     }
 
     public function listingRoom()

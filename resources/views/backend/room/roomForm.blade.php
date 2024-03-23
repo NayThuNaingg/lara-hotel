@@ -29,33 +29,20 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                    @if(isset($views))
+                    @if(isset($rooms))
                         <form action="{{ route('updateRoom') }}" method="POST" class="row g-3 needs-validation" novalidate />
                     @else
                         <form method="POST" action="{{route('postRoom')}}" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate />
                     @endif
                     @csrf
-
-                    <div class="row gallery justify-content-center" data-bs-toggle="modal" data-bs-target="#galleryModal">
-                            <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
-                                <div id="preview-wrapper"  class="border">
-                                    <div class="vertical-center " style="{{ isset($editData) ? "display:none;" : "" }}">
-                                        <label class=" file-choose" onclick="chooseFile()"><i class="fa-solid fa-cloud-arrow-up"></i></label>
-                                    </div>
-                                    <div class="" id="preview-img" style="{{ isset($editData) ? "" : "display:none;" }}" >
-                                    <label for="" class=" change-img" onclick="changePhoto()"><i class="fa-solid fa-cloud-arrow-up"></i></label>
-                                    @if(isset($editData))
-                                    <img src="{{ URL::asset('assets/upload/'. $editData->id . '/thumb/'. $editData->thumbnail ) }}?" alt="Existing Room Image" style="width:100%;" id="upload-img">
-                                    @else
-                                    <img src="" alt="" id="upload-img" class="w-100 active rounded-3">
-                                    @endif
-                                    </div>
-                                    @if($errors->has('thumbnail'))
-                                        <p style="color:red">{{ $errors->first('thumbnail') }}</p>
-                                    @endif
-                                    <input type="file" id="thumb-file" name="file" style="display:none" onchange="uploadPhoto()">
-                                 </div> 
-                            </div>
+                        <div class="img-preview card-body">
+                            <label for="input-file" id="drop-area">
+                                <input type="file" accept="image/*" id="input-file" name="thumbnail" hidden />
+                                <div id="img-view">
+                                    <img src="{{ URL::asset('assets/upload/logo/room/roomDefault.png') }}" alt="">
+                                    <p>Drag and Draw or Click here</br> to Upload Image.</p>
+                                </div>
+                            </label>
                         </div>
 
                         <div class="row mt-5">
@@ -76,7 +63,7 @@
                             </div>    
                         </div>
 
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-md-6">
                                 <label for="view" class="form-label">Choose View</label>
                                 <fieldset class="form-group">
@@ -84,7 +71,7 @@
                                         <option value="">- Choose View -</option>
                                         @if($views)
                                             @foreach($views as $view)
-                                                <option value="view{{$view->id}}" {{ (old('view_id', isset($rooms) ? $rooms->view_id : '') == $view->id) ? 'selected' : '' }}>{{$view->name}}</option>
+                                                <option value="{{$view->id}}" {{ (old('view_id', isset($rooms) ? $rooms->view_id : '') == $view->id) ? 'selected' : '' }}>{{$view->name}}</option>
                                             @endforeach
                                         @else
                                             <option value="">View Data Empty</option>
@@ -103,7 +90,7 @@
                                         <option value="">- Choose Bed -</option>
                                         @if($beds)
                                             @foreach($beds as $bed)
-                                                <option value="bed{{$bed->id}}" {{ (old('bed_id', isset($rooms) ? $rooms->bed_id : '') == $bed->id) ? 'selected' : '' }}>{{$bed->name}}</option>
+                                                <option value="{{$bed->id}}" {{ (old('bed_id', isset($rooms) ? $rooms->bed_id : '') == $bed->id) ? 'selected' : '' }}>{{$bed->name}}</option>
                                             @endforeach
                                         @else
                                             <option>Bed Data Empty</option>
@@ -116,7 +103,7 @@
                             </div>    
                         </div>
 
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-md-6">
                             <label for="price_per_day" class="form-label">Price Per Day <span>($)</span></label>
                                 <input type="number" class="form-control" name="price_per_day" id="price_per_day" value="{{ old('price_per_day',(isset($rooms))? $rooms->price_per_day : '') }}" placeholder="Ex.30$" required>
@@ -134,7 +121,7 @@
                             </div>    
                         </div>
 
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-md-6">
                                 <label for="occupancy" class="form-label">Occupancy <span>(Peoples)</span></label>
                                 <input type="number" class="form-control" name="occupancy" id="occupancy" value="{{ old('occupancy',(isset($rooms))? $rooms->occupancy : '') }}" placeholder="Ex.4 (peoples)" required>
@@ -144,7 +131,7 @@
                             </div>    
                         </div>
 
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-md-6 col-sm-3">
                                 <label for="amenity" class="form-label">Select Amenity</label>
                             </div>
@@ -168,7 +155,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-md-6 col-sm-3">
                                 <label for="specialFeature" class="form-label">Select SpecialFeature</label>
                             </div>

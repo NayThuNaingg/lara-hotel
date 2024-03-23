@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{URL::asset('assets/backend/compiled/css/table-datatable-jquery.css')}}">
     <link rel="stylesheet" href="{{URL::asset('assets/backend/compiled/css/app-dark.css')}}">
     <link rel="stylesheet" href="{{ URL::asset('assets/backend/img-upload.css') }}">
-    <script src="{{ URL::asset('assets/backend/img-upload.js') }}"></script>
     <link rel="stylesheet" href="{{URL::asset('assets/backend/extensions/sweetalert2/sweetalert2.min.css')}}">
    @yield('style')
 </head>

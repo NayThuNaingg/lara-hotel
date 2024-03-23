@@ -30,7 +30,7 @@
 
     <script src="{{URL::asset('assets/backend/extensions/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="{{URL::asset('assets/backend/static/js/pages/sweetalert2.js')}}"></script>
-
+    <script src="{{ URL::asset('assets/backend/img-upload.js') }}"></script>
     @if (session('success_msg'))
     <script>
       Toast.fire({

@@ -1,25 +1,19 @@
-function chooseFile(){
-    $("#thumb-file").click();
+const dropArea = document.getElementById("drop-area");
+const inputFile = document.getElementById("input-file");
+const imageView = document.getElementById("img-view");
+
+inputFile.addEventListener("change", uploadImage);
+function uploadImage() {
+    let imgPath = URL.createObjectURL(inputFile.files[0]);
+    imageView.style.backgroundImage = `url(${imgPath})`;
+    imageView.textContent = "";
+    imageView.style.border = 0;
 }
-function changePhoto() {
-    $("#thumb-file").click();
-}
-function uploadPhoto(){
-    var fileInput = $("#thumb-file")[0];
-    if(fileInput.files && fileInput.files[0]) {
-        var fileName = fileInput.files[0].name;
-        var fileExtension = fileName.split('.').pop().toLowerCase();
-    if(fileExtension == 'jpg' || fileExtension == 'png' || fileExtension == 'jpeg' || fileExtension == 'gif'){
-        $('.vertical-center').hide()
-        const previewImg    = $('#upload-img');
-        const reader        = new FileReader()
-        reader.onload       = function(e) {
-            previewImg.attr('src', e.target.result);
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-            $('#preview-img').show()
-    } else {
-        alert("Extension accept only JPG, PNG, JPEG and GIF");
-    }
-    }
-}
+dropArea.addEventListener("dragover", function(e) {
+    e.preventDefault();
+});
+dropArea.addEventListener("drop", function(e) {
+    e.preventDefault();
+    inputFile.files = e.dataTransfer.files;
+    uploadImage();
+});
