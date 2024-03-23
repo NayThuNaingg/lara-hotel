@@ -1,0 +1,52 @@
+.label-error{
+    color:red;
+}
+.hide{
+    display:none;
+}
+#preview-wrapper{
+    width:350px;
+    height: 200px;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+#upload-img{
+    width: 100%;
+    height: 215px;
+    border-radius: 5px;
+   
+}
+#vertical-center{
+    margin: 0;
+    position: absolute;
+}
+.file-choose{
+    font-size: 30px;
+    display: inline-block;
+    padding: 0.5rem;
+    cursor: pointer;
+    margin: 20% 40%;
+}
+.change-img{
+    font-size: 30px;
+    display: inline-block;
+    padding: 0.5rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    position: absolute;
+    margin: 20% 40%;
+
+}
+.img-wrapper{
+    width:100%;
+    overflow:hidden;
+    height: 130px;
+}
+.btn-wrapper{
+    display:flex;
+    justify-content:space-between;
+    margin-top:8px;
+}

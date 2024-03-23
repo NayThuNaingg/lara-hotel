@@ -32,15 +32,29 @@
                     @if(isset($views))
                         <form action="{{ route('updateRoom') }}" method="POST" class="row g-3 needs-validation" novalidate />
                     @else
-                        <form method="POST" action="{{route('postRoom')}}" class="row g-3 needs-validation" novalidate />
+                        <form method="POST" action="{{route('postRoom')}}" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate />
                     @endif
                     @csrf
 
                     <div class="row gallery justify-content-center" data-bs-toggle="modal" data-bs-target="#galleryModal">
                             <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
-                                <a href="#">
-                                    <img class="w-100 active rounded-3" src="https://images.unsplash.com/photo-1633008808000-ce86bff6c1ed?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" data-bs-target="#Gallerycarousel" data-bs-slide-to="0">
-                                </a>
+                                <div id="preview-wrapper"  class="border">
+                                    <div class="vertical-center " style="{{ isset($editData) ? "display:none;" : "" }}">
+                                        <label class=" file-choose" onclick="chooseFile()"><i class="fa-solid fa-cloud-arrow-up"></i></label>
+                                    </div>
+                                    <div class="" id="preview-img" style="{{ isset($editData) ? "" : "display:none;" }}" >
+                                    <label for="" class=" change-img" onclick="changePhoto()"><i class="fa-solid fa-cloud-arrow-up"></i></label>
+                                    @if(isset($editData))
+                                    <img src="{{ URL::asset('assets/upload/'. $editData->id . '/thumb/'. $editData->thumbnail ) }}?" alt="Existing Room Image" style="width:100%;" id="upload-img">
+                                    @else
+                                    <img src="" alt="" id="upload-img" class="w-100 active rounded-3">
+                                    @endif
+                                    </div>
+                                    @if($errors->has('thumbnail'))
+                                        <p style="color:red">{{ $errors->first('thumbnail') }}</p>
+                                    @endif
+                                    <input type="file" id="thumb-file" name="file" style="display:none" onchange="uploadPhoto()">
+                                 </div> 
                             </div>
                         </div>
 
