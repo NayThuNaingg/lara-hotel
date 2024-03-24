@@ -12,7 +12,6 @@
     }
 </style>
 @endsection
-@section('title','Admin::View Page')
 @section('content')
 
 <div class="page-heading">
@@ -30,17 +29,24 @@
                 <div class="card-content">
                     <div class="card-body">
                     @if(isset($rooms))
-                        <form action="{{ route('updateRoom') }}" method="POST" class="row g-3 needs-validation" novalidate />
+                        <form action="{{ route('updateRoom') }}" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate />
                     @else
                         <form method="POST" action="{{route('postRoom')}}" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate />
                     @endif
                     @csrf
                         <div class="img-preview card-body">
                             <label for="input-file" id="drop-area">
-                                <input type="file" accept="image/*" id="input-file" name="thumbnail" hidden />
+                                <input type="file" accept="image/*" id="input-file" name="thumbnail" hidden required />
                                 <div id="img-view">
-                                    <img src="{{ URL::asset('assets/upload/logo/room/roomDefault.png') }}" alt="">
+                                    @if(isset($editData))
+                                        <img src="{{ URL::asset('assets/upload/'. $editData->id . '/thumb/'. $editData->thumbnail ) }}?" alt="Existing Room Image" style="width:100%;" id="upload-img">
+                                        @else
+                                        <img src="{{ URL::asset('assets/upload/logo/room/roomDefault.png') }}" alt="" >
+                                        @endif
                                     <p>Drag and Draw or Click here</br> to Upload Image.</p>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please Upload Image.
                                 </div>
                             </label>
                         </div>
@@ -181,7 +187,7 @@
 
                         <div class="col-md-6">
                                 <label for="description" class="form-label">Room Description</label>
-                                <textarea class="form-control" id="description" rows="3" placeholder="Please Fill Room Description" required >{{ old('description',(isset($rooms))? $rooms->description : '') }}</textarea>
+                                <textarea class="form-control" name="description" id="description" rows="3" placeholder="Please Fill Room Description" required >{{ old('description',(isset($rooms))? $rooms->description : '') }}</textarea>
                             <div class="invalid-feedback">
                                 Please fill Room Description.
                             </div>
@@ -189,7 +195,7 @@
 
                         <div class="col-md-6">
                             <label for="detail" class="form-label">Room Detail</label>
-                            <textarea class="form-control" id="detail" rows="3" required />{{ old('detail',(isset($rooms))? $rooms->detail : '') }}</textarea>
+                            <textarea class="form-control" name="detail" id="detail" rows="3" required />{{ old('detail',(isset($rooms))? $rooms->detail : '') }}</textarea>
                             <div class="invalid-feedback">
                                 Please fill Room Detail.
                             </div>

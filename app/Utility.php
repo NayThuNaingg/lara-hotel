@@ -3,11 +3,11 @@
 namespace App;
 
 use App\Constant;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
-use Carbon\Carbon;
 
 class Utility
 {

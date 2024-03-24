@@ -27,11 +27,10 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // $this->app->bind(BedRepositoryInterface::class,BedRepository::class);
         $this->app->bind(AmenityRepositoryInterface::class, AmenityRepository::class);
         $this->app->bind(SpecialFeatureRepositoryInterface::class, SpecialFeatureRepository::class);
         $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);
-        // $this->app->bind(roomGalleryRepositoryInterface::class,roomGalleryRepository::class);
+        $this->app->bind(roomGalleryRepositoryInterface::class,roomGalleryRepository::class);
         // $this->app->bind(ReservationRepositoryInterface::class,ReservationRepository::class);
         // $this->app->bind(SettingRepositoryInterface::class,SettingRepository::class);
 

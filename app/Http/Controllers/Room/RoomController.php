@@ -42,9 +42,9 @@ class RoomController extends Controller
     }
 
     public function postRoom(Request $request) {
-        dd($request->all());
         try{
             $result = $this->roomRepository->postRoom($request->all());
+            dd($result);
             $logs = "Room sreen create::";
             Utility::saveDebugLog($logs);
             if($result['LaraHotelCode'] == ReturnMessage::OK){

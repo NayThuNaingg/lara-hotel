@@ -18,7 +18,7 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left" class="align-item-center justify-content-center">
                     <div class="auth-logo text-center">
-                        <a href=""><img src="{{ URL::asset('assets/upload/logo/logo.png') }}" alt="Logo" style="width:200px; height:200px"></a>
+                        <a href=""><img src="{{ URL::asset('assets/logo/logo.png') }}" alt="Logo" style="width:200px; height:200px"></a>
                     </div>
                     <div class="row match-height">
                         <div class="col-12">

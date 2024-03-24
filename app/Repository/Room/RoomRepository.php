@@ -24,12 +24,12 @@ class RoomRepository implements RoomRepositoryInterface
                 $paraObj->name            = $data['name'];
                 $paraObj->occupancy       = $data['occupancy'];
                 $paraObj->size            = $data['size'];
-                $paraObj->bed_id          = $data['bed'];
-                $paraObj->view_id         = $data['view'];
+                $paraObj->bed_id          = $data['bed_id'];
+                $paraObj->view_id         = $data['view_id'];
                 $paraObj->description     = $data['description'];
                 $paraObj->detail          = $data['detail'];
-                $paraObj->price_per_day   = $data['price'];
-                $paraObj->extra_bed_price = $data['extraBed'];
+                $paraObj->price_per_day   = $data['price_per_day'];
+                $paraObj->extra_bed_price = $data['extra_bed_price'];
                 $paraObj->thumbnail       = $uniqueName;
                 $tempObj = Utility::addCreated($paraObj);
                 $tempObj->save();
@@ -38,7 +38,7 @@ class RoomRepository implements RoomRepositoryInterface
                     mkdir($destination, 0777, true);
                 }
                 Utility::cropResizeImage($data['thumbnail'],Constant::THUMB_WIDTH,Constant::THUMB_HEIGHT,$destination,$uniqueName);
-                self::getRoomSpecialFeature($data['specialfeature'],$tempObj->id);
+                self::getRoomSpecialFeature($data['specialFeature'],$tempObj->id);
                 self::getRoomAmenity($data['amenity'],$tempObj->id);
                 DB::commit();
                 $returnedObj['LaraHotelCode'] = ReturnMessage::OK;
@@ -54,11 +54,11 @@ class RoomRepository implements RoomRepositoryInterface
             }  
     }
 
-    private static function getRoomSpecialFeature($features, $roomId){
-        foreach($features as $feature){
+    private static function getRoomSpecialFeature($specialFeatures, $roomId){
+        foreach($specialFeatures as $specialFeature){
             $paraObj = new RoomSpecialFeature();
             $paraObj->room_id = $roomId;
-            $paraObj->special_feature_id = $feature;
+            $paraObj->special_feature_id = $specialFeature;
             $tempObj = Utility::addCreated($paraObj);
             $tempObj->save();
         }
