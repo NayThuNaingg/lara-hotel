@@ -32,3 +32,13 @@
     color: #777;
     margin-top: 15px;
 }
+.img-wrapper{
+    width:100%;
+    overflow:hidden;
+    height: 130px;
+}
+.btn-wrapper{
+    display:flex;
+    justify-content:space-between;
+    margin-top:8px;
+}

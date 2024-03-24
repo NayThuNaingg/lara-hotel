@@ -25,7 +25,7 @@
             $returnedObj['LaraHotelCode'] = ReturnMessage::INTERNAL_SERVER_ERROR; 
            
             try {
-                $uniqueName               = Utility::getUploadImage($data['file']);
+                $uniqueName               = Utility::getUploadImage($data['image']);
                 $paraObj                  = new RoomGallery();
                 $paraObj->room_id         = $data['id'];
                 $paraObj->image           = $uniqueName;
@@ -36,7 +36,7 @@
                 if(!file_exists($destination)){
                     mkdir($destination, 0777, true);
                 }
-                Utility::cropResizeImage($data['file'],Constant::UPLOAD_WIDTH,Constant::UPLOAD_HEIGHT,$destination,$uniqueName);
+                Utility::cropResizeImage($data['image'],Constant::UPLOAD_WIDTH,Constant::UPLOAD_HEIGHT,$destination,$uniqueName);
             
                 $returnedObj['LaraHotelCode'] = ReturnMessage::OK;
                 return $returnedObj;
@@ -57,7 +57,7 @@
             try {
                 $id                       = $data['id'];
                 $room_id                  = $data['room_id'];
-                $uniqueName               = Utility::getUploadImage($data['file']);
+                $uniqueName               = Utility::getUploadImage($data['image']);
                 $paraObj                  = RoomGallery::find($id);
                 $old_image                = $paraObj->image;
                 $paraObj->image           = $uniqueName; 
@@ -67,7 +67,7 @@
                 if(!file_exists($destination)){
                     mkdir($destination, 0777, true);
                 }
-                Utility::cropResizeImage($data['file'],Constant::UPLOAD_WIDTH,Constant::UPLOAD_HEIGHT,$destination,$uniqueName);
+                Utility::cropResizeImage($data['image'],Constant::UPLOAD_WIDTH,Constant::UPLOAD_HEIGHT,$destination,$uniqueName);
                 $old_image_path = public_path('assets/upload/' . $room_id . '/' . $old_image);
                 unlink($old_image_path);
                 $returnedObj['LaraHotelCode'] = ReturnMessage::OK;
@@ -98,4 +98,3 @@
         }
 
     }
-?>

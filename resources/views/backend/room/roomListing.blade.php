@@ -1,5 +1,4 @@
 @extends('backend.layouts.master')
-@section('title','Admin::View Page')
 @section('content')
     <div class="page-heading">
         <h3>Profile Statistics</h3>

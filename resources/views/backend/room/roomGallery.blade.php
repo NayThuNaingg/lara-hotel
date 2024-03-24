@@ -1,5 +1,4 @@
-@extends('layouts.master')
-@section('title','Admin::Room Gallery')
+@extends('backend.layouts.master')
 @section('content')
 
 <div class="right_col" role="main">
@@ -32,17 +31,32 @@
                             </div>
                             <div style="height:20px;"></div>
                             @if(isset($roomGalleries))
-                            <form action="{{ route('roomGallery') }}" method="POST" id="form-create" enctype="multipart/form-data" >
+                            <form action="{{ route('postRoomGallery') }}" method="POST" id="form-create" enctype="multipart/form-data" >
                             @else
-                            <form action="{{ route('updateGallery') }}" method="POST" id="form-create" enctype="multipart/form-data" >
+                            <form action="{{ route('updateRoomGallery') }}" method="POST" id="form-create" enctype="multipart/form-data" >
                                 <input type="hidden" name="id" value={{ $gallery->id }}>
                             @endif
                                 @csrf
                                 <span class="section">Room Gallery</span>
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Image<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <div id="preview-wrapper">
+                                        <div class="img-preview card-body">
+                                            <label for="input-file" id="drop-area">
+                                                <input type="file" accept="image/*" id="input-file" name="image" hidden required />
+                                                <div id="img-view">
+                                                    @if(isset($roomGalleries))
+                                                        <img src="{{ URL::asset('assets/logo/room/roomDefault.png') }}?" alt="Existing Room Image" id="upload-img">
+                                                        @else
+                                                        <img src="{{ URL::asset('assets/upload/'. $gallery->room_id . '/'. $gallery->image ) }}?" alt="Existing Room Image" style="width:100%;" id="upload-img">
+                                                        @endif
+                                                    <p>Drag and Draw or Click here</br> to Upload Image.</p>
+                                                </div>
+                                                <div class="invalid-feedback">
+                                                    Please Upload Image.
+                                                </div>
+                                            </label>
+                                        </div>
+                                        {{-- <div id="preview-wrapper">
                                             <div class="vertical-center" style="{{ isset($roomGalleries) ? "" : "display:none;" }}" >
                                                 <label class="file-choose" onclick="chooseFile()">Choose File</label>
                                             </div>
@@ -55,7 +69,7 @@
                                             @endif
                                             </div>
                                             <input type="file" id="thumb-file" name="file" style="display:none" onchange="uploadPhoto()">
-                                         </div> 
+                                         </div>  --}}
                                     </div>
                                 </div><hr>
 
@@ -80,20 +94,5 @@
         </div>
     </div>
 
-        <script src="{{ URL::asset('assets/backend/js/pages/upload_img.js?v=20230802') }}"></script>
-        <script src="{{ URL::asset('assets/backend/css/pnotify/pnotify.js') }}"></script>
-        <script src="{{ URL::asset('assets/backend/css/pnotify/pnotify.buttons.js') }}"></script>
-        <script src="{{ URL::asset('assets/backend/css/pnotify/pnotify.nonblock.js') }}"></script>
-        @if(session('success'))
-            <script>
-            new PNotify({
-            title: 'Success',
-            text: '{{ session()->get('success') }}',
-            type: 'success',
-            hide: false,
-            styling: 'bootstrap3'
-            }); 
-            </script>";
-        @endif
 </html>
 @endsection

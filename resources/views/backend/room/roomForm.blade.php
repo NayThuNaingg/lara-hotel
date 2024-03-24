@@ -41,7 +41,7 @@
                                     @if(isset($editData))
                                         <img src="{{ URL::asset('assets/upload/'. $editData->id . '/thumb/'. $editData->thumbnail ) }}?" alt="Existing Room Image" style="width:100%;" id="upload-img">
                                         @else
-                                        <img src="{{ URL::asset('assets/upload/logo/room/roomDefault.png') }}" alt="" >
+                                        <img src="{{ URL::asset('assets/logo/room/roomDefault.png') }}" alt="" >
                                         @endif
                                     <p>Drag and Draw or Click here</br> to Upload Image.</p>
                                 </div>
