@@ -53,8 +53,8 @@
 
                         <div class="row mt-5">
                             <div class="col-md-6">
-                                <label for="name" class="form-label">Room Name</label>
-                                <input type="text" class="form-control" name="name" id="name" value="{{ old('name',(isset($rooms))? $rooms->name : '') }}" placeholder="Ex.1001" required>
+                                <label for="name" class="form-label">Room No</label>
+                                <input type="number" class="form-control" name="name" id="name" value="{{ old('name',(isset($rooms))? $rooms->name : '') }}" placeholder="Ex.1001" required>
                                 <div class="invalid-feedback">
                                     Please fill Room Name.
                                 </div>
@@ -195,7 +195,7 @@
 
                         <div class="col-md-6">
                             <label for="detail" class="form-label">Room Detail</label>
-                            <textarea class="form-control" name="detail" id="detail" rows="3" required />{{ old('detail',(isset($rooms))? $rooms->detail : '') }}</textarea>
+                            <textarea class="form-control" name="detail" placeholder="Please Fill Room Detail" id="detail" rows="3" required />{{ old('detail',(isset($rooms))? $rooms->detail : '') }}</textarea>
                             <div class="invalid-feedback">
                                 Please fill Room Detail.
                             </div>
