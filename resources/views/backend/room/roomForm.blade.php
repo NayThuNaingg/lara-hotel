@@ -17,7 +17,7 @@
 <div class="page-heading">
     <h3>ROOM</h3>
 </div> 
-<div class="page-content vh-100"> 
+<div class="page-content"> 
     <!-- // Basic multiple Column Form section start -->
     <section id="multiple-column-form ">
         <div class="row match-height">

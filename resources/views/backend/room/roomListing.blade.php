@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
-                    Minimal jQuery Datatable
+                    ROOM Listing
                 </h5>
             </div>
             <div class="card-body">
@@ -17,22 +17,33 @@
                     <table class="table" id="table1">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>VIEW Name</th>
+                                <th>Img</th>
+                                <th>Size</th>
+                                <th>Occupancy</th>
+                                <th>Bed</th>
+                                <th>View</th>
+                                <th>Price</th>
+                                <th>Extra Bed</th>
                                 <th>Actions</th>
-                                <th>Updated at</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($views as $view)
+                                @foreach($rooms as $room)
                                     <tr>
-                                        <td>{{$view->id}}</td>
-                                        <td>{{$view->name}}</td>
                                         <td>
-                                            <a href="{{ URL::asset('admin-backend/view/edit')}}/{{ $view->id }}" class="btn icon btn-light"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <a href="{{ URL::asset('admin-backend/view/delete')}}/{{ $view->id }}" class="btn icon btn-light"><i class="fa-solid fa-trash"></i></a>
+                                            <img src="{{ URL::asset('assets/upload/' . $room->id . '/thumb/' . $room->thumbnail) }}" class="rounded-3 d-block" alt="Thumbnail" style="width:100px;height:100px">
+                                            <span class="mt-2 p-3">{{$room->name}}</span>
                                         </td>
-                                        <td>{{$view->updated_at}}</td>
+                                        <td>{{$room->size}} {{ getSiteSetting() !== null ? getSiteSetting()->size_unit : '' }}</td>
+                                        <td>{{$room->occupancy}} {{ getSiteSetting() !== null ? getSiteSetting()->occupancy : '' }}</td>
+                                        <td>{{$room->bed_name}}</td>
+                                        <td>{{$room->view_name}}</td>
+                                        <td>{{$room->price_per_day}}{{ getSiteSetting() !== null ? getSiteSetting()->price_unit : '' }}</td>
+                                        <td>{{$room->extra_bed_price}}{{ getSiteSetting() !== null ? getSiteSetting()->price_unit : '' }}</td>
+                                        <td>
+                                            <a href="{{ URL::asset('admin-backend/room/edit')}}/{{ $room->id }}" class="btn icon btn-light"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a href="{{ URL::asset('admin-backend/room/delete')}}/{{ $room->id }}" class="btn icon btn-light"><i class="fa-solid fa-trash"></i></a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

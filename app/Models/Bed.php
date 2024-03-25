@@ -18,4 +18,8 @@ class Bed extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function getRoomByBed() {
+        return $this->hasMany(Room::class,'bed_id','id');
+    } 
 }

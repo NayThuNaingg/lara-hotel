@@ -1,8 +1,11 @@
 <?php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Room extends Model
 {
@@ -26,4 +29,25 @@ class Room extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function getRoomAmenityByRoom()
+    {
+        return $this->hasMany(RoomAmenity::class, 'room_id', 'id');
+    }
+    public function getRoomSpecialFeaturByRoom()
+    {
+        return $this->hasMany(RoomSpecialFeature::class, 'room_id', 'id');
+    }
+    public function getView(): BelongsTo
+    {
+        return $this->belongsTo(View::class, 'view_id', 'id');
+    }
+    public function getBed(): BelongsTo
+    {
+        return $this->belongsTo(Bed::class, 'bed_id', 'id');
+    }
+    public function getGallery(): HasMany
+    {
+        return $this->hasMany(RoomGallery::class, 'room_id', 'id');
+    }
 }

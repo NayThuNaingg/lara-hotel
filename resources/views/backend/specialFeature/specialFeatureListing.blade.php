@@ -1,10 +1,9 @@
 @extends('backend.layouts.master')
-@section('title','Admin::View Page')
 @section('content')
     <div class="page-heading">
         <h3>SPECIALFEATURE SCREEN</h3>
     </div> 
-    <div class="page-content vh-100"> 
+    <div class="page-content "> 
         <!-- Basic Tables start -->
         <section class="section">
         <div class="card">
