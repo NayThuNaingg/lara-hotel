@@ -104,4 +104,20 @@ class RoomController extends Controller
             abort(500);
         }
     }
+
+
+    public function editRoom($id)
+    {
+        $rooms            = $this->roomRepository->editRoom($id);
+        $beds             = $this->bedRepository->listingBed();
+        $views            = $this->viewRepository->listingView();
+        $amenities        = $this->amenityRepository->listingAmenity();
+        $specialFeatures  = $this->specialFeatureRepository->listingSpecialFeature();
+        $featureByRoomId = $this->specialFeatureRepository->getspecialFeatureByroomId($id);
+        $amenityByroomId = $this->amenityRepository->getAmenityByroomId($id);
+        if($rooms == null) {
+            abort(404);
+        }
+        return view('backend.Room.roomForm', compact(['rooms','beds','views','amenities','specialFeatures','amenityByroomId','featureByRoomId']));
+    }
 }

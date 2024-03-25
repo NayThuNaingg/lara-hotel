@@ -38,12 +38,12 @@
                             <label for="input-file" id="drop-area">
                                 <input type="file" accept="image/*" id="input-file" name="thumbnail" hidden required />
                                 <div id="img-view">
-                                    @if(isset($editData))
-                                        <img src="{{ URL::asset('assets/upload/'. $editData->id . '/thumb/'. $editData->thumbnail ) }}?" alt="Existing Room Image" style="width:100%;" id="upload-img">
+                                    @if(isset($rooms))
+                                        <img src="{{ URL::asset('assets/upload/'. $rooms->id . '/thumb/'. $rooms->thumbnail ) }}" style="width:100%; height:100%; overflow:hidden; border-radius:15px;padding:2px;"/>
                                         @else
                                         <img src="{{ URL::asset('assets/logo/room/roomDefault.png') }}" alt="" >
                                         @endif
-                                    <p>Drag and Draw or Click here</br> to Upload Image.</p>
+                                        <p>{{ isset($rooms) ? '' : 'Drag and Draw or Click here<br>to Upload Image.' }}</p>
                                 </div>
                                 <div class="invalid-feedback">
                                     Please Upload Image.
