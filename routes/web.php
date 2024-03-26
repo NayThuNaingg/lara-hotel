@@ -78,21 +78,22 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
 
     // ROOM AND ROOM-GALLERY Route
     Route::prefix('room')->group(function () {
-        // Room route 
+        // Room route
         Route::get('edit/{id}', [RoomController::class,'editRoom']);
+        Route::get('detail/{id}', [RoomController::class, 'detailRoom']);
         Route::get('delete/{id}', [RoomController::class,'deleteRoom'])->name('deleteRoom');
         Route::post('updateRoom', [RoomController::class,'updateRoom'])->name('updateRoom');
         Route::get('formRoom', [RoomController::class, 'formRoom'])->name('formRoom');
         Route::post('postRoom', [RoomController::class, 'postRoom'])->name('postRoom');
         Route::get('listingRoom', [RoomController::class, 'listingRoom'])->name('listingRoom');
 
-        // Room Gallery 
-        Route::prefix('room-gallery')->group(function (){
-            Route::get('/{id}',[RoomController::class,'formRoomGallery'])->name('formRoomGallery');
-            Route::get('/delete/{id}',[RoomController::class,'deleteRoomGallery']);
-            Route::get('/edit/{id}',[RoomController::class,'editRoomGallery']);
-            Route::post('/update',[RoomController::class,'updateRoomGallery'])->name('updateGallery');
-            Route::post('/create',[RoomController::class,'postRoomGallery'])->name('postRoomGallery');
+        // Room Gallery
+        Route::prefix('room-gallery')->group(function () {
+            Route::get('/{id}', [RoomController::class,'formRoomGallery'])->name('formRoomGallery');
+            Route::get('/delete/{id}', [RoomController::class,'deleteRoomGallery']);
+            Route::get('/edit/{id}', [RoomController::class,'editRoomGallery']);
+            Route::post('/update', [RoomController::class,'updateRoomGallery'])->name('updateRoomGallery');
+            Route::post('/create', [RoomController::class,'postRoomGallery'])->name('postRoomGallery');
         });
 
     });

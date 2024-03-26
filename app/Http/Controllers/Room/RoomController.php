@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Room;
 
 use App\Utility;
 use App\ReturnMessage;
+use App\Models\RoomGallery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repository\Bed\BedRepositoryInterface;
@@ -113,11 +114,95 @@ class RoomController extends Controller
         $views            = $this->viewRepository->listingView();
         $amenities        = $this->amenityRepository->listingAmenity();
         $specialFeatures  = $this->specialFeatureRepository->listingSpecialFeature();
-        $featureByRoomId = $this->specialFeatureRepository->getspecialFeatureByroomId($id);
-        $amenityByroomId = $this->amenityRepository->getAmenityByroomId($id);
+        $specialFeatureByRoomId = $this->specialFeatureRepository->getspecialFeatureByroomId($id);
+        $amenityByRoomId = $this->amenityRepository->getAmenityByroomId($id);
         if($rooms == null) {
             abort(404);
         }
-        return view('backend.Room.roomForm', compact(['rooms','beds','views','amenities','specialFeatures','amenityByroomId','featureByRoomId']));
+        return view('backend.Room.roomForm', compact(['rooms','beds','views','amenities','specialFeatures','amenityByRoomId','specialFeatureByRoomId']));
+    }
+
+    public function updateRoom(Request $request)
+    {
+        try {
+            $result = $this->roomRepository->updateRoom($request->all());
+            $logs   = "Room sreen Update::";
+            Utility::saveDebugLog($logs);
+            if($result['LaraHotelCode'] == ReturnMessage::OK) {
+                return redirect()->route('listingRoom')->with('success_msg', 'Update Data successful.');
+            } else {
+                return redirect()->route('listingRoom')->with('error_msg', 'Update Data successful.');
+            }
+        } catch(\Exception $e) {
+            $logs = "Room sreen Update::";
+            $logs = $e->getMessage();
+            Utility::saveErrorLog($logs);
+            abort(500);
+        }
+    }
+
+    public function editRoomGallery($id)
+    {
+        $find_id = RoomGallery::find($id);
+        if(!isset($find_id)) {
+            abort(404);
+        }
+        $gallery = $this->roomGalleryRepository->editRoomGallery($id);
+        return view('backend.room.roomGallery', compact(['gallery']));
+    }
+
+    public function deleteRoomGallery($id)
+    {
+        try {
+            $result = $this->roomGalleryRepository->deleteRoomGallery($id);
+            $logs   = "Room Gallery sreen delete::";
+            Utility::saveDebugLog($logs);
+            if($result['LaraHotelCode'] == ReturnMessage::OK) {
+                return back()->with('success_msg', 'Delete Data successful.');
+            } else {
+                return back()->with('error_msg', 'Update Data successful.');
+
+            }
+        } catch(\Exception $e) {
+            $logs = "Room sreen delete::";
+            $logs = $e->getMessage();
+            Utility::saveErrorLog($logs);
+            abort(500);
+        }
+    }
+
+    public function deleteRoom($id)
+    {
+        try {
+            $result = $this->roomRepository->deleteRoom($id);
+            $logs   = "Room sreen delete::";
+            Utility::saveDebugLog($logs);
+            if($result['LaraHotelCode'] == ReturnMessage::OK) {
+                return redirect()->route('listingRoom')->with('success_msg', 'Delete Data successful.');
+            } else {
+                return redirect()->route('listingRoom')->with('error_msg', 'Update Data successful.');
+
+            }
+        } catch(\Exception $e) {
+            $logs = "Room sreen delete::";
+            $logs = $e->getMessage();
+            Utility::saveErrorLog($logs);
+            abort(500);
+        }
+    }
+
+    public function detailRoom($id)
+    {
+        $room        = $this->roomRepository->editRoom($id);
+        $roomBed     = $this->bedRepository->listingBed();
+        $roomView    = $this->viewRepository->listingView();
+        $roomAmenity = $this->amenityRepository->listingAmenity();
+        $roomSpecialFeature     = $this->specialFeatureRepository->listingSpecialFeature();
+        $specialFeatureByRoomId = $this->specialFeatureRepository->getSpecialFeatureByroomId($id);
+        $amenityByroomId = $this->amenityRepository->getAmenityByroomId($id);
+        if($room == null) {
+            abort(404);
+        }
+        return view('backend.room.roomDetail', compact(['room','roomBed','roomView','roomAmenity','roomSpecialFeature','amenityByroomId','specialFeatureByRoomId']));
     }
 }

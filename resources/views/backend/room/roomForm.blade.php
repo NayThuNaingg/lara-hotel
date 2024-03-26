@@ -43,7 +43,7 @@
                                         @else
                                         <img src="{{ URL::asset('assets/logo/room/roomDefault.png') }}" alt="" >
                                         @endif
-                                        <p>{{ isset($rooms) ? '' : 'Drag and Draw or Click here<br>to Upload Image.' }}</p>
+                                        <p>{{ isset($rooms) ? '' : 'Drag and Draw or Click here to Upload Image.' }}</p>
                                 </div>
                                 <div class="invalid-feedback">
                                     Please Upload Image.
@@ -146,7 +146,7 @@
                                     @foreach($amenities as $amenity)
                                     <div class="col-md-6 col-sm-12">
                                         <label class="form-check-label" for="amenity{{$amenity->id}}">
-                                            <input name="amenity[]" class="form-check-input" type="checkbox" value="{{ $amenity->id }}" id="amenity{{$amenity->id}}"  />  {{$amenity->name}}
+                                            <input name="amenity[]" class="form-check-input" type="checkbox" value="{{ $amenity->id }}" id="amenity{{$amenity->id}}"  {{ (is_array(old('amenity')) && in_array($amenity->id, old('amenity'))) || (isset($amenityByRoomId) && is_array($amenityByRoomId) && in_array($amenity->id,$amenityByRoomId)) ? 'checked': '' }}  />  {{$amenity->name}}
                                         </label>
                                         </div>
                                     @endforeach
@@ -170,7 +170,7 @@
                                     @foreach($specialFeatures as $specialFeature)
                                     <div class="col-md-6 col-sm-12">
                                         <label class="form-check-label" for="specialFeature{{$specialFeature->id}}">
-                                            <input name="specialFeature[]" class="form-check-input color-default" type="checkbox" value="{{ $specialFeature->id }}" id="specialFeature{{$specialFeature->id}}"  />  {{$specialFeature->name}}
+                                            <input name="specialFeature[]" class="form-check-input color-default" type="checkbox" value="{{ $specialFeature->id }}" id="specialFeature{{$specialFeature->id}}" {{ (is_array(old('specialFeature')) && in_array($specialFeature->id, old('specialFeature'))) || (isset($specialFeatureByRoomId) && is_array($specialFeatureByRoomId) && in_array($specialFeature->id,$specialFeatureByRoomId)) ? 'checked': '' }} />  {{$specialFeature->name}}
                                         </label>
                                     </div>
                                     @endforeach

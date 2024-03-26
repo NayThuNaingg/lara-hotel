@@ -35,7 +35,8 @@
 .img-wrapper{
     width:100%;
     overflow:hidden;
-    height: 130px;
+    height: 200px;
+    border-radius: 5px;
 }
 .btn-wrapper{
     display:flex;
