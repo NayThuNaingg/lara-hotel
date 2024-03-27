@@ -106,7 +106,6 @@ class RoomController extends Controller
         }
     }
 
-
     public function editRoom($id)
     {
         $rooms            = $this->roomRepository->editRoom($id);
@@ -196,13 +195,36 @@ class RoomController extends Controller
         $room        = $this->roomRepository->editRoom($id);
         $roomBed     = $this->bedRepository->listingBed();
         $roomView    = $this->viewRepository->listingView();
+        $roomGalleries = $this->roomGalleryRepository->getRoomGalleryById($id);
         $roomAmenity = $this->amenityRepository->listingAmenity();
         $roomSpecialFeature     = $this->specialFeatureRepository->listingSpecialFeature();
-        $specialFeatureByRoomId = $this->specialFeatureRepository->getSpecialFeatureByroomId($id);
-        $amenityByroomId = $this->amenityRepository->getAmenityByroomId($id);
+        $specialFeatureByRoomId = $this->roomRepository->roomSpecialFeatureByroomId($id);
+        $amenityByroomId = $this->roomRepository->roomAmenityByroomId($id);
         if($room == null) {
             abort(404);
         }
-        return view('backend.room.roomDetail', compact(['room','roomBed','roomView','roomAmenity','roomSpecialFeature','amenityByroomId','specialFeatureByRoomId']));
+        return view('backend.room.roomDetail', compact(['room','roomBed','roomView','roomAmenity','roomSpecialFeature','amenityByroomId','specialFeatureByRoomId','roomGalleries','id']));
+    }
+
+    public function updateRoomGallery(Request $request) {
+        if($request->file == null){
+            return redirect('admin-backend/room/room-gallery/'.$request->room_id)->with('success','Update Data successful.');
+        } else {
+            try{
+                $result = $this->roomGalleryRepository->updateRoomGallery($request->all());
+                $logs   = "Room Gallery sreen Update::";
+                Utility::saveDebugLog($logs);
+                if($result['LaraHotelCode'] == ReturnMessage::OK ){
+                    return redirect('admin-backend/room/room-gallery/'.$request->room_id)->with('success_msg','Update Data successful.');
+                } else {
+                    return redirect('admin-backend/room/room-gallery/'.$request->room_id)->with('success_msg','Update Data successful.');
+                }
+            } catch(\Exception $e) {
+                $logs = "Room Gallery sreen Update::";
+                $logs = $e->getMessage();
+                Utility::saveErrorLog($logs);
+                abort(500);
+            }
+        }
     }
 }

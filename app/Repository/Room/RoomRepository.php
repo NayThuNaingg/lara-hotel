@@ -213,4 +213,24 @@ class RoomRepository implements RoomRepositoryInterface
         return $rooms;
     }
 
+    public function roomAmenityByroomId($id) {
+        $roomAmenities = RoomAmenity::SELECT("amenities.name","amenities.type")
+                            ->leftJoin("amenities","amenities.id","=","room_amenities.amenity_id")
+                            ->WHERE("room_amenities.room_id",$id)
+                            ->whereNull("room_amenities.deleted_at")
+                            ->whereNull("amenities.deleted_at")
+                            ->get();
+        return $roomAmenities;
+    }
+    public function roomSpecialFeatureByroomId($id) {
+        $roomSpecialFeatures = RoomSpecialFeature::SELECT("special_features.name")
+                                ->leftJoin("special_features", "special_features.id", "=", "room_special_features.special_feature_id")
+                                ->WHERE("room_special_features.room_id", $id)
+                                ->whereNull("room_special_features.deleted_at")
+                                ->whereNull("special_features.deleted_at")
+                                ->get();
+        return $roomSpecialFeatures;
+    }
+    
+
 }
