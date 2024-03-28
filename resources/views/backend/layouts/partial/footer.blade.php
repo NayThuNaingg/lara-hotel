@@ -28,15 +28,17 @@
     <script src="{{URL::asset('assets/backend/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
     <script src="{{URL::asset('assets/backend/static/js/pages/datatables.js')}}"></script>
 
+    <script src="{{URL::asset('assets/backend/extensions/flatpickr/flatpickr.min.js')}}"></script>
+    <script src="{{URL::asset('assets/backend/static/js/pages/date-picker.js')}}"></script>
     <script src="{{URL::asset('assets/backend/extensions/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="{{URL::asset('assets/backend/static/js/pages/sweetalert2.js')}}"></script>
     <script src="{{ URL::asset('assets/backend/img-upload.js') }}"></script>
     @if (session('success_msg'))
     <script>
-      Toast.fire({
-      icon: 'success',
-      title: 'Data Insert successfully'
-      })
+        Toast.fire({
+            icon: 'success',
+            title: '{{ session('success_msg') }}'
+        });
     </script>
       @endif
 
@@ -53,7 +55,7 @@
       <script>
         Toast.fire({
         icon: 'error',
-        title: 'Transaction error. Please try again.'
+        title: '{{ session()->get('error_msg') }}'
         })
       </script>
       @endif

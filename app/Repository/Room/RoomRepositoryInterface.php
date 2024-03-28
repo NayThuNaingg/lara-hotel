@@ -9,7 +9,6 @@ interface RoomRepositoryInterface
     public function editRoom($id);
     public function updateRoom($data);
     public function deleteRoom($id);
-    public function detailRoom($id);
     public function roomSpecialFeatureByroomId($id);
     public function roomAmenityByroomId($id);
 }

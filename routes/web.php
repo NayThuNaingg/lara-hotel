@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthLoginController;
 use App\Http\Controllers\Bed\BedController;
 use App\Http\Controllers\Home\IndexController;
+use App\Http\Controllers\HotelSetting\HotelSettingController;
 use App\Http\Controllers\Room\RoomController;
 use App\Http\Controllers\SpecialFeature\SpecialFeatureController;
 use App\Http\Controllers\View\ViewController;
@@ -96,5 +97,10 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
             Route::post('/create', [RoomController::class,'postRoomGallery'])->name('postRoomGallery');
         });
 
+    });
+
+    Route::prefix('lara-hotel-setting')->group(function () {
+        Route::get('edit/', [HotelSettingController::class,'editHotelSetting'])->name('hotelSetting');
+        Route::post('updateHotelSetting', [HotelSettingController::class,'updateHotelSetting'])->name('updateHotelSetting');
     });
 });

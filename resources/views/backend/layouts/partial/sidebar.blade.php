@@ -11,8 +11,8 @@
             </li>
 
             <li
-                class="sidebar-item {{ request()->is('admin-backend/hotelSetting') ? 'active' : '' }} ">
-                <a href="form-layout.html" class='sidebar-link'>
+                class="sidebar-item {{ request()->is('admin-backend/lara-hotel-setting/*') ? 'active' : '' }} ">
+                <a href="{{route('hotelSetting')}}" class='sidebar-link'>
                 <i class="fa-solid fa-gear"></i>
                     <span>Hotel Setting</span>
                 </a>

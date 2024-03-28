@@ -80,20 +80,20 @@ class RoomRepository implements RoomRepositoryInterface
     public function listingRoom()
     {
         $rooms = Room::select(
-                'rooms.id',
-                'rooms.name',
-                'rooms.size',
-                'rooms.occupancy',
-                'rooms.bed_id',
-                'rooms.view_id',
-                'rooms.thumbnail',
-                'rooms.description',
-                'rooms.detail',
-                'rooms.price_per_day',
-                'rooms.extra_bed_price',
-                'beds.name as bed_name',
-                'views.name as view_name'
-            )
+            'rooms.id',
+            'rooms.name',
+            'rooms.size',
+            'rooms.occupancy',
+            'rooms.bed_id',
+            'rooms.view_id',
+            'rooms.thumbnail',
+            'rooms.description',
+            'rooms.detail',
+            'rooms.price_per_day',
+            'rooms.extra_bed_price',
+            'beds.name as bed_name',
+            'views.name as view_name'
+        )
             ->leftJoin('beds', 'rooms.bed_id', '=', 'beds.id')
             ->leftJoin('views', 'rooms.view_id', '=', 'views.id')
             ->whereNull('rooms.deleted_at')
@@ -187,42 +187,19 @@ class RoomRepository implements RoomRepositoryInterface
         }
     }
 
-    public function detailRoom($id)
+    public function roomAmenityByroomId($id)
     {
-        $rooms = Room::select(
-            'rooms.id',
-            'rooms.name',
-            'rooms.size',
-            'rooms.occupancy',
-            'rooms.bed_id',
-            'rooms.view_id',
-            'rooms.thumbnail',
-            'rooms.description',
-            'rooms.detail',
-            'rooms.price_per_day',
-            'rooms.extra_bed_price',
-            'beds.name as bed_name',
-            'views.name as view_name',
-        )
-            ->leftJoin('beds', 'rooms.bed_id', '=', 'beds.id')
-            ->leftJoin('views', 'rooms.view_id', '=', 'views.id')
-            ->whereNull('rooms.deleted_at')
-            ->whereNull('beds.deleted_at')
-            ->whereNull('views.deleted_at')
-            ->get();
-        return $rooms;
-    }
-
-    public function roomAmenityByroomId($id) {
-        $roomAmenities = RoomAmenity::SELECT("amenities.name","amenities.type")
-                            ->leftJoin("amenities","amenities.id","=","room_amenities.amenity_id")
-                            ->WHERE("room_amenities.room_id",$id)
+        $roomAmenities = RoomAmenity::SELECT("amenities.name", "amenities.type")
+                            ->leftJoin("amenities", "amenities.id", "=", "room_amenities.amenity_id")
+                            ->WHERE("room_amenities.room_id", $id)
                             ->whereNull("room_amenities.deleted_at")
                             ->whereNull("amenities.deleted_at")
                             ->get();
         return $roomAmenities;
     }
-    public function roomSpecialFeatureByroomId($id) {
+
+    public function roomSpecialFeatureByroomId($id)
+    {
         $roomSpecialFeatures = RoomSpecialFeature::SELECT("special_features.name")
                                 ->leftJoin("special_features", "special_features.id", "=", "room_special_features.special_feature_id")
                                 ->WHERE("room_special_features.room_id", $id)
@@ -231,6 +208,6 @@ class RoomRepository implements RoomRepositoryInterface
                                 ->get();
         return $roomSpecialFeatures;
     }
-    
+
 
 }
