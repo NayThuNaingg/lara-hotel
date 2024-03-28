@@ -3,7 +3,7 @@
             <li class="sidebar-title">Menu</li>
             
             <li
-                class="sidebar-item active ">
+                class="sidebar-item {{ request()->is('admin-backend/index') ? 'active' : '' }} ">
                 <a href="{{route('index')}}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
@@ -11,7 +11,7 @@
             </li>
 
             <li
-                class="sidebar-item  ">
+                class="sidebar-item {{ request()->is('admin-backend/hotelSetting') ? 'active' : '' }} ">
                 <a href="form-layout.html" class='sidebar-link'>
                 <i class="fa-solid fa-gear"></i>
                     <span>Hotel Setting</span>
@@ -22,7 +22,7 @@
             <li class="sidebar-title">Forms &amp; Tables</li>
             
             <li
-                class="sidebar-item  has-sub">
+            class="sidebar-item has-sub {{ request()->is('admin-backend/view/*') ? 'active' : '' }}">
                 <a href="#" class='sidebar-link'>
                 <i class="fa-solid fa-street-view"></i>
                     <span>View</span>
@@ -44,7 +44,7 @@
             </li>
 
             <li
-                class="sidebar-item  has-sub">
+                class="sidebar-item  has-sub  {{ request()->is('admin-backend/bed/*') ? 'active' : '' }}">
                 <a href="#" class='sidebar-link'>
                 <i class="fa-solid fa-bed-pulse"></i>
                     <span>Bed</span>
@@ -66,7 +66,7 @@
             </li>
 
             <li
-                class="sidebar-item  has-sub">
+                class="sidebar-item  has-sub {{ request()->is('admin-backend/amenity/*') ? 'active' : '' }}">
                 <a href="#" class='sidebar-link'>
                 <i class="fa-brands fa-intercom"></i>
                     <span>Amenity</span>
@@ -87,7 +87,7 @@
             </li>
 
             <li
-                class="sidebar-item  has-sub">
+                class="sidebar-item  has-sub {{ request()->is('admin-backend/special-feature/*') ? 'active' : '' }}">
                 <a href="#" class='sidebar-link'>
                 <i class="fa-solid fa-ship"></i>
                     <span>Special Feature</span>
@@ -109,7 +109,7 @@
             </li>
 
             <li
-                class="sidebar-item  has-sub">
+                class="sidebar-item  has-sub {{ request()->is('admin-backend/room/*') ? 'active' : '' }}">
                 <a href="#" class='sidebar-link'>
                 <i class="fa-solid fa-hotel"></i>
                     <span>ROOM</span>
