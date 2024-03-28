@@ -60,6 +60,6 @@
             form.classList.add('was-validated')
         }, false)
         })
-    })()
+    })
 </script>
 @endsection

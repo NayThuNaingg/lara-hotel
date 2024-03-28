@@ -57,8 +57,8 @@
                         <div class="row mt-3">
                             <div class="col-md-6">
                             <label for="checkin" class="form-label">CheckIn Time</label>
-                                <input type="text" class="form-control" name="checkin" id="checkin" value="{{ old('checkin',(isset($hotelSettings))? $hotelSettings->checkin : '') }}"  required>
-                                <div class="invalid-feedback">
+                            <input type="text" class="form-control" name="checkin" id="checkin" value="{{ old('checkin',(isset($hotelSettings))? $hotelSettings->checkin : '') }}"  required>
+                             <div class="invalid-feedback">
                                     Please fill CheckIn Time.
                                 </div>
                             </div>    
@@ -151,37 +151,10 @@
             event.preventDefault()
             event.stopPropagation()
             }
-        
-            // Function to check if at least one option is selected and update checkbox border
-            function checkSelection(itemsSelector, errorLabelSelector, errorMsg) {
-                var count = $(itemsSelector + ':checked').length;
-                var checkboxes = $(itemsSelector);
-
-                if (count === 0) {
-                    $(errorLabelSelector).show().text(errorMsg);
-                    checkboxes.addClass('error-checkbox').removeClass('success-checkbox');
-                } else {
-                    $(errorLabelSelector).hide();
-                    checkboxes.removeClass('error-checkbox').addClass('success-checkbox');
-                }
-            }
-
-            // Check initial selection
-            checkSelection('input[name="amenity[]"]', '.amenity-label-error', 'Please select at least one Room Amenity.');
-            checkSelection('input[name="specialFeature[]"]', '.feature-label-error', 'Please select at least one Special Feature.');
-
-            // jQuery onchange functions
-            $('input[name="amenity[]"]').on('change', function() {
-                checkSelection('input[name="amenity[]"]', '.amenity-label-error', 'Please select at least one Room Amenity.');
-            });
-
-            $('input[name="specialFeature[]"]').on('change', function() {
-                checkSelection('input[name="specialFeature[]"]', '.feature-label-error', 'Please select at least one Special Feature.');
-            });
 
             form.classList.add('was-validated')
         }, false)
         })
-    })()
+    })
 </script>
 @endsection

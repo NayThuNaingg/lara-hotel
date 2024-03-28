@@ -3,10 +3,10 @@ const inputFile = document.getElementById("input-file");
 const imageView = document.getElementById("img-view");
 
 inputFile.addEventListener("change", uploadImage);
-dropArea.addEventListener("dragover", function(e) {
+dropArea.addEventListener("dragover", function (e) {
     e.preventDefault();
 });
-dropArea.addEventListener("drop", function(e) {
+dropArea.addEventListener("drop", function (e) {
     e.preventDefault();
     inputFile.files = e.dataTransfer.files;
     uploadImage();
@@ -14,14 +14,14 @@ dropArea.addEventListener("drop", function(e) {
 
 function uploadImage() {
     const file = inputFile.files[0];
-    const allowedExtensions = ['jpg', 'png', 'jpeg', 'gif'];
+    const allowedExtensions = ["jpg", "png", "jpeg", "gif"];
     if (!file) {
         alert("Please select an image file.");
         return; // Exit the function early if no file is selected
     }
     if (file) {
         const fileName = file.name;
-        const fileExtension = fileName.split('.').pop().toLowerCase();
+        const fileExtension = fileName.split(".").pop().toLowerCase();
 
         if (allowedExtensions.includes(fileExtension)) {
             let imgPath = URL.createObjectURL(file);
@@ -31,7 +31,7 @@ function uploadImage() {
         } else {
             alert("Extension accept only JPG, PNG, JPEG, and GIF");
             // Clear the input field
-            inputFile.value = '';
+            inputFile.value = "";
         }
     }
 }
