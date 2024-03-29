@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use PhpParser\Builder\Function_;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Bed\bedRequest;
 use App\Repository\Bed\BedRepositoryInterface;
 
 class BedController extends Controller
@@ -21,7 +22,7 @@ class BedController extends Controller
     {
         return view('backend.bed.bedForm');
     }
-    public function postBed(Request $request)
+    public function postBed(bedRequest $request)
     {
         try {
             $result = $this->bedRepository->postBed($request->all());
@@ -72,7 +73,7 @@ class BedController extends Controller
 
 
     }
-    public function updateBed(Request $request)
+    public function updateBed(bedRequest $request)
     {
         try {
             $result     = $this->bedRepository->updateBed($request->all());

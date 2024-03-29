@@ -130,65 +130,27 @@
                 
             </li>
 
-            <li class="sidebar-title">Extra UI</li>
+            <li class="sidebar-title">BOOKING</li>
 
             <li
                 class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i class="bi bi-bar-chart-fill"></i>
-                    <span>Charts</span>
+                    <span>Booking</span>
                 </a>
                 
                 <ul class="submenu ">
                     
                     <li class="submenu-item  ">
-                        <a href="ui-chart-chartjs.html" class="submenu-link">ChartJS</a>
+                        <a href="" class="submenu-link">Booking</a>
                         
                     </li>
                     
                     <li class="submenu-item  ">
-                        <a href="ui-chart-apexcharts.html" class="submenu-link">Apexcharts</a>
-                        
+                        <a href="" class="submenu-link">Apexcharts</a>
                     </li>
-                    
                 </ul>
-                
-
-            </li>
-
-            <li
-                class="sidebar-item  ">
-                <a href="ui-file-uploader.html" class='sidebar-link'>
-                    <i class="bi bi-cloud-arrow-up-fill"></i>
-                    <span>File Uploader</span>
-                </a>
-                
-
-            </li>
-
-            <li
-                class="sidebar-item  has-sub">
-                <a href="#" class='sidebar-link'>
-                    <i class="bi bi-map-fill"></i>
-                    <span>Maps</span>
-                </a>
-                
-                <ul class="submenu ">
-                    
-                    <li class="submenu-item  ">
-                        <a href="ui-map-google-map.html" class="submenu-link">Google Map</a>
-                        
-                    </li>
-                    
-                    <li class="submenu-item  ">
-                        <a href="ui-map-jsvectormap.html" class="submenu-link">JS Vector Map</a>
-                        
-                    </li>
-                    
-                </ul>
-
-            </li>
-            
+            </li>      
         </ul>
     </div>
 </div>

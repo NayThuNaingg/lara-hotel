@@ -34,31 +34,22 @@
     <script src="{{URL::asset('assets/backend/static/js/pages/sweetalert2.js')}}"></script>
     <script src="{{ URL::asset('assets/backend/img-upload.js') }}"></script>
     @if (session('success_msg'))
-    <script>
-        Toast.fire({
-            icon: 'success',
-            title: '{{ session('success_msg') }}'
-        });
-    </script>
+        <script>
+            Toast.fire({
+                icon: 'success',
+                title: '{{ session('success_msg') }}'
+            });
+        </script>
       @endif
 
-      @if (session('success_login'))
-      <script>
-        Toast.fire({
-        icon: 'success',
-        title: 'Login successfully'
-        })
-      </script>
-      @endif
-
-      @if (session('error_msg'))
-      <script>
+    @if (session('error_msg'))
+        <script>
         Toast.fire({
         icon: 'error',
-        title: '{{ session()->get('error_msg') }}'
-        })
-      </script>
-      @endif
+        title: '{{ session('error_msg') }}'
+        });
+        </script>
+    @endif
     @yield('script')
 </body>
 </html>

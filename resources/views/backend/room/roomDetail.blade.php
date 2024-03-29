@@ -12,16 +12,18 @@
                 <div class="col-md-7">
                     <div class="card">
                         <div class="card-body">
-                            <img src="{{ URL::asset('assets/upload/' . $room->id . '/thumb/' . $room->thumbnail) }}" class="rounded-3 " alt="Thumbnail" style="width:100%;height:300px">
-                            @if(isset($roomGalleries) && count($roomGalleries) >0 && !isset($roomGallery) )
-                                <div class="row mt-2">
-                                    @foreach ($roomGalleries as $roomGallery)
-                                    <div class="col-md-3">
-                                        <img src="{{ isset($roomGallery) ? URL::asset('assets/upload') .'/'. $id .'/'. $roomGallery->image : '' }}" class="rounded-3" alt="" style="width:100%;height:100%;">
+                            <div class="col-md-12">
+                            <img id="thumb" src="{{ URL::asset('assets/upload/' . $room->id . '/thumb/' . $room->thumbnail) }}" class="rounded-3 " alt="Thumbnail" style="width:100%;height:350px">
+                            </div>
+                                @if(isset($roomGalleries) && count($roomGalleries) >0 && !isset($roomGallery) )
+                                    <div class="row mt-2">
+                                        @foreach ($roomGalleries as $roomGallery)
+                                        <div class="col-md-3">
+                                        <img id="gallery_{{$roomGallery->id}}" src="{{ isset($roomGallery) ? URL::asset('assets/upload') . '/' . $id . '/' . $roomGallery->image : '' }}" class="rounded-3" alt="" style="width:100%;height:100%;">
+                                        </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
-                                </div>
-                            @endif
+                                @endif
                             <div class="mt-5 d-flex">
                                 <span class="h5">Room No -  </span>
                                 <p class=" mx-1 bg-primary badge p-2"> {{ $room->name }}</p>
@@ -77,3 +79,14 @@
     </div>
 </section>
 @endsection
+@section('script')
+<script>
+    jQuery(document).ready(function($) {
+        const gallery = document.querySelectorAll('[id^="gallery_"]');
+        $(gallery).click(function(event) {
+            $('#thumb').attr('src', $(event.target).attr('src'));
+        });
+    });
+</script>
+@endsection
+

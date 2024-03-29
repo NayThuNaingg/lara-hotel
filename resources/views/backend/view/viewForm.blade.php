@@ -26,6 +26,9 @@
                             <div class="invalid-feedback">
                                 Please fill View Name.
                             </div>
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>      
                         <div class="col-md-12">
                         @if(isset($views))

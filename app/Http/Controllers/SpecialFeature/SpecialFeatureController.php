@@ -6,6 +6,7 @@ use App\Utility;
 use App\ReturnMessage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SpecialFeature\specialFeatureRequest;
 use App\Repository\SpecialFeature\SpecialFeatureRepository;
 use App\Repository\SpecialFeature\SpecialFeatureRepositoryInterface;
 
@@ -20,7 +21,7 @@ class SpecialFeatureController extends Controller
     {
         return view('backend.specialFeature.specialFeatureForm');
     }
-    public function postSpecialFeature(Request $request)
+    public function postSpecialFeature(specialFeatureRequest $request)
     {
         try {
             $result = $this->specialFeatureRepository->postSpecialFeature($request->all());
@@ -71,7 +72,7 @@ class SpecialFeatureController extends Controller
 
 
     }
-    public function updateSpecialFeature(Request $request)
+    public function updateSpecialFeature(specialFeatureRequest $request)
     {
         try {
             $result = $this->specialFeatureRepository->updateSpecialFeature($request->all());
@@ -93,8 +94,8 @@ class SpecialFeatureController extends Controller
     public function deleteSpecialFeature($id)
     {
         try {
-            $result     = $this->specialFeatureRepository->deleteSpecialFeature($id);
-            $logs = "SpecialFeature screen delete::";
+            $result = $this->specialFeatureRepository->deleteSpecialFeature($id);
+            $logs   = "SpecialFeature screen delete::";
             Utility::saveDebugLog($logs);
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
                 return redirect()->route('SpecialFeatureListing')->with('success_msg', 'Delete Data successful.');

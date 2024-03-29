@@ -6,6 +6,7 @@ use App\Utility;
 use App\ReturnMessage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Amenity\amenityRequest;
 use App\Repository\Amenity\AmenityRepositoryInterface;
 
 class AmenityController extends Controller
@@ -20,7 +21,7 @@ class AmenityController extends Controller
         $amenityTypes = ['Basic Amenities','Tech-Savvy Amenities','Wellness Amenities','Luxury Amenities'];
         return view('backend.amenity.amenityForm', compact(['amenityTypes']));
     }
-    public function postAmenity(Request $request)
+    public function postAmenity(amenityRequest $request)
     {
         try {
             $result = $this->amenityRepository->postAmenity($request->all());
@@ -72,7 +73,7 @@ class AmenityController extends Controller
 
 
     }
-    public function updateAmenity(Request $request)
+    public function updateAmenity(amenityRequest $request)
     {
         try {
             $result = $this->amenityRepository->updateAmenity($request->all());

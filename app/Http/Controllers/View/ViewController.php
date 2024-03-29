@@ -7,6 +7,7 @@ use App\ReturnMessage;
 use Illuminate\Http\Request;
 use GuzzleHttp\RetryMiddleware;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\View\viewRequest;
 use App\Repository\View\ViewRepositoryInterface;
 
 class ViewController extends Controller
@@ -20,7 +21,7 @@ class ViewController extends Controller
     {
         return view('backend.view.viewForm');
     }
-    public function postView(Request $request)
+    public function postView(viewRequest $request)
     {
         try {
             $result = $this->viewRepository->postView($request->all());
@@ -71,7 +72,7 @@ class ViewController extends Controller
 
 
     }
-    public function updateView(Request $request)
+    public function updateView(viewRequest $request)
     {
         try {
             $result     = $this->viewRepository->updateView($request->all());

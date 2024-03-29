@@ -28,7 +28,10 @@
                             <div class="invalid-feedback">
                                 Please fill SpecialFeature Name.
                             </div>
-                        </div>      
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                         <div class="col-md-12">
                         @if(isset($SpecialFeatures))
                             <input type="hidden" name="id" value="{{ $SpecialFeatures->id }}">
