@@ -40,10 +40,10 @@
                                 <div id="img-view">
                                     @if(isset($rooms))
                                         <img src="{{ URL::asset('assets/upload/'. $rooms->id . '/thumb/'. $rooms->thumbnail ) }}" style="width:100%; height:100%; overflow:hidden; border-radius:15px;padding:2px;"/>
-                                        @else
+                                    @else
                                         <img src="{{ URL::asset('assets/logo/room/roomDefault.png') }}" alt="" >
-                                        @endif
-                                        <p>{{ isset($rooms) ? '' : 'Drag and Draw or Click here to Upload Image.' }}</p>
+                                    @endif
+                                    <p>{{ isset($rooms) ? '' : 'Drag and Draw or Click here to Upload Image.' }}</p>
                                 </div>
                                 <div class="invalid-feedback">
                                     Please Upload Image.
@@ -51,7 +51,7 @@
                             </label>
                         </div>
 
-                        <div class="row mt-5">
+                        <div class="row mt-1">
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Room No</label>
                                 <input type="number" class="form-control" name="name" id="name" value="{{ old('name',(isset($rooms))? $rooms->name : '') }}" placeholder="Ex.1001" required>

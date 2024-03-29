@@ -81,7 +81,7 @@ class AmenityController extends Controller
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
                 return redirect()->route('listingAmenity')->with('success_msg', 'Update Data successful.');
             } else {
-                return redirect()->route('listingAmenity')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('listingAmenity')->with('error_msg', 'Something wrong.');
 
             }
         } catch(\Exception $e) {
@@ -100,7 +100,7 @@ class AmenityController extends Controller
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
                 return redirect()->route('AmenityListing')->with('success_msg', 'Delete Data successful.');
             } else {
-                return redirect()->route('AmenityListing')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('AmenityListing')->with('error_msg', 'Something wrong.');
 
             }
         } catch(\Exception $e) {

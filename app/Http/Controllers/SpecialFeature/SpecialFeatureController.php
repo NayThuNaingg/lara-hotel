@@ -12,10 +12,12 @@ use App\Repository\SpecialFeature\SpecialFeatureRepositoryInterface;
 class SpecialFeatureController extends Controller
 {
     protected $specialFeatureRepository;
-    public function __construct(SpecialFeatureRepositoryInterface $specialFeatureRepository){
+    public function __construct(SpecialFeatureRepositoryInterface $specialFeatureRepository)
+    {
         $this->specialFeatureRepository = $specialFeatureRepository;
     }
-    public function formSpecialFeature(){
+    public function formSpecialFeature()
+    {
         return view('backend.specialFeature.specialFeatureForm');
     }
     public function postSpecialFeature(Request $request)
@@ -78,7 +80,7 @@ class SpecialFeatureController extends Controller
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
                 return redirect()->route('listingSpecialFeature')->with('success_msg', 'Update Data successful.');
             } else {
-                return redirect()->route('listingSpecialFeature')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('listingSpecialFeature')->with('error_msg', 'Something wrong.');
 
             }
         } catch(\Exception $e) {
@@ -97,7 +99,7 @@ class SpecialFeatureController extends Controller
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
                 return redirect()->route('SpecialFeatureListing')->with('success_msg', 'Delete Data successful.');
             } else {
-                return redirect()->route('SpecialFeatureListing')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('SpecialFeatureListing')->with('error_msg', 'Something wrong.');
 
             }
         } catch(\Exception $e) {

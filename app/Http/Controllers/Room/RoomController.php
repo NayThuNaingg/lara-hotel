@@ -54,9 +54,9 @@ class RoomController extends Controller
             Utility::saveDebugLog($logs);
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
                 $insertRoomId = $result['insertedRoomId'];
-                return redirect('admin-backend/room/room-gallery/'.$insertRoomId)->with('success_msg', 'Create Data successful.');
+                return redirect('admin-backend/room/room-gallery/'.$insertRoomId)->with('success_msg', 'Insert Data successful.');
             } else {
-                return redirect()->route('RoomForm')->with('error', 'Something wrong.');
+                return redirect()->route('RoomForm')->with('error_msg', 'Something wrong.');
             }
         } catch(\Exception $e) {
             $logs = "Room sreen create::";
@@ -79,9 +79,9 @@ class RoomController extends Controller
             $logs   = "Room Room Gallery Create::";
             Utility::saveDebugLog($logs);
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
-                return back()->with('success_msg', 'Create Data successful.');
+                return back()->with('success_msg', 'Upload Img successful.');
             } else {
-                return back()->with('error_msg', 'Create Data successful.');
+                return back()->with('error_msg', 'Something wrong.');
             }
         } catch(\Exception $e) {
             $logs = "Room Gallery::";
@@ -130,7 +130,7 @@ class RoomController extends Controller
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
                 return redirect()->route('listingRoom')->with('success_msg', 'Update Data successful.');
             } else {
-                return redirect()->route('listingRoom')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('listingRoom')->with('error_msg', 'Something wrong.');
             }
         } catch(\Exception $e) {
             $logs = "Room sreen Update::";
@@ -159,7 +159,7 @@ class RoomController extends Controller
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
                 return back()->with('success_msg', 'Delete Data successful.');
             } else {
-                return back()->with('error_msg', 'Update Data successful.');
+                return back()->with('error_msg', 'Something wrong.');
 
             }
         } catch(\Exception $e) {
@@ -179,7 +179,7 @@ class RoomController extends Controller
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
                 return redirect()->route('listingRoom')->with('success_msg', 'Delete Data successful.');
             } else {
-                return redirect()->route('listingRoom')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('listingRoom')->with('error_msg', 'Something wrong.');
 
             }
         } catch(\Exception $e) {
@@ -209,16 +209,16 @@ class RoomController extends Controller
     public function updateRoomGallery(Request $request)
     {
         if($request->file == null) {
-            return redirect('admin-backend/room/room-gallery/'.$request->room_id)->with('success', 'Update Data successful.');
+            return redirect('admin-backend/room/room-gallery/'.$request->room_id)->with('success_msg', 'Update Img successful.');
         } else {
             try {
                 $result = $this->roomGalleryRepository->updateRoomGallery($request->all());
                 $logs   = "Room Gallery sreen Update::";
                 Utility::saveDebugLog($logs);
                 if($result['LaraHotelCode'] == ReturnMessage::OK) {
-                    return redirect('admin-backend/room/room-gallery/'.$request->room_id)->with('success_msg', 'Update Data successful.');
+                    return redirect('admin-backend/room/room-gallery/'.$request->room_id)->with('success_msg', 'Update Img successful.');
                 } else {
-                    return redirect('admin-backend/room/room-gallery/'.$request->room_id)->with('success_msg', 'Update Data successful.');
+                    return redirect('admin-backend/room/room-gallery/'.$request->room_id)->with('error_msg', 'Something wrong.');
                 }
             } catch(\Exception $e) {
                 $logs = "Room Gallery sreen Update::";

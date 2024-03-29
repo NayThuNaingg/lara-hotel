@@ -27,7 +27,7 @@ class ViewController extends Controller
             $logs = "View sreen create::";
             Utility::saveDebugLog($logs);
             if ($result['LaraHotelCode'] == ReturnMessage::OK) {
-                return redirect()->back()->with('success_msg', 'Create Data successful.');
+                return redirect()->back()->with('success_msg', 'Insert Data successful.');
             } else {
                 return redirect()->back()->with('error_msg', 'Something wrong.');
 
@@ -80,7 +80,7 @@ class ViewController extends Controller
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
                 return redirect()->route('listingView')->with('success_msg', 'Update Data successful.');
             } else {
-                return redirect()->route('listingView')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('listingView')->with('error_msg', 'Something wrong.');
 
             }
         } catch(\Exception $e) {
@@ -99,7 +99,7 @@ class ViewController extends Controller
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
                 return redirect()->route('listingView')->with('success_msg', 'Delete Data successful.');
             } else {
-                return redirect()->route('listingView')->with('error_msg', 'Update Data successful.');
+                return redirect()->route('listingView')->with('error_msg', 'Something wrong.');
 
             }
         } catch(\Exception $e) {

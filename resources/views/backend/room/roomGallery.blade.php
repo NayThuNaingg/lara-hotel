@@ -51,28 +51,27 @@
                 </div>
             </div>
         </div>
-                            
+        @if(isset($roomGalleries) && count($roomGalleries) >0 && !isset($roomGallery) )                 
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
                 <h5 class="mb-4">Room Gallery Listing</h5>
-                    @if(isset($roomGalleries) && count($roomGalleries) >0 && !isset($roomGallery) )
-                        <div class="row">
-                            @foreach ($roomGalleries as $roomGallery)
-                            <div class="col-md-4 mt-3">
-                                <div class="img-wrapper">
-                                    <img src="{{ isset($roomGallery) ? URL::asset('assets/upload') .'/'. $id .'/'. $roomGallery->image : '' }}" alt="" style="width:100%;height:100%;">
-                                </div>
-                                <div class="btn-wrapper">
-                                    <a href="{{ URL::to('admin-backend/room/room-gallery/edit') }}/{{ $roomGallery->id }}" class="btn icon btn-light"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <a href="{{ URL::to('admin-backend/room/room-gallery/delete') }}/{{ $roomGallery->id }}"  onclick="return confirm('Are you sure you want to delete this image?');" class="btn icon btn-light"><i class="fa-solid fa-trash"></i></a>
-                                </div>
+                    <div class="row">
+                        @foreach ($roomGalleries as $roomGallery)
+                        <div class="col-md-4 mt-3">
+                            <div class="img-wrapper">
+                                <img src="{{ isset($roomGallery) ? URL::asset('assets/upload') .'/'. $id .'/'. $roomGallery->image : '' }}" alt="" style="width:100%;height:100%;">
                             </div>
-                            @endforeach
+                            <div class="btn-wrapper">
+                                <a href="{{ URL::to('admin-backend/room/room-gallery/edit') }}/{{ $roomGallery->id }}" class="btn icon btn-light"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ URL::to('admin-backend/room/room-gallery/delete') }}/{{ $roomGallery->id }}"  onclick="return confirm('Are you sure you want to delete this image?');" class="btn icon btn-light"><i class="fa-solid fa-trash"></i></a>
+                            </div>
                         </div>
-                    @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
+        @endif
 </section>
 @endsection
