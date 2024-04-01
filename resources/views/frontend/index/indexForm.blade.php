@@ -10,186 +10,35 @@
             </div>
         </div>
         <div class="row">
-        <div class="col-lg-4 col-md-6">
-            <div class="room-item">
-                <img src="{{URL::asset('assets/frontend/img/room/room-1.jpg')}}" alt="">
-                <div class="ri-text">
-                    <h4>Premium King Room</h4>
-                    <h3>159$<span>/Pernight</span></h3>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td class="r-o">Size:</td>
-                                <td>30 ft</td>
-                            </tr>
-                            <tr>
-                                <td class="r-o">Capacity:</td>
-                                <td>Max persion 3</td>
-                            </tr>
-                            <tr>
-                                <td class="r-o">Bed:</td>
-                                <td>King Beds</td>
-                            </tr>
-                            <tr>
-                                <td class="r-o">Services:</td>
-                                <td>Wifi, Television, Bathroom,...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <a href="#" class="primary-btn">More Details</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="room-item">
-                <img src="{{URL::asset('assets/frontend/img/room/room-2.jpg')}}" alt="">
-                <div class="ri-text">
-                    <h4>Deluxe Room</h4>
-                    <h3>159$<span>/Pernight</span></h3>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td class="r-o">Size:</td>
-                                <td>30 ft</td>
-                            </tr>
-                            <tr>
-                                <td class="r-o">Capacity:</td>
-                                <td>Max persion 5</td>
-                            </tr>
-                            <tr>
-                                <td class="r-o">Bed:</td>
-                                <td>King Beds</td>
-                            </tr>
-                            <tr>
-                                <td class="r-o">Services:</td>
-                                <td>Wifi, Television, Bathroom,...</td>
-                            </tr>
-                        </tbody>
-                        </table>
-                        <a href="#" class="primary-btn">More Details</a>
-                    </div>
-                </div>
-            </div>
+            @foreach ($rooms as $room)
             <div class="col-lg-4 col-md-6">
                 <div class="room-item">
-                    <img src="{{URL::asset('assets/frontend/img/room/room-3.jpg')}}" alt="">
+                    <img src="{{ URL::asset('assets/upload/' . $room->id . '/thumb/' . $room->thumbnail) }}" class="rounded-3" alt="" style="width: 100%; height:100%;">
                     <div class="ri-text">
-                        <h4>Double Room</h4>
-                        <h3>159$<span>/Pernight</span></h3>
+                        <h4>{{ $room->view_name }}</h4>
+                        <h3>{{ $room->price_per_day }}{{ getSiteSetting() !== null ? getSiteSetting()->price_unit : '' }}<span>/Pernight</span></h3>
                         <table>
                             <tbody>
                                 <tr>
                                     <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
+                                    <td>{{ $room->size }}{{ getSiteSetting() !== null ? getSiteSetting()->size_unit : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td class="r-o">Capacity:</td>
-                                    <td>Max persion 2</td>
+                                    <td>{{ $room->occupancy }}{{ getSiteSetting() !== null ? getSiteSetting()->occupancy : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
+                                    <td>{{ $room->bed_name }}</td>
                                 </tr>
-                                <tr>
-                                    <td class="r-o">Services:</td>
-                                    <td>Wifi, Television, Bathroom,...</td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                         <a href="#" class="primary-btn">More Details</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="room-item">
-                    <img src="{{URL::asset('assets/frontend/img/room/room-4.jpg')}}" alt="">
-                    <div class="ri-text">
-                        <h4>Luxury Room</h4>
-                        <h3>159$<span>/Pernight</span></h3>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Capacity:</td>
-                                    <td>Max persion 1</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Services:</td>
-                                    <td>Wifi, Television, Bathroom,...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="#" class="primary-btn">More Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="room-item">
-                    <img src="{{URL::asset('assets/frontend/img/room/room-5.jpg')}}" alt="">
-                    <div class="ri-text">
-                        <h4>Room With View</h4>
-                        <h3>159$<span>/Pernight</span></h3>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Capacity:</td>
-                                    <td>Max persion 1</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Services:</td>
-                                    <td>Wifi, Television, Bathroom,...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="#" class="primary-btn">More Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="room-item">
-                    <img src="{{URL::asset('assets/frontend/img/room/room-6.jpg')}}" alt="">
-                    <div class="ri-text">
-                        <h4>Small View</h4>
-                        <h3>159$<span>/Pernight</span></h3>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Capacity:</td>
-                                    <td>Max persion 2</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Services:</td>
-                                    <td>Wifi, Television, Bathroom,...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="#" class="primary-btn">More Details</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

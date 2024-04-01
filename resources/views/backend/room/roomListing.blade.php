@@ -8,12 +8,10 @@
         <section class="section">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">
-                    ROOM Listing
-                </h5>
+                <h5 class="card-title">ROOM Listing</h5>
             </div>
             <div class="card-body">
-                <div class=" datatable-minimal">
+                <div class="table-responsive datatable-minimal">
                     <table class="table" id="table1">
                         <thead>
                             <tr>
