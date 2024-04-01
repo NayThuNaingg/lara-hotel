@@ -7,6 +7,8 @@ use App\ReturnMessage;
 use App\Models\RoomGallery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Room\RoomRequest;
+use App\Http\Requests\Room\RoomUpdateRequest;
 use App\Repository\Bed\BedRepositoryInterface;
 use App\Repository\Room\RoomRepositoryInterface;
 use App\Repository\View\ViewRepositoryInterface;
@@ -46,7 +48,7 @@ class RoomController extends Controller
         return view('backend.room.roomForm', compact(['beds','views','amenities','specialFeatures']));
     }
 
-    public function postRoom(Request $request)
+    public function postRoom(RoomRequest $request)
     {
         try {
             $result = $this->roomRepository->postRoom($request->all());
@@ -121,7 +123,7 @@ class RoomController extends Controller
         return view('backend.Room.roomForm', compact(['rooms','beds','views','amenities','specialFeatures','amenityByRoomId','specialFeatureByRoomId']));
     }
 
-    public function updateRoom(Request $request)
+    public function updateRoom(RoomUpdateRequest $request)
     {
         try {
             $result = $this->roomRepository->updateRoom($request->all());

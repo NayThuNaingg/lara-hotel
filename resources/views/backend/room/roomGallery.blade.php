@@ -13,8 +13,8 @@
                     <form action="{{ route('postRoomGallery') }}" method="POST" id="form-create" enctype="multipart/form-data" >
                     @else
                         <form action="{{ route('updateRoomGallery') }}" method="POST" id="form-create" enctype="multipart/form-data" >
-                            <input type="hidden" name="id" value={{ $gallery->id }}>
-                        @endif
+                        <input type="hidden" name="id" value={{ $gallery->id }}>
+                    @endif
                             @csrf
                             <h5 class="mb-4">Room Gallery Upload</h5>
                                 <div class="col-md-6 col-sm-6">
