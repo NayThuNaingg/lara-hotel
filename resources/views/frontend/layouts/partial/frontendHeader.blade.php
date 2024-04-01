@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ getSiteSetting() !== null ? getSiteSetting()->name : '' }}</title>
+    <link rel="shortcut icon" href="{{ URL::asset('assets/logo/logo.png') }}" style="width: 100px;height:100px;" alt="Logo" type="image/x-icon">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
@@ -46,7 +47,7 @@
         </div>
         <div class="header-configure-area">
             <div class="language-option">
-                <img src="img/flag.jpg" alt="">
+                <img src="{{URL::asset('assets/frontend/img/flag.jpg')}}" alt="">
                 <span>EN <i class="fa fa-angle-down"></i></span>
                 <div class="flag-dropdown">
                     <ul>
@@ -109,7 +110,7 @@
                             </div>
                             <a href="#" class="bk-btn">Booking Now</a>
                             <div class="language-option">
-                                <img src="img/flag.jpg" alt="">
+                                <img src="{{URL::asset('assets/frontend/img/flag.jpg')}}" alt="">
                                 <span>EN <i class="fa fa-angle-down"></i></span>
                                 <div class="flag-dropdown">
                                     <ul>
@@ -129,7 +130,7 @@
                     <div class="col-lg-2">
                         <div class="logo">
                             <a href="./index.html">
-                                <img src="img/logo.png" alt="">
+                                <img src="{{ URL::asset('assets/logo/logo.png') }}" alt="" style="width:50px;height:50px;">
                             </a>
                         </div>
                     </div>

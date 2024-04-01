@@ -5,7 +5,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthLoginController;
 use App\Http\Controllers\Bed\BedController;
 use App\Http\Controllers\Home\IndexController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HotelSetting\HotelSettingController;
+use App\Http\Controllers\Index\frontendController;
 use App\Http\Controllers\Room\RoomController;
 use App\Http\Controllers\SpecialFeature\SpecialFeatureController;
 use App\Http\Controllers\View\ViewController;
@@ -23,9 +25,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [frontendController::class, 'index'])->name('indexForm');
 Route::prefix('admin-backend')->group(function () {
     Route::get('login', [LoginController::class,'loginForm'])->name('loginForm');
     Route::post('postLogin', [LoginController::class,'postLogin'])->name('postLogin');

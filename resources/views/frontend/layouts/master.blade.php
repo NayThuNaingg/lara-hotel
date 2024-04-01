@@ -1,4 +1,5 @@
-@include('frontend.layouts.partial.header')
+@include('frontend.layouts.partial.frontendHeader')
 @include('frontend.layouts.partial.hero')
-@yield('content')
-@include('frontend.layouts.partial.footer')
+@yield('index')
+@include('frontend.layouts.partial.service')
+@include('frontend.layouts.partial.frontendFooter')
