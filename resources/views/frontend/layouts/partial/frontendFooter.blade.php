@@ -8,7 +8,7 @@
                         <div class="ft-about">
                             <div class="logo">
                                 <a href="#">
-                                    <img src="{{URL::asset('assets/frontend/img/footer-logo.png')}}" alt="">
+                                    <img src="{{ URL::asset('assets/logo/logo.png') }}" style="width: 100px;height:100px;" alt="">
                                 </a>
                             </div>
                             <p>We inspire and reach millions of travelers<br /> across 90 local websites</p>
@@ -86,6 +86,7 @@
     <script src="{{URL::asset('assets/frontend/js/jquery.slicknav.js')}}"></script>
     <script src="{{URL::asset('assets/frontend/js/owl.carousel.min.js')}}"></script>
     <script src="{{URL::asset('assets/frontend/js/main.js')}}"></script>
+    @yield('script')
 </body>
 
 </html>

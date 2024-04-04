@@ -16,12 +16,12 @@
                         <form action="#">
                             <div class="check-date">
                                 <label for="date-in">Check In:</label>
-                                <input type="text" class="date-input" id="date-in">
+                                <input type="text" class="date-input" id="date-in" readonly/>
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="check-date">
                                 <label for="date-out">Check Out:</label>
-                                <input type="text" class="date-input" id="date-out">
+                                <input type="text" class="date-input" id="date-out" readonly/>
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="select-option">
