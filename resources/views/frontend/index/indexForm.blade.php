@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('index')
+@include('frontend.layouts.partial.hero')
 <section class=" spad services-section ">
     <div class="container">
         <div class="breadcrumb-section">
@@ -50,4 +51,5 @@
         </div>
     </div>
 </section>
+
 @endsection

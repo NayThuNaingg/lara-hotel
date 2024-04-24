@@ -6,10 +6,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="breadcrumb-text">
-                            <h2>Stay with us at {{ getSiteSetting() !== null ? getSiteSetting()->name : '' }} YANGON</h2>
+                            <h2>{{$room->getView->name}} (View)</h2>
                             <div class="bt-option">
                                 <a href="{{route('indexForm')}}">Room</a>
-                                <span>Rooms</span>
+                                <span>Room Detail</span>
                             </div>
                         </div>
                     </div>
@@ -19,10 +19,11 @@
     <section class="room-details-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-md-7">
                     <div class="room-details-item">
                     <img id="thumb" src="{{ URL::asset('assets/upload/' . $room->id . '/thumb/' . $room->thumbnail) }}" class="rounded " alt="Thumbnail" style="width:100%;height:350px">
                     @if(isset($roomGalleries) && count($roomGalleries) >0 && !isset($roomGallery) )
+                    <h5>Room Gallery</h5>
                         <div class="row mt-2">
                             @foreach ($roomGalleries as $roomGallery)
                             <div class="col-md-3">
@@ -31,9 +32,8 @@
                             @endforeach
                         </div>
                     @endif
-                        <div class="rd-text mt-5">
+                        <div class="rd-text">
                             <div class="rd-title">
-                                <h3>{{$room->getView->name}}</h3>
                                 <div class="rdt-right">
                                     <div class="rating">
                                         <i class="icon_star"></i>
@@ -42,45 +42,13 @@
                                         <i class="icon_star"></i>
                                         <i class="icon_star-half_alt"></i>
                                     </div>
-                                    <a href="#" class="mt-5">Booking Now</a>
+                                    <a href="#" class="mt-2">Booking Now</a>
                                 </div>
                             </div>
-                            <h2 class="">{{$room->price_per_day}}{{ getSiteSetting() !== null ? getSiteSetting()->price_unit : '' }}<span>/Pernight</span></h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>{{$room->size}}{{ getSiteSetting() !== null ? getSiteSetting()->size_unit : '' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>{{$room->occupancy}}{{ getSiteSetting() !== null ? getSiteSetting()->occupancy : '' }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>{{$room->getBed->name}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Amenity:</td>
-                                        <td>
-                                        @foreach($amenityByroomId as $amenity)
-                                            <div class="mt-1"><i class="fa-brands fa-intercom mx-1"></i>{{ $amenity->name }}</div>
-                                        @endforeach
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="r-o">SpecialFeature:</td>
-                                        <td>
-                                        @foreach($specialFeatureByRoomId as $specialFeature)
-                                            <div class="mt-1"><i class="fa-brands fa-intercom mx-1"></i>{{ $specialFeature->name }}</div>
-                                        @endforeach
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p class="f-para">{{$room->detail}}</p>
-                            <p>{{$room->description}}</p>
+                            <h5>Details</h5>
+                            <p class="f-para text-muted">{{$room->detail}}</p>
+                            <h5>Description</h5>
+                            <p class="f-para text-muted">{{$room->description}}</p>
                         </div>
                     </div>
                    
@@ -153,18 +121,89 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <!-- <div class="col-md-5">
                     <div class="room-booking">
+                    <h4 class="mt-2 ">{{$room->price_per_day}}{{ getSiteSetting() !== null ? getSiteSetting()->price_unit : '' }}<span>/Pernight</span></h4>
+                    <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label for="">Room No:</label>
+                            </div>
+                            <div class="col-md-8">
+                            <h4><span class="mt-2 p-1 bg-primary badge text-light">{{$room->name}}</span></h4>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label for="">Size:</label>
+                            </div>
+                            <div class="col-md-8">
+                            <label for="">
+                                {{$room->size}}{{ getSiteSetting() !== null ? getSiteSetting()->size_unit : '' }}
+                            </label>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label for="">Capacity:</label>
+                            </div>
+                            <div class="col-md-8">
+                            <label for="">
+                                {{$room->occupancy}}{{ getSiteSetting() !== null ? getSiteSetting()->occupancy : '' }}
+                            </label>
+                            </div>
+                        </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="">Bed:</label>
+                        </div>
+                        <div class="col-md-8">
+                        <label for="">
+                            {{$room->getBed->name}}
+                        </label>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="">Amenity:</label>
+                        </div>
+                        <div class="col-md-8">
+                        <label for="">
+                        @foreach($amenityByroomId as $amenity)
+                            <div class="mt-1"><i class="fa-solid fa-ship mx-1"></i>{{ $amenity->name }}</div>
+                        @endforeach
+                        </label>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="">SpecialFeatuer:</label>
+                        </div>
+                        <div class="col-md-8">
+                        <label for="">
+                        @foreach($specialFeatureByRoomId as $specialFeature)
+                            <div class="mt-1"><i class="fa-brands fa-intercom mx-1"></i>{{ $specialFeature->name }}</div>
+                        @endforeach
+                        </label>
+                        </div>
+                    </div>
+                    </div>
+                </div> -->
+                <div class="col-md-5">
+                <div class="room-booking">
                         <h3>Your Reservation</h3>
                         <form action="#">
                             <div class="check-date">
                                 <label for="date-in">Check In:</label>
-                                <input type="text" class="date-input" id="date-in" readonly/>
+                                <input type="text" class="date-input" id="date-in" readonly />
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="check-date">
                                 <label for="date-out">Check Out:</label>
-                                <input type="text" class="date-input" id="date-out" readonly/>
+                                <input type="text" class="date-input" id="date-out" readonly />
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="select-option">

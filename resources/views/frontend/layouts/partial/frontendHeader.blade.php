@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{URL::asset('assets/frontend/css/bootstrap.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{URL::asset('assets/frontend/css/font-awesome.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{URL::asset('assets/frontend/css/elegant-icons.css')}}" type="text/css">

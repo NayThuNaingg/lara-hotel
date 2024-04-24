@@ -59,4 +59,9 @@ class frontendController extends Controller
             return view('frontend.rooms.roomDetail', compact(['room','roomBed','roomView','roomAmenity','roomSpecialFeature','amenityByroomId','specialFeatureByRoomId','roomGalleries','id']));
         }
     }
+
+    public function roomReserve($id)
+    {
+
+    }
 }
