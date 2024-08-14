@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 @section('index')
 @include('frontend.layouts.partial.hero')
-<section class=" spad services-section ">
+<section class="spad services-section">
     <div class="container">
         <div class="breadcrumb-section">
             <div class="container">
@@ -10,7 +10,7 @@
                         <div class="breadcrumb-text">
                             <h2>Stay with us at {{ getSiteSetting() !== null ? getSiteSetting()->name : '' }} YANGON</h2>
                             <div class="bt-option">
-                                <a href="{{route('indexForm')}}">Home</a>
+                                <a href="{{ route('indexForm') }}">Home</a>
                                 <span>Rooms</span>
                             </div>
                         </div>
@@ -21,9 +21,9 @@
 
         <div class="row">
             @foreach ($rooms as $room)
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="room-item">
-                    <img src="{{ URL::asset('assets/upload/' . $room->id . '/thumb/' . $room->thumbnail) }}" class="rounded-3" alt="" style="width: 100%; height:100%;">
+                    <img src="{{ URL::asset('assets/upload/' . $room->id . '/thumb/' . $room->thumbnail) }}" class="rounded-3 img-fluid" alt="{{ $room->view_name }}">
                     <div class="ri-text">
                         <h5>{{ $room->view_name }}</h5>
                         <h3>{{ $room->price_per_day }}{{ getSiteSetting() !== null ? getSiteSetting()->price_unit : '' }}<span>/Pernight</span></h3>
@@ -43,13 +43,13 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="{{URL::asset('rooms/detail')}}/{{$room->id}}" class="primary-btn">More Details</a>
+                        <a href="{{ URL::asset('rooms/detail/' . $room->id) }}" class="primary-btn">More Details</a>
                     </div>
                 </div>
             </div>
             @endforeach
         </div>
+
     </div>
 </section>
-
 @endsection

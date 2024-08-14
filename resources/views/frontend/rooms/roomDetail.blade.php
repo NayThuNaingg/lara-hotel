@@ -6,10 +6,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="breadcrumb-text">
-                            <h2>{{$room->getView->name}} (View)</h2>
+                            <h2 class="text-warning">{{$room->getView->name}} (View)</h2>
                             <div class="bt-option">
                                 <a href="{{route('indexForm')}}">Room</a>
-                                <span>Room Detail</span>
+                                <span class="text-success">Room Detail</span>
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                     <div class="room-details-item">
                     <img id="thumb" src="{{ URL::asset('assets/upload/' . $room->id . '/thumb/' . $room->thumbnail) }}" class="rounded " alt="Thumbnail" style="width:100%;height:350px">
                     @if(isset($roomGalleries) && count($roomGalleries) >0 && !isset($roomGallery) )
-                    <h5>Room Gallery</h5>
+                    <h5 class="text-success">Room Gallery</h5>
                         <div class="row mt-2">
                             @foreach ($roomGalleries as $roomGallery)
                             <div class="col-md-3">
@@ -42,7 +42,7 @@
                                         <i class="icon_star"></i>
                                         <i class="icon_star-half_alt"></i>
                                     </div>
-                                    <a href="#" class="mt-2">Booking Now</a>
+                                    <a href="{{ URL::to('rooms/reserve') }}/{{ $room->id }}" class="mt-2">Booking Now</a>
                                 </div>
                             </div>
                             <h5>Details</h5>
@@ -121,9 +121,9 @@
                         </form>
                     </div>
                 </div>
-                <!-- <div class="col-md-5">
+                <div class="col-md-5">
                     <div class="room-booking">
-                    <h4 class="mt-2 ">{{$room->price_per_day}}{{ getSiteSetting() !== null ? getSiteSetting()->price_unit : '' }}<span>/Pernight</span></h4>
+                    <h4 class="mt-2 text-success">{{$room->price_per_day}}{{ getSiteSetting() !== null ? getSiteSetting()->price_unit : '' }}<span>/Pernight</span></h4>
                     <div class="row mt-3">
                             <div class="col-md-4">
                                 <label for="">Room No:</label>
@@ -191,8 +191,8 @@
                         </div>
                     </div>
                     </div>
-                </div> -->
-                <div class="col-md-5">
+                </div>
+                <!-- <div class="col-md-5">
                 <div class="room-booking">
                         <h3>Your Reservation</h3>
                         <form action="#">
@@ -221,7 +221,7 @@
                             <button type="submit">Check Availability</button>
                         </form>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
