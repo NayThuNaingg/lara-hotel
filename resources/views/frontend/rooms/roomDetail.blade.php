@@ -193,7 +193,7 @@
                     </div>
                 </div>
                 <!-- <div class="col-md-5">
-                <div class="room-booking">
+                    <div class="room-booking">
                         <h3>Your Reservation</h3>
                         <form action="#">
                             <div class="check-date">

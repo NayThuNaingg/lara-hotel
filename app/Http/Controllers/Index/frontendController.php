@@ -11,6 +11,7 @@ use App\Repository\Room\RoomRepositoryInterface;
 use App\Repository\View\ViewRepositoryInterface;
 use App\Repository\Amenity\AmenityRepositoryInterface;
 use App\Repository\SpecialFeature\SpecialFeatureRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 
 class frontendController extends Controller
 {
@@ -63,5 +64,18 @@ class frontendController extends Controller
     public function roomReserve($id)
     {
 
+    }
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('customer')->attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->intended('dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 }
