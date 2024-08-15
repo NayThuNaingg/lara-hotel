@@ -1,27 +1,29 @@
 @extends('frontend.layouts.master')
 
 @section('index')
-    <section class="room-reservation">
+    <section class="breadcrumb-section">
+        <div class="container">
         <div class="col-lg-4">
             <div class="room-booking">
                 <h3>Your Reservation</h3>
-                <form action="{{ route('roomReserve') }}" method="POST">
+                <form action="" method="POST">
                 @csrf
                     <div class="check-date">
                         <label for="date-in">Check In:</label>
-                        <input type="text" class="date-input" id="date-in">
+                        <input type="text" class="date-input" id="date-in" readonly>
                         <i class="icon_calendar"></i>
                     </div>
                     <div class="check-date">
                         <label for="date-out">Check Out:</label>
-                        <input type="text" class="date-input" id="date-out">
+                        <input type="text" class="date-input" id="date-out" readonly>
                         <i class="icon_calendar"></i>
                     </div>
-   
-                    <input type="submit" value="Check Availability">
-                    <input type="hidden" name="room_id" value="{{ $rooms->id }}">
+
+                    <button type="submit">Check Availability</button>
+                    <input type="hidden" name="room_id" value="{{ $room->id }}">
                 </form>
             </div>
+        </div>
         </div>
     </section>
 
@@ -37,7 +39,7 @@
                     Your session has expired. Please log in again.
                 </div>
                 <div class="modal-footer">
-                    <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                    <a href="" class="btn btn-primary">Login</a>
                 </div>
             </div>
         </div>
