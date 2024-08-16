@@ -129,7 +129,7 @@
                                 <label for="">Room No:</label>
                             </div>
                             <div class="col-md-8">
-                            <h4><span class="mt-2 p-1 bg-primary badge text-light">{{$room->name}}</span></h4>
+                            <p class="mt-2 p-1 bg-primary badge text-light">{{ $room->name }}</p>
                             </div>
                         </div>
                         <div class="row mt-3">

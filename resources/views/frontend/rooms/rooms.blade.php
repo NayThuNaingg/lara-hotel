@@ -13,6 +13,10 @@
                         <h3>{{ $room->price_per_day }}{{ getSiteSetting() !== null ? getSiteSetting()->price_unit : '' }}<span>/Pernight</span></h3>
                         <table>
                             <tbody>
+                            <tr>
+                                <td class="r-o">Room No :</td>
+                                <td><p class="mt-2 p-1 bg-primary badge text-light">{{ $room->name }}</p></td>
+                            </tr>
                                 <tr>
                                     <td class="r-o">Size:</td>
                                     <td>{{ $room->size }}{{ getSiteSetting() !== null ? getSiteSetting()->size_unit : '' }}</td>
@@ -32,13 +36,6 @@
                 </div>
             </div>
             @endforeach
-        </div>
-        <div class="col-lg-12">
-            <div class="room-pagination">
-                <a href="{{ $rooms->links() }}">1</a>
-                <a href="{{ $rooms->links() }}">2</a>
-                <a href="{{ $rooms->links() }} ">Next <i class="fa fa-long-arrow-right"></i></a>
-            </div>
         </div>
 </section>
 @endsection

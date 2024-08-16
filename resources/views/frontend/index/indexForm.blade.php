@@ -30,6 +30,10 @@
                         <table>
                             <tbody>
                                 <tr>
+                                    <td class="r-o">Room No :</td>
+                                    <td><p class="mt-2 p-1 bg-primary badge text-light">{{ $room->name }}</p></td>
+                                </tr>
+                                <tr>
                                     <td class="r-o">Size:</td>
                                     <td>{{ $room->size }}{{ getSiteSetting() !== null ? getSiteSetting()->size_unit : '' }}</td>
                                 </tr>
