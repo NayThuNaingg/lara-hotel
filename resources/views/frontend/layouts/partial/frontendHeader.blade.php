@@ -61,7 +61,7 @@
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
+                <li class="active"><a href="{{route('indexForm')}}">Home</a></li>
                 <li><a href="./rooms.html">Rooms</a></li>
                 <li><a href="./about-us.html">About Us</a></li>
                 <li><a href="./pages.html">Pages</a>
@@ -139,8 +139,8 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li class="active"><a href="./index.html">Home</a></li>
-                                    <li><a href="./rooms.html">Rooms</a></li>
+                                    <li class="{{ request()->routeIs('indexForm') ? 'active' : '' }}"><a href="{{route('indexForm')}}">Home</a></li>
+                                    <li class="{{ request()->routeIs('rooms') || request()->routeIs('rooms.*') ? 'active' : '' }}"><a href="{{route('rooms')}}">Rooms</a></li>
                                     <li><a href="./about-us.html">About Us</a></li>
                                     <li><a href="./pages.html">Pages</a>
                                         <ul class="dropdown">

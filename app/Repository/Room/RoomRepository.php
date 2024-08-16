@@ -79,27 +79,7 @@ class RoomRepository implements RoomRepositoryInterface
 
     public function listingRoom()
     {
-        $rooms = Room::select(
-            'rooms.id',
-            'rooms.name',
-            'rooms.size',
-            'rooms.occupancy',
-            'rooms.bed_id',
-            'rooms.view_id',
-            'rooms.thumbnail',
-            'rooms.description',
-            'rooms.detail',
-            'rooms.price_per_day',
-            'rooms.extra_bed_price',
-            'beds.name as bed_name',
-            'views.name as view_name'
-        )
-            ->leftJoin('beds', 'rooms.bed_id', '=', 'beds.id')
-            ->leftJoin('views', 'rooms.view_id', '=', 'views.id')
-            ->whereNull('rooms.deleted_at')
-            ->whereNull('beds.deleted_at')
-            ->whereNull('views.deleted_at')
-            ->get();
+        $rooms = Room::paginate(10);
         return $rooms;
     }
 
@@ -209,19 +189,20 @@ class RoomRepository implements RoomRepositoryInterface
         return $roomSpecialFeatures;
     }
 
-    public function roomRandomById() {
+    public function roomRandomById()
+    {
         $rooms = Room::select(
-                            'rooms.id',
-                            'rooms.name', 
-                            'rooms.size', 
-                            'rooms.occupancy',
-                            'rooms.bed_id', 
-                            'rooms.price_per_day',
-                            'rooms.thumbnail',
-                            'rooms.view_id',
-                            'beds.name as bed_name',
-                            'views.name as view_name'
-                        )
+            'rooms.id',
+            'rooms.name',
+            'rooms.size',
+            'rooms.occupancy',
+            'rooms.bed_id',
+            'rooms.price_per_day',
+            'rooms.thumbnail',
+            'rooms.view_id',
+            'beds.name as bed_name',
+            'views.name as view_name'
+        )
                     ->leftJoin('beds', 'rooms.bed_id', '=', 'beds.id')
                     ->leftJoin('views', 'rooms.view_id', '=', 'views.id')
                     ->whereNull('rooms.deleted_at')
@@ -230,7 +211,7 @@ class RoomRepository implements RoomRepositoryInterface
                     ->inRandomOrder()
                     ->limit(6)
                     ->get();
-    
+
         return $rooms;
     }
 

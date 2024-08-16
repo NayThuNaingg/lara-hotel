@@ -83,23 +83,13 @@ class frontendController extends Controller
         }
 
     }
-    public function CustomerRegister(Request $request)
+    public function rooms()
     {
         try {
-            $credentials = $request->only('email', 'password');
-
-            if (Auth::guard('customer')->attempt($credentials)) {
-                // Authentication passed...
-                return redirect()->intended('dashboard');
-            } else {
-
-            }
-
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ]);
+            $rooms = $this->roomRepository->listingRoom();
+            return view('frontend.rooms.rooms', compact(['rooms']));
         } catch(\Exception $e) {
-            $logs = "Customer check ::";
+            $logs = "Room Listing ::";
             $logs = $e->getMessage();
             Utility::saveErrorLog($logs);
             abort(500);

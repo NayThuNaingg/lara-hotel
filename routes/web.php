@@ -30,9 +30,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [frontendController::class, 'index'])->name('indexForm');
-Route::get('rooms/detail/{id}', [frontendController::class, 'detailRooms']);
-Route::get('rooms/reserve/{id}', [frontendController::class,'roomReserve']);
-Route::post('/rooms/reserved', [frontendController::class,'roomReserved']);
+Route::prefix('rooms')->group(function () {
+    Route::get('/', [frontendController::class,'rooms'])->name('rooms');
+    Route::get('/detail/{id}', [frontendController::class, 'detailRooms']);
+    Route::get('/reserve/{id}', [frontendController::class,'roomReserve']);
+    Route::post('/reserved', [frontendController::class,'roomReserved']);
+});
+
 Route::prefix('admin-backend')->group(function () {
     Route::get('login', [LoginController::class,'loginForm'])->name('loginForm');
     Route::post('postLogin', [LoginController::class,'postLogin'])->name('postLogin');
