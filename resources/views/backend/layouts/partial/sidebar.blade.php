@@ -133,16 +133,16 @@
             <li class="sidebar-title">BOOKING</li>
 
             <li
-                class="sidebar-item  has-sub">
-                <a href="#" class='sidebar-link'>
+                class="sidebar-item  has-sub sidebar-item  has-sub {{ request()->is('admin-backend/reservation/*') ? 'active' : '' }}">
+                <a href="" class='sidebar-link'>
                     <i class="bi bi-bar-chart-fill"></i>
                     <span>Booking</span>
                 </a>
                 
                 <ul class="submenu ">
                     
-                    <li class="submenu-item  ">
-                        <a href="" class="submenu-link">Booking</a>
+                    <li class="submenu-item">
+                        <a href="{{route('ReservationListing')}}" class="submenu-link">Booking</a>
                         
                     </li>
                     

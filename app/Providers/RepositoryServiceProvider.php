@@ -33,7 +33,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SpecialFeatureRepositoryInterface::class, SpecialFeatureRepository::class);
         $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);
         $this->app->bind(roomGalleryRepositoryInterface::class, roomGalleryRepository::class);
-        // $this->app->bind(ReservationRepositoryInterface::class,ReservationRepository::class);
+        $this->app->bind(ReservationRepositoryInterface::class, ReservationRepository::class);
         $this->app->bind(HotelSettingRepositoryInterface::class, HotelSettingRepository::class);
 
         $this->app->bind(ViewRepositoryInterface::class, ViewRepository::class);

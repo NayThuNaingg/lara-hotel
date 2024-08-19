@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\Amenity\AmenityController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\AuthLoginController;
-use App\Http\Controllers\Bed\BedController;
-use App\Http\Controllers\Home\IndexController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\HotelSetting\HotelSettingController;
-use App\Http\Controllers\Index\frontendController;
-use App\Http\Controllers\Room\RoomController;
-use App\Http\Controllers\SpecialFeature\SpecialFeatureController;
-use App\Http\Controllers\View\ViewController;
 use App\Models\Bed;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Bed\BedController;
+use App\Http\Controllers\AuthLoginController;
+use App\Http\Controllers\Room\RoomController;
+use App\Http\Controllers\View\ViewController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Home\IndexController;
+use App\Http\Controllers\Index\frontendController;
+use App\Http\Controllers\Amenity\AmenityController;
+use App\Http\Controllers\Reservation\ReservationController;
+use App\Http\Controllers\HotelSetting\HotelSettingController;
+use App\Http\Controllers\SpecialFeature\SpecialFeatureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,8 @@ Route::prefix('rooms')->group(function () {
     Route::get('/', [frontendController::class,'rooms'])->name('rooms');
     Route::get('/detail/{id}', [frontendController::class, 'detailRooms']);
     Route::get('/reserve/{id}', [frontendController::class,'roomReserve']);
-    Route::post('/reserved', [frontendController::class,'roomReserved']);
+    Route::post('/reserved', [frontendController::class,'postRoomReserved'])->name('postRoomReserved');
+
 });
 
 Route::prefix('admin-backend')->group(function () {
@@ -108,6 +110,12 @@ Route::group(['prefix' => 'admin-backend','middleware' => 'admin'], function () 
             Route::post('/create', [RoomController::class,'postRoomGallery'])->name('postRoomGallery');
         });
 
+    });
+
+    Route::prefix('reservation')->group(function () {
+        Route::get('listing', [ReservationController::class,'ReservationListing'])->name('ReservationListing');
+        Route::get('confirm/{id}', [ReservationController::class,'ReservationConfrim']);
+        Route::get('delete/{id}', [ReservationController::class,'delete']);
     });
 
     Route::prefix('lara-hotel-setting')->group(function () {

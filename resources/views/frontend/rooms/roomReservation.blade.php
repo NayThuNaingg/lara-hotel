@@ -7,29 +7,58 @@
                 <div class="col-md-6 border">
                     <div class="room-booking m-4">
                         <h3>Your Reservation</h3>
-                        <form action="" method="POST" autocomplete="off">
+                        <form action="{{route('postRoomReserved')}}" method="POST" autocomplete="off">
                             @csrf
                             <div class="check-date">
                                 <label for="date-in">Check In:</label>
                                 <input type="text" class="checkin" id="date-in" name="checkin" required />
                                 <i class="icon_calendar"></i>
+                                <div style="margin-left:40%;">
+                                @if($errors->has('checkin'))
+                                <small style="color:red">{{ $errors->first('checkin') }}</small>
+                                @endif
+                                </div>
                             </div>
                             <div class="check-date">
                                 <label for="date-out">Check Out:</label>
                                 <input type="text" class="checkout" id="date-out" name="checkout" required />
                                 <i class="icon_calendar"></i>
+                                <div style="margin-left:40%;">
+                                @if($errors->has('checkout'))
+                                <small style="color:red">{{ $errors->first('checkout') }}</small>
+                                @endif
+                                </div>
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input extra_bed_select" id="extra_bed_select" value="1" name="is_extra_bed" />
+                                <label class="form-check-label" for="extra_bed_select">Extra Bed</label>
                             </div>
                             <div class="check-date">
                                 <label class="col-form-label" for="name">Name:</label>
                                 <input type="text" class="form-control" placeholder="Your Name" name="name" id="name" required />
+                                <div style="margin-left:40%;">
+                                @if($errors->has('name'))
+                                    <small style="color:red">{{ $errors->first('name') }}</small>
+                                @endif
+                                </div>
                             </div>
                             <div class="check-date">
                                 <label class="col-form-label" for="phone">Phone:</label>
                                 <input type="number" class="form-control" placeholder="09 XXX XXXX XXX" name="phone" id="phone" required />
+                                <div style="margin-left:40%;">
+                                @if($errors->has('phone'))
+                                    <small style="color:red">{{ $errors->first('phone') }}</small>
+                                @endif
+                                </div>
                             </div>
                             <div class="check-date">
                                 <label class="col-form-label" for="email">Email:</label>
                                 <input type="email" class="form-control" placeholder="yourname@email.com" name="email" id="email" required />
+                                <div style="margin-left:40%;">
+                                @if($errors->has('email'))
+                                    <small style="color:red">{{ $errors->first('email') }}</small>
+                                @endif
+                                </div>
                             </div>
                             <button type="submit" class="btn">Check Availability</button>
                             <input type="hidden" name="room_id" value="{{ $room->id }}">

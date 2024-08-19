@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{URL::asset('assets/frontend/css/magnific-popup.css')}}" type="text/css">
     <link rel="stylesheet" href="{{URL::asset('assets/frontend/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{URL::asset('assets/frontend/css/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{URL::asset('assets/backend/extensions/sweetalert2/sweetalert2.min.css')}}">
 </head>
 
 <body>

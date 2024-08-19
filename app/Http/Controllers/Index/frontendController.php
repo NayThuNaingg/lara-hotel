@@ -3,14 +3,19 @@
 namespace App\Http\Controllers\Index;
 
 use App\Utility;
+use App\ReturnMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Reservation\reservationRequest;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use App\Repository\Bed\BedRepositoryInterface;
 use App\Repository\Room\RoomRepositoryInterface;
 use App\Repository\View\ViewRepositoryInterface;
 use App\Repository\Amenity\AmenityRepositoryInterface;
+use App\Repository\Reservation\ReservationRepository;
+use App\Repository\Reservation\ReservationRepositoryInterface;
 use App\Repository\roomGallery\roomGalleryRepositoryInterface;
 use App\Repository\SpecialFeature\SpecialFeatureRepositoryInterface;
 
@@ -22,13 +27,15 @@ class frontendController extends Controller
     private $roomGalleryRepository;
     private $specialFeatureRepository;
     private $amenityRepository;
+    private $reservationRepository;
     public function __construct(
         RoomRepositoryInterface $roomRepository,
         BedRepositoryInterface $bedRepository,
         ViewRepositoryInterface $viewRepository,
         AmenityRepositoryInterface $amenityRepository,
         SpecialFeatureRepositoryInterface $specialFeatureRepository,
-        roomGalleryRepositoryInterface $roomGalleryRepository
+        roomGalleryRepositoryInterface $roomGalleryRepository,
+        ReservationRepositoryInterface $reservationRepository
     ) {
         $this->roomRepository           = $roomRepository;
         $this->bedRepository            = $bedRepository;
@@ -36,6 +43,7 @@ class frontendController extends Controller
         $this->amenityRepository        = $amenityRepository;
         $this->specialFeatureRepository = $specialFeatureRepository;
         $this->roomGalleryRepository    = $roomGalleryRepository;
+        $this->reservationRepository    = $reservationRepository;
         DB::connection()->enableQueryLog();
     }
     public function index()
@@ -82,6 +90,25 @@ class frontendController extends Controller
             abort(500);
         }
 
+    }
+
+    public function postRoomReserved(reservationRequest $request)
+    {
+        try {
+            $result = $this->reservationRepository->postReserve($request->all());
+            $logs   = "Room Reserve Create::";
+            Utility::saveDebugLog($logs);
+            if($result['LaraHotelCode'] == ReturnMessage::OK) {
+                return back()->with('success_msg', 'Reservation successful! Please wait for contact for the administrator');
+            } else {
+                return back()->with('error_msg', 'Reservation failed. Please Choose other date or other rooms');
+            }
+        } catch(\Exception $e) {
+            $logs = "Room Reserve::";
+            $logs = $e->getMessage();
+            Utility::saveErrorLog($logs);
+            abort(500);
+        }
     }
     public function rooms()
     {
