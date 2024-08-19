@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Reservation;
 
 use App\Utility;
+use App\Constant;
+use App\ReturnMessage;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -23,6 +26,53 @@ class ReservationController extends Controller
             return view('backend.Reservation.reservationListing', compact(['reservations']));
         } catch (\Exception $e) {
             $logs = "Reservation sreen create::";
+            $logs = $e->getMessage();
+            Utility::saveErrorLog($logs);
+            abort(500);
+        }
+    }
+
+    public function ReservationConfrim($id)
+    {
+        $reservation = Reservation::find($id);
+        $room_id = $reservation->room_id;
+        $checkin = $reservation->checkin;
+        $checkout = $reservation->checkout;
+        $checkin_cnt = Reservation::where('checkin', '<', $checkin)
+                       ->where('checkout', '>', $checkin)
+                       ->where('status', Constant::RESERVATION_AVALIABLE)
+                       ->where('room_id', $room_id)
+                       ->whereNull('deleted_at')
+                       ->count();
+        $checkout_cnt =  Reservation::where('checkin', '<', $checkout)
+                        ->where('checkout', '>', $checkout)
+                        ->where('status', Constant::RESERVATION_AVALIABLE)
+                        ->where('room_id', $room_id)
+                        ->whereNull('deleted_at')
+                        ->count();
+        if($checkin_cnt === 0 && $checkout_cnt === 0) {
+            $reservation->status = Constant::RESERVATION_AVALIABLE;
+            $reservation->save();
+            return back()->with('success_msg', 'Reservation confirmed successful.');
+        } else {
+            return "something wrong";
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $result = $this->ReservationRepository->delete($id);
+            $logs   = "reservation sreen delete::";
+            Utility::saveDebugLog($logs);
+            if($result['LaraHotelCode'] == ReturnMessage::OK) {
+                return back()->with('success_msg', 'Reservation Reject successful.');
+            } else {
+                return back()->with('error_msg', 'Something wrong.');
+
+            }
+        } catch(\Exception $e) {
+            $logs = "reservation sreen delete::";
             $logs = $e->getMessage();
             Utility::saveErrorLog($logs);
             abort(500);

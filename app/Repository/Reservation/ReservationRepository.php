@@ -119,6 +119,7 @@ class ReservationRepository implements ReservationRepositoryInterface
                           ->paginate(Constant::PAGE_LIMIT);
         return $reservations;
     }
+
     public function delete($id)
     {
         $returnedObj = array();
