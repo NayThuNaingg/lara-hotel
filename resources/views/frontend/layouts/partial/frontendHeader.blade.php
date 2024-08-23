@@ -110,7 +110,34 @@
                                 <a href="#"><i class="fa fa-tripadvisor"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
-                            <a href="#" class="bk-btn">Booking Now</a>
+                            <!-- <a href="{{route('getCustomerLogin')}}" class="bk-btn">Login</a> -->
+                            <!-- Button trigger modal -->
+                            <a type="button" class="bk-btn" data-toggle="modal" data-target="#exampleModal">Login</a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                           <form action="" autocomplete="off">
+                           <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Login Form</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required />
+                                <input type="number" class="form-control mt-3" id="phone" placeholder="Phone" required />
+                                <span><a>Create Account? </a></span>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Login</button>
+                                </div>
+                                </div>
+                            </div>
+                           </form>
+                            </div>
                             <div class="language-option">
                                 <img src="{{URL::asset('assets/frontend/img/flag.jpg')}}" alt="">
                                 <span>EN <i class="fa fa-angle-down"></i></span>

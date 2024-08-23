@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Home\IndexController;
 use App\Http\Controllers\Index\frontendController;
 use App\Http\Controllers\Amenity\AmenityController;
+use App\Http\Controllers\Customer\customerLoginController;
 use App\Http\Controllers\Reservation\ReservationController;
 use App\Http\Controllers\HotelSetting\HotelSettingController;
 use App\Http\Controllers\SpecialFeature\SpecialFeatureController;
@@ -31,11 +32,18 @@ use App\Http\Controllers\SpecialFeature\SpecialFeatureController;
 // });
 
 Route::get('/', [frontendController::class, 'index'])->name('indexForm');
+
+Route::group(['middleware' => 'customer.auth'], function () {
+    Route::get('/customer/login', [customerLoginController::class, 'getCustomerLogin'])->name('getCustomerLogin');
+    Route::get('rooms/reserved-vanchor', [frontendController::class,'vanchor'])->name('vanchor');
+});
+
 Route::prefix('rooms')->group(function () {
     Route::get('/', [frontendController::class,'rooms'])->name('rooms');
-    Route::get('/detail/{id}', [frontendController::class, 'detailRooms']);
-    Route::get('/reserve/{id}', [frontendController::class,'roomReserve']);
-    Route::post('/reserved', [frontendController::class,'postRoomReserved'])->name('postRoomReserved');
+    Route::get('/room-detail/{id}', [frontendController::class, 'detailRooms']);
+    Route::get('/room-reserve/{id}', [frontendController::class,'roomReserve']);
+    Route::post('/room-reserved', [frontendController::class,'postRoomReserved'])->name('postRoomReserved');
+
 
 });
 

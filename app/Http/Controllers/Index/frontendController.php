@@ -99,7 +99,8 @@ class frontendController extends Controller
             $logs   = "Room Reserve Create::";
             Utility::saveDebugLog($logs);
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
-                return back()->with('success_msg', 'Reservation successful! Please wait for contact for the administrator');
+                return redirect()->route('vanchor')->with('success_msg', 'Reservation successful! Please wait for contact for the administrator');
+                // return view('frontend.rooms.vanchor', compact(['result']))->with('success_msg', 'Reservation successful! Please wait for contact for the administrator');
             } else {
                 return back()->with('error_msg', 'Reservation failed. Please Choose other date or other rooms');
             }
@@ -122,5 +123,10 @@ class frontendController extends Controller
             abort(500);
         }
 
+    }
+
+    public function vanchor()
+    {
+        return view('frontend.rooms.vanchor');
     }
 }

@@ -42,7 +42,7 @@
                                         <i class="icon_star"></i>
                                         <i class="icon_star-half_alt"></i>
                                     </div>
-                                    <a href="{{ URL::to('rooms/reserve') }}/{{ $room->id }}" class="mt-2">Booking Now</a>
+                                    <a href="{{ URL::to('rooms/room-reserve') }}/{{ $room->id }}" class="mt-2">Booking Now</a>
                                 </div>
                             </div>
                             <h5>Details</h5>
