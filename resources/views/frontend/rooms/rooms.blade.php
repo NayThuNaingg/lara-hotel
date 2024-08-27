@@ -31,7 +31,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="{{ URL::asset('rooms/detail/' . $room->id) }}" class="primary-btn">More Details</a>
+                        <a href="{{ URL::asset('rooms/room-detail/' . $room->id) }}" class="primary-btn">More Details</a>
                     </div>
                 </div>
             </div>

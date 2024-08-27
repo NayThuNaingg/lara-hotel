@@ -99,10 +99,11 @@ class frontendController extends Controller
             $logs   = "Room Reserve Create::";
             Utility::saveDebugLog($logs);
             if($result['LaraHotelCode'] == ReturnMessage::OK) {
-                return redirect()->route('vanchor')->with('success_msg', 'Reservation successful! Please wait for contact for the administrator');
-                // return view('frontend.rooms.vanchor', compact(['result']))->with('success_msg', 'Reservation successful! Please wait for contact for the administrator');
+                // Assuming $result['reservation_id'] holds the ID of the reservation
+                return redirect()->route('vanchor', ['id' => $result['reservation_id']])
+                                 ->with('success_msg', 'Reservation successful! Please wait for contact from the administrator');
             } else {
-                return back()->with('error_msg', 'Reservation failed. Please Choose other date or other rooms');
+                return back()->with('error_msg', 'Reservation failed. Please choose another date or room.');
             }
         } catch(\Exception $e) {
             $logs = "Room Reserve::";
@@ -111,6 +112,7 @@ class frontendController extends Controller
             abort(500);
         }
     }
+
     public function rooms()
     {
         try {
@@ -125,8 +127,9 @@ class frontendController extends Controller
 
     }
 
-    public function vanchor()
+    public function vanchor($id)
     {
+        $room  = $this->roomRepository->editRoom($id);
         return view('frontend.rooms.vanchor');
     }
 }

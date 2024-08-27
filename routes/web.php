@@ -33,16 +33,17 @@ use App\Http\Controllers\SpecialFeature\SpecialFeatureController;
 
 Route::get('/', [frontendController::class, 'index'])->name('indexForm');
 
-Route::group(['middleware' => 'customer.auth'], function () {
+Route::group(['middleware' => 'customer'], function () {
     Route::get('/customer/login', [customerLoginController::class, 'getCustomerLogin'])->name('getCustomerLogin');
-    Route::get('rooms/reserved-vanchor', [frontendController::class,'vanchor'])->name('vanchor');
+
 });
 
 Route::prefix('rooms')->group(function () {
     Route::get('/', [frontendController::class,'rooms'])->name('rooms');
-    Route::get('/room-detail/{id}', [frontendController::class, 'detailRooms']);
-    Route::get('/room-reserve/{id}', [frontendController::class,'roomReserve']);
-    Route::post('/room-reserved', [frontendController::class,'postRoomReserved'])->name('postRoomReserved');
+    Route::get('room-detail/{id}', [frontendController::class, 'detailRooms']);
+    Route::get('room-reserve/{id}', [frontendController::class,'roomReserve']);
+    Route::post('room-reserved', [frontendController::class,'postRoomReserved'])->name('postRoomReserved');
+    Route::get('reserved-vanchor/{id}', [frontendController::class,'vanchor'])->name('vanchor');
 
 
 });

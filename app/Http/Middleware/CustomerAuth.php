@@ -16,9 +16,12 @@ class CustomerAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::guard('customer')->check()) {
-            return redirect()->route('rooms'); // Redirect to customer login if not authenticated
+        if(Auth::guard('customer')->user() != null) {
+            dd("success");
+            return $next($request);
+        } else {
+            dd("fail");
+            return redirect()->back();
         }
-        return $next($request);
     }
 }

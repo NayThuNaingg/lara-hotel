@@ -64,6 +64,7 @@ class ReservationRepository implements ReservationRepositoryInterface
             Utility::saveDebugLog($logMsg);
 
             $returnMsgObj['LaraHotelCode'] = ReturnMessage::OK;
+            $returnMsgObj['reservation_id'] = $returnObj->id;
             return $returnMsgObj;
         } catch (\Exception $e) {
             DB::rollBack();
